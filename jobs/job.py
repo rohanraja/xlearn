@@ -1,37 +1,43 @@
-from ..models import modelsIndex
-from ..datasets import datasetsIndex
-from ..mapper import mappersIndex
+from componentloader import ComponentsLoader
 
-class Job():
+class Job(ComponentsLoader):
 
-    def __init__(jinfo):
+    def __init__(self, jinfo):
 
-        self.jobInfo = jinfo # Dict containing model, dataset, mapping information
+        self.jinfo = jinfo # Dict containing model, dataset, mapping information
 
-        self.loadModel()     # self.model contains the final model
-        self.loadDataset()   # self.dataset contains the final dataset
-        self.loadMapper()    
+        self.loadComponents() # self.model contains model class instance
+
+        self.evaluate()
+        self.start_training()
+        self.evaluate()
+
+
+
+    def start_training(self):
         
+        X = self.mapper.X
+        Y = self.mapper.Y
 
-    def loadMapper(self):
-        self.mapper = mappersIndex.get(self.jinfo["mapper_idx"])
+        self.model.model.fit(
+            X, Y, 
+            batch_size=32, 
+            validation_split=0.5, 
+            nb_epoch=5, 
+            show_accuracy=False, 
+            verbose=0
+        )
 
 
-    def loadDataset(self):
-        self.dataset = datasetsIndex.get(self.jinfo["dataset_idx"])
+    def evaluate(self):
         
-    
+        X = self.mapper.X
+        Y = self.mapper.Y
 
-    def loadModel(self):
+        loss, accuracy = self.model.model.evaluate(
+            X, Y, 
+            batch_size=32, 
+            show_accuracy=True, 
+        )
 
-        hyperParams = self.loadHyperparams()
-        weights = self.loadWeights()
-
-        modelClass = modelsIndex.get(self.jinfo["model_idx"])
-        self.model = modelClass(hyperParams, weights)
-
-    def loadWeights(self):
-        return []
-
-    def loadHyperparams(self):
-        return []
+        print accuracy * 100

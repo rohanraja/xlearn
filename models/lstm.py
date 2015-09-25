@@ -9,15 +9,20 @@ import theano
 
 class MLP_0():
 
-    def __init__(self, embed_matrix):
+    def __init__(self, hyperParams=None):
+
+        if hyperParams == None :
+            hyperParams = {
+                    'l1_input': 100,
+                    'l1_output': 64,
+                    'l2_output': 64,
+            }
+
+        p = hyperParams
 
         model = Sequential()
 
-        # emb = Embedding(embed_matrix.shape[0], embed_matrix.shape[1], weights=[embed_matrix], mask_zero=True)
-
-        # model.add(emb)
-
-        model.add(Dense(100, 64, init='uniform'))
+        model.add(Dense(p['l1_input'], 64, init='uniform'))
         model.add(Activation('tanh'))
         model.add(Dropout(0.5))
         model.add(Dense(64, 64, init='uniform'))
@@ -25,8 +30,6 @@ class MLP_0():
         model.add(Dropout(0.5))
         model.add(Dense(64, 1))
         model.add(Activation('sigmoid'))
-        # model.add(Dense(64, 2, init='uniform'))
-        # model.add(Activation('softmax'))
         
         self.model = model
         self.compile()

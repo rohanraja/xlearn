@@ -5,7 +5,7 @@ class Tweet_Nepal():
 
     def __init__(self, seed = 10):
         self.seed = seed
-        self.csvfname = "datasets/csv/nepal_english_labelled.csv"
+        self.csvfname = "../datasets/csv/nepal_english_labelled.csv"
 
         self.csvInit()
 

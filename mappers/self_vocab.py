@@ -1,5 +1,6 @@
 from vocab import Vocabulary
 from numpy import array
+from ..models.keras_custom.preprocessing.sequence import pad_sequences
 
 class SelfVocab():
 
@@ -18,7 +19,8 @@ class SelfVocab():
 
         seqs_with_idx = self.vocab.docs_to_indices()
         self.X = array(seqs_with_idx, dtype=object)
-        self.X = seqs_with_idx
+
+        self.X = pad_sequences(self.X, maxlen=100)
 
         Y = [0 if y==0 else 1 for y in self.dataset.Y]
         self.Y = Y #array(Y)
