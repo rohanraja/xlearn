@@ -41,7 +41,7 @@ class MLP_0():
         
 
         # self.model.compile(loss='binary_crossentropy', optimizer='rmsprop')
-        self.model.compile(loss='binary_crossentropy', optimizer='rmsprop', class_mode="binary")
+        self.model.compile(loss='binary_crossentropy', optimizer='sgd', class_mode="binary")
 
         print "Compiling Done"
 
