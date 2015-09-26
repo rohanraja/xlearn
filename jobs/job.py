@@ -1,5 +1,7 @@
 from componentloader import ComponentsLoader
 from os.path import join
+from ..models.keras_custom.utils.np_utils import to_categorical
+from colorama import Fore
 
 class Job(ComponentsLoader):
 
@@ -12,7 +14,10 @@ class Job(ComponentsLoader):
         self.weight_default_fname = "weights"
 
         self.loadComponents() # self.model contains model class instance
-        self.load_weights()
+        # self.load_weights()
+        
+        print Fore.MAGENTA, "\nModel: %s\n"%(self.model.__class__.__name__)
+
 
 
 
@@ -42,29 +47,38 @@ class Job(ComponentsLoader):
         
         X = self.mapper.X
         Y = self.mapper.Y
+        
+        self.model.train(X,Y)
 
-        self.model.model.fit(
-            X, Y, 
-            batch_size=32, 
-            validation_split=0.5, 
-            nb_epoch=5, 
-            show_accuracy=False, 
-            verbose=0
-        )
-
-        self.save_weights()
+        # self.save_weights()
 
 
+    def viewSample(self):
+        pass
 
     def evaluate(self):
         
+        X = self.mapper.X_test
+        Y = self.mapper.Y_test
+
+        loss, accuracy = self.model.evaluate(X,Y)
+
+        from colorama import Fore
+        print Fore.GREEN, "\nTest Set Accuracy: %.2f %%" % (accuracy * 100)
+
+    def crossValidate(self):
+
         X = self.mapper.X
         Y = self.mapper.Y
 
-        loss, accuracy = self.model.model.evaluate(
-            X, Y, 
-            batch_size=32, 
-            show_accuracy=True, 
-        )
+        score = self.model.crossValidate(X,Y)
+        from colorama import Fore
+        print Fore.CYAN, "\nCrossValidateScore: %.2f %%" % (score * 100)
 
-        print accuracy * 100
+
+    def predict(self):
+
+        X = self.mapper_test.X
+
+        predictions = self.model.predict(X)
+        self.mapper_test.unMap(X[:,0], predictions, self.mapper.cats[1])

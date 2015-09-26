@@ -24,9 +24,9 @@ class Project():
         
         jInfo = {
             
-            "dataset_idx": 0,
-            "mapper_idx": 0,
-            "model_idx": 2,
+            "dataset_idx": 1,
+            "mapper_idx": 1,
+            "model_idx": 6,
         }
         return jInfo
 
@@ -37,11 +37,14 @@ class Project():
         return jobs
 
 
-    def getJob(self, params_name):
+    def getJob(self, params_name, mid = None):
         
         params = {}
 
         jobdir = join(self.projectDir, params_name)
+
+        if mid :
+          self.jinfo["model_idx"] = mid
 
         j = Job(jobdir , self.jinfo, params)
 

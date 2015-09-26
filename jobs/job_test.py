@@ -15,7 +15,12 @@ class TestJob_and_Project(unittest.TestCase):
         p = Project(pname)
         
         jname = p.listJobs()[0]
-        j = p.getJob(jname)
 
-        j.evaluate()
-        # j.start_training()
+        for i in range(6,7):
+
+            j = p.getJob(jname, i)
+
+            j.start_training()
+            # j.evaluate()
+            # j.crossValidate()
+            j.predict()
