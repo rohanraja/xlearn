@@ -1,5 +1,9 @@
 from sklearn.cross_validation import cross_val_score
 from colorama import Fore
+from sklearn.externals import joblib
+from sklearn.grid_search import GridSearchCV
+
+
 class BaseModel():
     
     def crossValidate(self, X, Y, cv=10):
@@ -23,3 +27,27 @@ class BaseModel():
 
         out = self.model.predict(X)
         return out
+
+    def save(self, fpath):
+        joblib.dump(self.model, fpath) 
+
+    def load(self, fpath):
+        self.model = joblib.load(fpath) 
+
+
+    def gridSearch(self, X, Y):
+        
+        Cs = range(50, 450, 50)
+
+        clf = GridSearchCV(
+                estimator=self.model, 
+                param_grid=dict(n_estimators=Cs),
+                n_jobs=-1
+        )
+
+        clf.fit(X,Y)
+
+        print clf.best_params_
+        print clf.best_estimator_
+        
+        return clf.best_score_

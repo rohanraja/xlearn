@@ -13,9 +13,9 @@ class MLP_QUANT():
 
         if hyperParams == None :
             hyperParams = {
-                    'input': 19,
-                    'l1_output': 14,
-                    'l2_output': 14,
+                    'input': 15,
+                    'l1_output': 4,
+                    'l2_output': 4,
                     'output': 16,
             }
 
@@ -23,13 +23,13 @@ class MLP_QUANT():
 
         model = Sequential()
 
-        model.add(Dense(p['input'], 24, init='uniform'))
-        model.add(Activation('tanh'))
+        model.add(Dense(p['input'], 5, init='uniform'))
+        model.add(Activation('sigmoid'))
         model.add(Dropout(0.5))
-        model.add(Dense(24, 4, init='uniform'))
-        model.add(Activation('tanh'))
-        model.add(Dropout(0.5))
-        model.add(Dense(4, p["output"]))
+        # model.add(Dense(24, 4, init='uniform'))
+        # model.add(Activation('tanh'))
+        # model.add(Dropout(0.5))
+        model.add(Dense(5, p["output"]))
         model.add(Activation('softmax'))
         
         self.model = model
@@ -54,7 +54,7 @@ class MLP_QUANT():
         y = to_categorical(Y)
         self.model.fit(
             X, y, 
-            batch_size=5, 
+            batch_size=50, 
             # validation_split=0.2, 
             nb_epoch=10, 
             show_accuracy=True, 

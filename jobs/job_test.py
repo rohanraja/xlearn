@@ -16,11 +16,12 @@ class TestJob_and_Project(unittest.TestCase):
         
         jname = p.listJobs()[0]
 
-        for i in range(6,7):
+        for i in range(9, 10): # Random Forest
 
             j = p.getJob(jname, i)
 
             j.start_training()
             # j.evaluate()
-            # j.crossValidate()
             j.predict()
+            j.crossValidate()
+            # j.gridSearch()

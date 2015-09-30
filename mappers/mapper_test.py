@@ -12,8 +12,8 @@ class TestMapping(unittest.TestCase):
         M = mappersIndex[1]
         m = M(data)
 
-        print Fore.GREEN, "\n", m.X_train[2]
-        print Fore.YELLOW, "\n", m.Y_train[2]
+        print Fore.GREEN, "\n", m.X
+        print Fore.YELLOW, "\n", data.X[2][8]
 
     def tesT_mapper_output(self):
 

@@ -1,7 +1,6 @@
 from sklearn import cross_validation
 
 class BaseMapper():
-    pass
 
     def split_train_val(self, factor = 0.5):
 

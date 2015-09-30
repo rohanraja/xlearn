@@ -28,7 +28,9 @@ class Job(ComponentsLoader):
 
         fpath = join(self.jobDir, fname)
         try:
-            self.model.model.load_weights(fpath)
+            # self.model.model.load_weights(fpath)
+            self.load(fpath)
+            
             print "Loaded Weights from file: %s"%fname
         except:
             print "Couldn't find saved weights"
@@ -40,7 +42,8 @@ class Job(ComponentsLoader):
             fname = self.weight_default_fname
 
         fpath = join(self.jobDir, fname)
-        self.model.model.save_weights(fpath, overwrite=True)
+        self.save(fpath)
+        # self.model.model.save_weights(fpath, overwrite=True)
 
 
     def start_training(self):
@@ -81,4 +84,16 @@ class Job(ComponentsLoader):
         X = self.mapper_test.X
 
         predictions = self.model.predict(X)
-        self.mapper_test.unMap(X[:,0], predictions, self.mapper.cats[1])
+        self.mapper_test.unMap(self.dataset_test.X[:,0], predictions, self.mapper.cats[1])
+
+
+    def gridSearch(self):
+
+        print "Performing Grid Search"
+
+        X = self.mapper.X
+        Y = self.mapper.Y
+
+        score = self.model.gridSearch(X,Y)
+        from colorama import Fore
+        print Fore.YELLOW, "\nBest Score: %.2f %%" % (score * 100)

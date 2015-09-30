@@ -15,7 +15,7 @@ class ComponentsLoader():
     def loadMapper(self):
         M = mappersIndex.get(self.jinfo["mapper_idx"])
         self.mapper = M(self.dataset)
-        self.mapper_test = M(self.dataset_test)
+        self.mapper_test = M(self.dataset_test, False)
 
 
     def loadDataset(self):

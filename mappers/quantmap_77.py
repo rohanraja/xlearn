@@ -42,15 +42,15 @@ class QuantMapper(BaseMapper):
     def binnize(self):
 
         self.X[:,-1] = self.binnRow(self.X[:,-1]) 
-        self.X[:,-3] = self.binnRow(self.X[:,-3], 300)
-        self.X[:,-4] = self.binnRow(self.X[:,-4], 300)
+        self.X[:,-3] = self.binnRow(self.X[:,-3])
+        self.X[:,-4] = self.binnRow(self.X[:,-4])
 
         # self.X[:,-5] = self.binnRow(self.X[:,-5], 100)
         # self.X[:,-6] = self.binnRow(self.X[:,-6], 100)
 
 
 
-    def binnRow(self,a, numBins = 2500):
+    def binnRow(self,a, numBins = 2000):
         
         bins = np.histogram(a, numBins)
         digized = np.digitize(array(a, dtype='float64'), bins[1])

@@ -12,6 +12,8 @@ modelsIndex = {
     5 : DT_Quant,
     6 : RandomForest,
     7 : Adaboost,
+    8 : Multinomial,
+    9 : ExtraTrees,
 
 }
 
