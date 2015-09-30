@@ -1,0 +1,43 @@
+<div>
+
+<div class="row">
+  <br>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <select 
+        class="form-control" 
+        ng-model="jobInfo.model_id"  
+        ng-options="mapr.id as (mapr.id + ': ' + mapr.name) for mapr in models"
+        >
+      </select>
+    </div>        
+  </div>
+
+  <div class="col-md-4">
+  </div>
+
+</div>
+
+<div class="row">
+  <h4> Model Parameters </h4>
+  <br>
+
+
+  <div class="col-md-6">
+    <div class="form-group" 
+      ng-repeat="(pLabel, pValue) in paramInfo.model"
+    >
+    <label>{{pLabel}}:</label>
+      <input type="text" class="form-control"
+      ng-model="paramInfo.model[pLabel]"
+    >
+    </div>
+  </div><div class="col-md-6">
+
+  </div>
+
+</div>
+
+
+</div>
