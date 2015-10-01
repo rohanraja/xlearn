@@ -82,3 +82,21 @@ class Project():
         projects = filter(lambda j: j.isdigit(), projects)
 
         return projects
+
+    @staticmethod
+    def createModelInfo(params):
+        
+        try:
+            jlist = Project.list()
+            jlist.sort(key=int)
+            newPid = (int(jlist[-1]) + 1)
+        except:
+            newPid = 0
+
+        jobdir = join(Project.baseDir, str(newPid))
+        mkdir(jobdir)
+        fname = join(jobdir, "jinfo.json")
+
+        json.dump(params, open(fname, 'w'))
+        return newPid
+

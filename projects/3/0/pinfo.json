@@ -1,0 +1,1 @@
+{"model": {"input": "123", "L1_output": "121", "output": "1111"}, "paramid": 1, "optimizer": {"alpha": 0.1, "name": "sgd", "batch_size": 10, "decay": 0.001}, "learn_embedding": 1, "modelid": 1}

@@ -30,6 +30,17 @@ def createParamsInfo(params):
 
     return newPid
 
+def createModelInfo(params):
+
+    mInfo = params["mInfo"]
+    pInfo = params["pInfo"]
+
+    newMid = project.Project.createModelInfo(mInfo)
+    
+    p2 = {"modelId": newMid, "pInfo": pInfo}
+    newPid = createParamsInfo(p2)
+
+    return [newMid, newPid]
 
 def getDatasetName(dataId):
 

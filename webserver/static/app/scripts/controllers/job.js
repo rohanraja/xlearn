@@ -8,6 +8,7 @@ angular.module('sbAdminApp')
     $scope.marktab = function(i){
 
         $scope.$root.$broadcast('activetab', i);
+        $scope.activetab = i;
       // $stateParams.activetab = i;
       // $state.go('dashboard.job', $stateParams);
 
@@ -37,7 +38,16 @@ angular.module('sbAdminApp')
 
     $scope.$on('fork_model', function(event, mass) 
     {   
-      $scope.$root.$broadcast('loadsidebar');
+      jobservice.createModel($scope.jobInfo, $scope.paramInfo).then(function(resp){
+
+        var newJobid = resp[0];
+        var newParamId = resp[1];
+        console.log("Forked New Model with Id: ", resp);
+        $scope.$root.$broadcast('loadsidebar');
+        $state.go('dashboard.job', {datasetId: $scope.datasetId, modelId: newJobid, paramsId: newParamId, activetab: $scope.activetab});
+
+      });
+
     });
 
     $scope.$on('fork_params', function(event, mass) 
@@ -48,7 +58,7 @@ angular.module('sbAdminApp')
         var newParamId = resp;
         console.log("Forked New Param with Id: ", newParamId);
         $scope.$root.$broadcast('loadsidebar');
-        $state.go('dashboard.job', {datasetId: $scope.datasetId, modelId: $scope.modelId, paramsId: newParamId});
+        $state.go('dashboard.job', {datasetId: $scope.datasetId, modelId: $scope.modelId, paramsId: newParamId, activetab: $scope.activetab});
       });
     
     });

@@ -70,7 +70,17 @@ angular.module('sbAdminApp')
 
     this.createModel = function(jobInfo, paramsInfo){
 
-      return [newmodelId, newparamsId];
+      var query = {
+        'type': 'createModelInfo',
+        'params': {
+          'mInfo': jobInfo,
+          'pInfo': paramsInfo,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
     };
 
 
