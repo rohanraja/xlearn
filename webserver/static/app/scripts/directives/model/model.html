@@ -20,11 +20,10 @@
 </div>
 
 <div class="row">
-  <h4> Model Parameters </h4>
-  <br>
-
 
   <div class="col-md-6">
+  <h4> Model Parameters </h4>
+  <br>
     <div class="form-group" 
       ng-repeat="(pLabel, pValue) in paramInfo.model"
     >
@@ -33,10 +32,20 @@
       ng-model="paramInfo.model[pLabel]"
     >
     </div>
-  </div><div class="col-md-6">
-
   </div>
 
+  <div class="col-md-6">
+    <h4> Optimizer Parameters </h4>
+    <br>
+    <div class="form-group" 
+      ng-repeat="(pLabel, pValue) in paramInfo.optimizer"
+      >
+      <label>{{pLabel}}:</label>
+      <input type="text" class="form-control"
+      ng-model="paramInfo.optimizer[pLabel]"
+      >
+    </div>
+  </div>
 </div>
 
 

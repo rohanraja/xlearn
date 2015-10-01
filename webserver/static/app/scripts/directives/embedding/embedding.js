@@ -13,30 +13,10 @@ angular.module('sbAdminApp')
         restrict: 'E',
         replace: true,
         scope: false,
-        controller: function ($scope) {
-
-          // ToDo: Implement
-
-          var loadSelectionList = function(){
-
-            var out = [
-              {
-                id: 0,
-                name: "Gaussian"
-              },
-              {
-                id: 2,
-                name: "Word2Vec"
-              }
-              
-            ];
-
-            return out;
-
-          };
+        controller: function ($scope, listservice) {
 
 
-          $scope.embeddings = loadSelectionList();
+          $scope.embeddings = listservice.loadEmbeddings($scope.modelId);
 
 
         }

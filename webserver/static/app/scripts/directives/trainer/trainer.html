@@ -1,0 +1,94 @@
+<div>
+
+  <br>
+
+<div class="row">
+
+  <div class="col-md-6" style="">
+    <h4> Training </h4>
+    <div style="text-align: center">
+    <button style="" type="button" class="btn btn-warning btn-circle btn-lg">
+      <i class="fa fa-pause"></i>
+    </button>
+  </div>
+
+    <br>
+    <progressbar style="text-align: center"  animate="false" value="dynamic" type="success">
+    <b>{{dynamic}}%</b>
+    </progressbar>
+
+  <p>Epoch 1 of 10</p>
+
+  <br>
+  <div class="form-group">
+    <select 
+      class="form-control" 
+      ng-model="currentTrainInfo"  
+      ng-options="mapr.id as (mapr.name) for mapr in savedWeights"
+      >
+    </select>
+  </div>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+        <tr
+          ng-repeat="(pLabel, pValue) in trainInfo"
+          >
+          <td>{{pLabel}}</td>
+          <td>{{pValue}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+<button style="" type="button" class="btn btn-primary btn-circle btn-lg">
+  <i class="fa fa-save"></i>
+    </button>
+
+  
+  </div>
+
+  <div class="col-md-6">
+    <h4> Evaluation </h4>
+      
+    <div style="text-align: center">
+    <button style="" type="button" class="btn btn-info btn-circle btn-lg">
+      <i class="fa fa-play"></i>
+    </button>
+  </div>
+
+    <br>
+    <progressbar style="text-align: center"  animate="false" value="dynamic" type="primary">
+    <b>{{dynamic}}%</b>
+    </progressbar>
+
+  <br>
+  <div class="form-group">
+    <label>Dataset</label>
+    <select 
+      class="form-control" 
+      ng-model="currentDataset"  
+      ng-options="mapr.id as (mapr.name) for mapr in datasets"
+      >
+    </select>
+  </div>  <br>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+        <tr
+          ng-repeat="(pLabel, pValue) in evalInfo"
+          >
+          <td>{{pLabel}}</td>
+          <td>{{pValue}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  
+  </div>
+</div>
+
+
+</div>

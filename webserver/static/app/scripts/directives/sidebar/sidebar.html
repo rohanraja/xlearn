@@ -16,19 +16,30 @@
 
             <!-- Models -->
           <li ng-repeat="model in activeDataset.models" ng-class="{active: collapseVar==($index+11)}">{{dropDown}}
-            <a href="" ng-click="check($index+11)">
+            <a href="" ng-click="check(model.id)">
               
               <i class="fa fa-sitemap fa-fw"></i> {{model.name}} 
               <span     class="fa arrow"></span>
             
             </a>
 
-                <ul class="nav nav-second-level" collapse="collapseVar!=($index+11)">
-                    <li ui-sref-active="active" >
-                    <a ng-click="" ui-sref="dashboard.job({name: 'RNN 2layer #1'})">Params</a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=(model.id)">
+                    <li 
+                    ng-class="{'active': pid==paramsId}"
+                    ui-sref-active="active" ng-repeat="pid in model.params" >
+                    <a 
+                      ng-click="" 
+                      ui-sref="dashboard.job({datasetId: datasetId, modelId: model.id, paramsId: pid, activetab: activetab})">
+                      
+                      Params_{{pid}}</a>
                     </li>
                 </ul>
             </li>
+
+
+            <br>
+            <br>
+            <br>
             
             <li ui-sref-active="active">
                 <a ui-sref="dashboard.home"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>

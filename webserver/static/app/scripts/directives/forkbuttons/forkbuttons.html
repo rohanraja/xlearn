@@ -1,10 +1,11 @@
 <div>
     <a class="btn btn-info" ng-click="onForkModel()">
-      <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 
+      <!-- <span class="glyphicon glyphicon&#45;floppy&#45;disk" aria&#45;hidden="true"></span>  -->
+            <i class="fa fa-code-fork"></i>
       Fork Model
       <span ng-show=modelStar>*</span>
     </a>
-    <a class="btn btn-primary">
+    <a class="btn btn-primary" ng-click="onForkParams()">
       <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> 
       Fork Params
       <span ng-show=paramStar>*</span>

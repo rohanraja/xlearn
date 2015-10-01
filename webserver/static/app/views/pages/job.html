@@ -1,24 +1,26 @@
 <br>
 
-{{ paramInfo }}
+<!-- {{ paramInfo }} -->
 
 <tabset justified="true">
 
-  <tab heading="Mapper">
+  <tab heading="Mapper" active=activeTabs[0] select=marktab(0)>
     <mapper></mapper>
   </tab>
   
-  <tab heading="Embeddings">
+  <tab heading="Embeddings" active=activeTabs[1] select=marktab(1)>
     <embedding></embedding>
   </tab>
 
-  <tab heading="Model">
+  <tab heading="Model" active=activeTabs[2] select=marktab(2)>
     <model></model>
   </tab>
 
-  <tab heading="Training">
+  <tab heading="Training" active=activeTabs[3]  select=marktab(3)>
+      <trainer></trainer>
   </tab>
   
-  <tab heading="Evaluation">
+  <tab heading="Testing" active=activeTabs[4] select=marktab(4)>
+      <evaluation></evaluation>
   </tab>
 </tabset>

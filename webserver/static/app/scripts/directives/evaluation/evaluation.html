@@ -1,0 +1,50 @@
+<div>
+
+  <br>
+
+  <div class="row">
+
+    <div class="col-md-6" style="">
+
+
+      <label>Test Sentance</label>
+      <input type="text" class="form-control">
+
+      <br>
+      <h4>Results</h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+        <tbody>
+        <tr
+          ng-repeat="(pLabel, pValue) in testResults"
+          >
+          <td>{{pLabel}}</td>
+          <td>{{pValue}}</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <br>
+      <h4> Next Word Probabilites </h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tbody>
+          <tr
+            ng-repeat="result in wordResults"
+            >
+            <td>{{result.word}}</td>
+            <td>{{result.score}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+    </div>
+  </div>
+
+
+</div>

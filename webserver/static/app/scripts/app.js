@@ -34,6 +34,8 @@ angular
                     name:'sbAdminApp',
                     files:[
                     'scripts/directives/header/header.js',
+                    'scripts/services/serverComm.js',
+                    'scripts/services/listservice.js',
                     'scripts/directives/header/header-notification/header-notification.js',
                     'scripts/directives/sidebar/sidebar.js',
                     'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
@@ -157,7 +159,7 @@ angular
       // Job Page
       .state('dashboard.job',{
        templateUrl:'views/pages/job.html',
-       url:'/job/:name',
+       url:'/job/:datasetId/:modelId/:paramsId/:activetab',
        controller: 'JobCtrl',
        
        resolve: {
@@ -166,9 +168,12 @@ angular
               name:'sbAdminApp',
               files:[
               'scripts/controllers/job.js',
+              'scripts/services/jobservice.js',
               'scripts/directives/mapper/mapper.js',
               'scripts/directives/embedding/embedding.js',
               'scripts/directives/model/model.js',
+              'scripts/directives/trainer/trainer.js',
+              'scripts/directives/evaluation/evaluation.js',
               'scripts/directives/forkbuttons/forkbuttons.js',
               ]
             })

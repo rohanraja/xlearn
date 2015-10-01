@@ -15,6 +15,11 @@ angular.module('sbAdminApp')
         scope: false,
         controller: function ($scope) {
 
+          $scope.onForkParams = function(){
+
+            $scope.$broadcast('fork_params');
+
+          };
           $scope.onForkModel = function(){
 
             $scope.$broadcast('fork_model');

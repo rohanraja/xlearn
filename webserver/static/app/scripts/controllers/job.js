@@ -1,45 +1,61 @@
 angular.module('sbAdminApp')
-  .controller('JobCtrl', function($scope,$position, $stateParams) {
+  .controller('JobCtrl', function($scope,$position, $stateParams, jobservice, $state) {
 
-    $scope.name = $stateParams.name ;
+    // $scope.name = $stateParams.name ;
+
+    $scope.activeTabs = [false, false, false, false, false];
+    
+    $scope.marktab = function(i){
+
+        $scope.$root.$broadcast('activetab', i);
+      // $stateParams.activetab = i;
+      // $state.go('dashboard.job', $stateParams);
+
+    };
+
+    $scope.activeTabs[$stateParams.activetab] = true;
+
+    $scope.datasetId = $stateParams.datasetId ;
+    $scope.modelId = $stateParams.modelId ;
+    $scope.paramsId = $stateParams.paramsId ;
+
+    var originalJinfo;
+    var originalParams;
+
+    jobservice.getModelInfo($scope.modelId).then(function(resp){
+       $scope.jobInfo = resp;
+       originalJinfo = angular.copy($scope.jobInfo) ;
+
+    });
 
 
-    $scope.jobInfo = {
-      
-      jobid: 1,
-      dataset_id: 1,
-      mapper_id: 2,
-      embedding_id: 0,
-      model_id: 0,
+    jobservice.getParamsInfo($scope.modelId, $scope.paramsId).then(function(resp){
+       $scope.paramInfo = resp;
+       originalParams = angular.copy($scope.paramInfo) ;
 
-    }
-
-    $scope.paramInfo = {
-      
-      jobid: 1,
-      learn_embedding: 1,
-      
-      model: {
-        input: "100",
-        L1_output: "200",
-        output:"100"
-      },
-
-      trainer: {
-        optimizer: 'sgd',
-        alpha: 0.1,
-        decay: 0.001,
-      }
-    }
-
+    });
 
     $scope.$on('fork_model', function(event, mass) 
-   {   
-     alert("Clicked Model Fork");
-   });
+    {   
+      $scope.$root.$broadcast('loadsidebar');
+    });
+
+    $scope.$on('fork_params', function(event, mass) 
+    {   
+    
+      jobservice.createParams($scope.modelId, $scope.paramInfo).then(function(resp){
+
+        var newParamId = resp;
+        console.log("Forked New Param with Id: ", newParamId);
+        $scope.$root.$broadcast('loadsidebar');
+        $state.go('dashboard.job', {datasetId: $scope.datasetId, modelId: $scope.modelId, paramsId: newParamId});
+      });
+    
+    });
 
 
-    var originalParams = angular.copy($scope.paramInfo) ;
+
+
 
     $scope.$watch('paramInfo', function(newVal, oldVal){
 
@@ -50,7 +66,6 @@ angular.module('sbAdminApp')
 
     }, true);
 
-    var originalJinfo = angular.copy($scope.jobInfo) ;
 
     $scope.$watch('jobInfo', function(newVal, oldVal){
 

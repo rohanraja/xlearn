@@ -15,7 +15,10 @@ angular.module('sbAdminApp')
       replace: true,
       scope: {
       },
-      controller:function($scope){
+      controller:function($scope, $stateParams, listservice){
+
+        // name = $stateParams.name ;
+
         $scope.selectedMenu = 'dashboard';
         $scope.collapseVar = 0;
         $scope.multiCollapseVar = 0;
@@ -23,7 +26,7 @@ angular.module('sbAdminApp')
         $scope.check = function(x){
           
           if(x==$scope.collapseVar)
-            $scope.collapseVar = 0;
+            $scope.collapseVar = -1;
           else
             $scope.collapseVar = x;
         };
@@ -36,36 +39,35 @@ angular.module('sbAdminApp')
             $scope.multiCollapseVar = y;
         };
 
-        $scope.datasets = [
-          {
-            name : 'Nepal Data English',
-            models : [
-              {
-                name : 'RNN 2 layer'
-              },
-              {
-                name : 'SVM radial'
-              }
-            ]
-          },
 
-          {
-            name : 'Nepal Data Hindi',
-            models : [
-              {
-                name : 'RNN 3 layer'
-              },
-              {
-                name : 'SVM linear'
-              }
-           ]
-          }
+        var loadSideBar = function(){
+          
+          listservice.loadDatasets().then(function(resp){
 
-         ];
+            $scope.datasets = resp;
 
-         $scope.activeDataset = $scope.datasets[0];
+            $scope.datasetId = $stateParams.datasetId ;
+            $scope.modelId = $stateParams.modelId ;
+            $scope.paramsId = $stateParams.paramsId ;
+            $scope.collapseVar = $scope.modelId;
+            $scope.activeDataset = $scope.datasets[$scope.datasetId]; // Todo: Change
+          });
 
-         $scope.onDsetClick = function(x){
+          
+        };
+
+        $scope.$on('loadsidebar', function(event, mass){
+          loadSideBar();
+        });
+        loadSideBar();
+
+        $scope.$on('activetab', function(event, mass){
+          $scope.activetab = mass;
+        });
+
+        
+
+        $scope.onDsetClick = function(x){
           
             $scope.collapseVar = 0;
             $scope.activeDataset = $scope.datasets[x];

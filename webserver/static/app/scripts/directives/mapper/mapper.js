@@ -13,29 +13,10 @@ angular.module('sbAdminApp')
         restrict: 'E',
         replace: true,
         scope: false,
-        controller: function ($scope) {
-
-          // ToDo: Implement
-
-          var loadSelectionList = function(){
-            var out = [
-              {
-                id: 1,
-                name: "Self Vocab"
-              },
-              {
-                id: 2,
-                name: "Cat to Numerical"
-              }
-              
-            ]
-            return out
+        controller: function ($scope, listservice) {
 
 
-          };
-
-          $scope.mappers = loadSelectionList()
-          ;
+          $scope.mappers = listservice.loadMappers($scope.modelId);
 
 
         }

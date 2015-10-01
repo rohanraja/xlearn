@@ -13,29 +13,10 @@ angular.module('sbAdminApp')
         restrict: 'E',
         replace: true,
         scope: false,
-        controller: function ($scope) {
-
-          // ToDo: Implement
-
-          var loadSelectionList = function(){
-            var out = [
-              {
-                id: 0,
-                name: "RNN"
-              },
-              {
-                id: 2,
-                name: "LSTM"
-              }
-              
-            ]
-            return out
+        controller: function ($scope, listservice) {
 
 
-          };
-
-          $scope.models = loadSelectionList()
-          ;
+          $scope.models = listservice.loadModels($scope.modelId);
 
 
         }
