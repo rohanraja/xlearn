@@ -169,6 +169,7 @@ angular
               files:[
               'scripts/controllers/job.js',
               'scripts/services/jobservice.js',
+              'scripts/services/trainerservice.js',
               'scripts/directives/mapper/mapper.js',
               'scripts/directives/embedding/embedding.js',
               'scripts/directives/model/model.js',

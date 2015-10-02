@@ -40,7 +40,7 @@ class Project():
 
     def getParamsInfo(self, paramsId):
 
-        jobdir = join(self.projectDir, paramsId)
+        jobdir = join(self.projectDir, str(paramsId))
         fname = join(jobdir, "pinfo.json")
         params = json.load(open(fname))
 
@@ -48,7 +48,7 @@ class Project():
 
     def getJob(self, params_name, mid = None):
         
-        jobdir = join(self.projectDir, params_name)
+        jobdir = join(self.projectDir, str(params_name))
 
         params= self.getParamsInfo(params_name)
 

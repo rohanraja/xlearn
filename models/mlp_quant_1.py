@@ -4,16 +4,19 @@ from keras_custom.optimizers import SGD
 
 from keras_custom.utils.np_utils import to_categorical
 
-# import theano
-# theano.config.mode = "FAST_COMPILE"
+from basekeras import BaseKeras
 
-class MLP_QUANT():
+import theano
+theano.config.mode = "FAST_COMPILE"
+
+class MLP_QUANT(BaseKeras):
 
     def __init__(self, hyperParams=None):
 
-        if hyperParams == None :
-            hyperParams = {
-                    'input': 15,
+        self.params = hyperParams
+
+        hyperParams = {
+                    'input': 16,
                     'l1_output': 4,
                     'l2_output': 4,
                     'output': 16,
@@ -49,17 +52,11 @@ class MLP_QUANT():
 
         print "Compiling Done"
 
-    def train(self, X, Y, trainParams = {}):
+    def train(self, X, Y, nepochs, callbacks):
         
         y = to_categorical(Y)
-        self.model.fit(
-            X, y, 
-            batch_size=50, 
-            # validation_split=0.2, 
-            nb_epoch=10, 
-            show_accuracy=True, 
-            verbose=1
-        )
+        BaseKeras.train(self,X,y,nepochs, callbacks)
+ 
 
 
     def evaluate(self, X, Y, trainParams = {}):

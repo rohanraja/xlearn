@@ -46,12 +46,12 @@ class Job(ComponentsLoader):
         # self.model.model.save_weights(fpath, overwrite=True)
 
 
-    def start_training(self):
+    def start_training(self, nepochs=5, callbacks=None):
         
         X = self.mapper.X
         Y = self.mapper.Y
         
-        self.model.train(X,Y)
+        self.model.train(X,Y, nepochs, callbacks)
 
         # self.save_weights()
 

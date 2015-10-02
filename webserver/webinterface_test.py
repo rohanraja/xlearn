@@ -1,10 +1,11 @@
 import unittest
 from webinterface import *
+from trainer import *
 from colorama import Fore
 
 class TestWebInterface(unittest.TestCase):
 
-    def test_getModelInfo(self):
+    def Test_getModelInfo(self):
 
         params = { 
                 "modelId": 0,
@@ -18,8 +19,19 @@ class TestWebInterface(unittest.TestCase):
         print Fore.CYAN, getParamsInfo(params)
         # print Fore.RED, createParamsInfo(params)
 
-    def test_loading_datasets(self):
+    def Test_loading_datasets(self):
 
         out = loadDatasets("")
 
         print Fore.GREEN, out
+
+
+    def test_starting_training(self):
+
+        params = { 
+                "modelId": 0,
+                "paramsId": 0,
+                "nepochs": 5,
+                }
+
+        start_training(params)

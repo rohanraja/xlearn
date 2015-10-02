@@ -3,21 +3,25 @@ from keras_custom.layers.core import Dense, Dropout, Activation
 from keras_custom.layers.embeddings import Embedding
 from keras_custom.layers.recurrent import LSTM
 
+from basekeras import BaseKeras
+
 import theano
 
-# theano.config.mode = "FAST_COMPILE"
+theano.config.mode = "FAST_COMPILE"
 
-class MLP_0():
+class MLP_0(BaseKeras):
 
     def __init__(self, hyperParams=None):
 
-        if hyperParams == None :
-            hyperParams = {
-                    'l1_input': 100,
-                    'l1_output': 64,
-                    'l2_output': 64,
-            }
+        # if hyperParams == None :
 
+        self.params = hyperParams
+
+        hyperParams = {
+                'l1_input': 100,
+                'l1_output': 64,
+                'l2_output': 64,
+                }
         p = hyperParams
 
         model = Sequential()

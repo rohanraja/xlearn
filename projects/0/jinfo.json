@@ -1,8 +1,8 @@
 {
       "model": 1,
       "modelid": 1,
-      "dataset_id": 0,
-      "mapper_id": 2,
+      "dataset_id": 1,
+      "mapper_id": 1,
       "embedding_id": 0,
-      "model_id": 0
+      "model_id": 3
 }

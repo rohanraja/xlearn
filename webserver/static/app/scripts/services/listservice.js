@@ -6,40 +6,6 @@ angular.module('sbAdminApp')
 
     this.loadDatasets = function(){
 
-      var out = [
-         {
-            name : 'Nepal Data English',
-            models : [
-              {
-                id : '0',
-                name : 'RNN 2 layer',
-                params : [0,1,2],
-    
-              },
-              {
-                id : '1',
-                name : 'SVM radial',
-                params : [0,1,2],
-              }
-            ]
-          },
-
-          {
-            name : 'Nepal Data Hindi',
-            models : [
-              {
-                id : '0',
-                name : 'RNN 3 layer'
-              },
-              {
-                id : '1',
-                name : 'SVM linear'
-              }
-           ]
-          }
-
-         ];
-
       var query = {
         'type': 'loadDatasets',
         'params': {
@@ -94,8 +60,8 @@ angular.module('sbAdminApp')
                 name: "RNN"
               },
               {
-                id: 2,
-                name: "LSTM"
+                id: 3,
+                name: "MLP_QUANT"
               }
               
             ]

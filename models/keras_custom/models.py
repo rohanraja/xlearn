@@ -207,14 +207,21 @@ class Model(object):
                 batch_logs = {}
                 batch_logs['batch'] = batch_index
                 batch_logs['size'] = len(batch_ids)
+                batch_logs['totalbatches'] = len(batches)
+                batch_logs['epoch'] = epoch
+                batch_logs['totepochs'] = nb_epoch
                 callbacks.on_batch_begin(batch_index, batch_logs)
                 outs = f(*ins_batch)
+
                 if type(outs) != list:
                     outs = [outs]
                 for l, o in zip(out_labels, outs):
                     batch_logs[l] = o
 
                 callbacks.on_batch_end(batch_index, batch_logs)
+
+                if self.stop_training:
+                    return
 
                 epoch_logs = {}
                 if batch_index == len(batches) - 1:  # last batch

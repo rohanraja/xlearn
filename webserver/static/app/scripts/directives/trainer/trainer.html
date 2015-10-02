@@ -7,14 +7,16 @@
   <div class="col-md-6" style="">
     <h4> Training </h4>
     <div style="text-align: center">
-    <button style="" type="button" class="btn btn-warning btn-circle btn-lg">
+    <button ng-click="onTrainClick()" style="" type="button" 
+      class="btn btn-circle btn-lg"
+      ng-class="{'btn-primary': trainer_running, 'btn-danger': !trainer_running}" >
       <i class="fa fa-pause"></i>
     </button>
   </div>
 
     <br>
-    <progressbar style="text-align: center"  animate="false" value="dynamic" type="success">
-    <b>{{dynamic}}%</b>
+    <progressbar style="text-align: center"  animate="false" value="epoch_percent" type="success">
+    <b>{{epoch_percent}}%</b>
     </progressbar>
 
   <p>Epoch 1 of 10</p>

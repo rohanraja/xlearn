@@ -1,4 +1,5 @@
 from ..jobs import project
+import trainer
 
 def getModelInfo(params):
     
@@ -74,3 +75,16 @@ def loadDatasets(params):
 
     return out
 
+
+def start_training(params):
+
+    trainer.start_training(params)
+
+    return "Started Training"
+
+def stop_training(params):
+
+    print "Stopping!"
+    trainer.stop_training(params)
+
+    return "Stopped Training"

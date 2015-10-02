@@ -11,11 +11,11 @@ class BaseModel():
         out = cross_val_score(self.model, X, Y, cv=cv)
         return out.mean()
 
-    def train(self, X, Y, **kwargs):
+    def train(self, X, Y, *args, **kwargs):
 
         print Fore.YELLOW, "Training..."
 
-        self.model.fit(X, Y, **kwargs)
+        self.model.fit(X, Y)
 
 
     def evaluate(self, X, Y, **kwargs):

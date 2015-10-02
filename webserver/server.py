@@ -1,9 +1,11 @@
 import tornado.web          # the Tornado web framework
 import tornado.httpserver   # the Tornado web server
 import tornado.ioloop       # the Tornado event-loop
+import tornado.websocket    # the Tornado event-loop
 import json
 from bson.json_util import dumps
 import webinterface
+import json
 
 
 # handles incoming request, this is the C part in MVC
@@ -30,6 +32,23 @@ class HTTPApi(tornado.web.RequestHandler):
         self.write(dumps(result))
 
 
+class TrainerSocket(tornado.websocket.WebSocketHandler):
+    def open(self):
+        print("WebSocket opened")
+    
+    def on_message(self, message):
+        print "Attach Handler Request"
+        params = json.loads(message)["params"]
+        self.params = params
+
+        webinterface.trainer.register_handler(params, self.write_message)
+
+
+    def on_close(self):
+    
+        webinterface.trainer.unregister_handler(self.params)
+
+
 class XlearnHandler(tornado.web.RequestHandler):
     def get(self):
 
@@ -49,6 +68,8 @@ handlers = [
             XlearnHandler),
         (r'/http_api',                                         
             HTTPApi),
+        (r'/trainersocket',                                         
+            TrainerSocket),
         
         (r'/(.*)',             
             MyStaticFileHandler, {'path': "static/app"}),
