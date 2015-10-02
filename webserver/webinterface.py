@@ -84,7 +84,10 @@ def start_training(params):
 
 def stop_training(params):
 
-    print "Stopping!"
     trainer.stop_training(params)
 
     return "Stopped Training"
+
+def get_epoch_list(params):
+
+    return trainer.get_epoch_list(params)

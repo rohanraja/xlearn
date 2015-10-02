@@ -16,3 +16,15 @@ class BaseKeras():
                 callbacks=callbacks
         )
 
+
+    def saveWeights(self, fpath):
+
+        print "Saving KERAS Weights in %s" % fpath
+
+        self.model.save_weights(fpath, overwrite=True)
+
+
+    def loadWeights(self, fpath):
+
+        print "Loading KERAS Weights in %s" % fpath
+        self.model.load_weights(fpath)

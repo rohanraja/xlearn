@@ -34,4 +34,5 @@ class TestWebInterface(unittest.TestCase):
                 "nepochs": 5,
                 }
 
-        start_training(params)
+        # start_training(params)
+        print get_epoch_list(params)

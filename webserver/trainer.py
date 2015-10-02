@@ -33,6 +33,11 @@ class BatchCallBack(keras.callbacks.Callback):
         message["status"] = "Trainer Running"
         self.send_message(message)
 
+        if (TRAINING_JOBS[self.jobid]["current_epoch"] > 0):
+            self.load_epoch(TRAINING_JOBS[self.jobid]["current_epoch"])
+            
+
+        self.model.starting_epoch = TRAINING_JOBS[self.jobid]["current_epoch"] + 1
 
     def on_batch_end(self, batch, logs={}):
         
@@ -48,6 +53,18 @@ class BatchCallBack(keras.callbacks.Callback):
 
         self.send_message(msg)
 
+    def on_epoch_end(self, epoch, logs = {}):
+
+        print "Saving Weights from callback"
+        fname = "weights_%s" % epoch
+        self.job.save_weights(fname)
+
+    def on_train_end(self, logs={}):
+
+        message = {}
+        message["status"] = "Training Finished"
+        self.send_message(message)
+
 
     def send_message(self, message):
 
@@ -61,6 +78,13 @@ class BatchCallBack(keras.callbacks.Callback):
     def _send(self, message):
         for handler in TRAINING_JOBS[self.jobid]["handlers"] :
             handler(message)
+
+
+    def load_epoch(self, epoch):
+       
+        print "Loading Epoch %s" % epoch
+        fname = "weights_%s" % epoch
+        self.job.load_weights(fname)
 
 
 def start_training(params):
@@ -85,6 +109,7 @@ def _blocking_trainer(params, callback):
 
     nepochs = params["nepochs"]
     job = getJob(params)
+    callback.job = job
     job.start_training(nepochs, callbacks=[callback])
 
 def _train_stop(jobid):
@@ -105,12 +130,13 @@ def register_training_job(params):
     
     jobid = get_job_id(params)
     nepochs = params["nepochs"]
+    current_epoch = params["currentEpoch"]
 
     TRAINING_JOBS[jobid] = {
         
             "handlers": [],
             "stop": False,
-            "current_epoch": 0,
+            "current_epoch": int(current_epoch),
             "total_epochs": nepochs,
     }
 
@@ -141,3 +167,37 @@ def unregister_handler(params):
         print "UNREGISTERED Hander!!"
     except:
         print "Failed to attach handler!"
+
+
+from os.path import join
+from os import listdir
+import re
+
+def get_epoch_list(params):
+
+    mid = params["modelId"]
+    pid = params["paramsId"]
+    
+    baseDir = "../projects"
+
+    wpath = join(baseDir, str(mid), str(pid))
+
+    weights = []
+    
+    for val in listdir(wpath):
+
+        try:
+            weight = {}
+            wid = int(re.findall(r'\d+',val)[0])
+            weight["id"] = wid
+            weight["name"] = "Weight_%d"%wid
+            weights.append(weight) 
+        except:
+            pass
+
+    weights.sort()
+
+    return weights
+
+
+

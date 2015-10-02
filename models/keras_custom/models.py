@@ -187,7 +187,13 @@ class Model(object):
         callbacks.on_train_begin()
 
         self.stop_training = False
-        for epoch in range(nb_epoch):
+        
+        try:
+            stepoch = self.starting_epoch
+        except:
+            stepoch = 0
+
+        for epoch in range(stepoch, nb_epoch):
             callbacks.on_epoch_begin(epoch)
             if shuffle == 'batch':
                 index_array = batch_shuffle(index_array, batch_size)

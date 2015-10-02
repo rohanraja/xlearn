@@ -29,7 +29,7 @@ class Job(ComponentsLoader):
         fpath = join(self.jobDir, fname)
         try:
             # self.model.model.load_weights(fpath)
-            self.load(fpath)
+            self.model.loadWeights(fpath)
             
             print "Loaded Weights from file: %s"%fname
         except:
@@ -42,8 +42,9 @@ class Job(ComponentsLoader):
             fname = self.weight_default_fname
 
         fpath = join(self.jobDir, fname)
-        self.save(fpath)
+        # self.save(fpath)
         # self.model.model.save_weights(fpath, overwrite=True)
+        self.model.saveWeights(fpath)
 
 
     def start_training(self, nepochs=5, callbacks=None):

@@ -44,7 +44,7 @@ angular.module('sbAdminApp')
             if ($scope.trainer_running == false){
               var nepochs = 10;
 
-              var d = trainerservice.startTraining($scope.modelId, $scope.paramsId, nepochs);
+              var d = trainerservice.startTraining($scope.modelId, $scope.paramsId, nepochs, $scope.currentWeight);
               
               d.then(function(resp){
 
@@ -124,8 +124,16 @@ angular.module('sbAdminApp')
           };          
 
 
-          $scope.trainInfo = getTrainInfo();
-          $scope.savedWeights = getSavedWeights();
+         $scope.currentWeight = 0;
+          trainerservice.get_epoch_list($scope.modelId, $scope.paramsId).then(function(resp){
+
+             $scope.currentWeight = resp[resp.length - 1].id;
+             $scope.savedWeights = resp;
+          });
+
+
+          // $scope.trainInfo = getTrainInfo();
+          // $scope.savedWeights = getSavedWeights();
 
           $scope.evalInfo = getEvalInfo();
           $scope.datasets = getTestDatasets();
