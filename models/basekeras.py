@@ -13,9 +13,20 @@ class BaseKeras():
                 batch_size=self.params["optimizer"]["batch_size"],
                 # show_accuracy=True,
                 verbose=0,
+                # validation_split=0.9,
                 callbacks=callbacks
         )
 
+    def evaluate(self, X, Y):
+        
+        print "Evaluating Keras Model"
+        out = self.model.evaluate(
+            X, Y, 
+            batch_size=32, 
+            show_accuracy=True, 
+        )
+
+        return out
 
     def saveWeights(self, fpath):
 

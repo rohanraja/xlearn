@@ -59,14 +59,15 @@ class MLP_QUANT(BaseKeras):
  
 
 
-    def evaluate(self, X, Y, trainParams = {}):
+    def evaluate(self, X, Y):
         
         y = to_categorical(Y)
         
-        out = self.model.evaluate(
-            X, y, 
-            batch_size=32, 
-            show_accuracy=True, 
-        )
+        # out = self.model.evaluate(
+        #     X, y, 
+        #     batch_size=32, 
+        #     show_accuracy=True, 
+        # )
+        return BaseKeras.evaluate(self,X,y)
 
-        return out
+        # return out

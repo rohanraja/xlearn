@@ -1,6 +1,7 @@
 import unittest
 from webinterface import *
 from trainer import *
+from evaluate import *
 from colorama import Fore
 
 class TestWebInterface(unittest.TestCase):
@@ -26,7 +27,7 @@ class TestWebInterface(unittest.TestCase):
         print Fore.GREEN, out
 
 
-    def test_starting_training(self):
+    def tesT_starting_training(self):
 
         params = { 
                 "modelId": 0,
@@ -36,3 +37,15 @@ class TestWebInterface(unittest.TestCase):
 
         # start_training(params)
         print get_epoch_list(params)
+
+
+    def test_evaluation(self):
+        params = { 
+                "modelId": 0,
+                "paramsId": 0,
+                "datasetId": 1,
+                "nepochs": 5,
+                "currentEpoch": 5,
+                }
+
+        print start_evaluation(params)

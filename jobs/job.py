@@ -31,7 +31,7 @@ class Job(ComponentsLoader):
             # self.model.model.load_weights(fpath)
             self.model.loadWeights(fpath)
             
-            print "Loaded Weights from file: %s"%fname
+            print "Loaded Weights from file: %s"%fpath
         except:
             print "Couldn't find saved weights"
 
@@ -60,15 +60,23 @@ class Job(ComponentsLoader):
     def viewSample(self):
         pass
 
+    def evaluate_dataset(self, dataset_id):
+
+        self.loadTestMapper(dataset_id)
+        return self.evaluate()
+
     def evaluate(self):
         
-        X = self.mapper.X_test
-        Y = self.mapper.Y_test
+        X = self.mapper_test.X
+        Y = self.mapper_test.Y
 
         loss, accuracy = self.model.evaluate(X,Y)
 
         from colorama import Fore
         print Fore.GREEN, "\nTest Set Accuracy: %.2f %%" % (accuracy * 100)
+        print Fore.CYAN, "\nTest Set Loss: %.4f %%" % (loss)
+
+        return (loss, accuracy)
 
     def crossValidate(self):
 

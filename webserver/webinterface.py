@@ -91,3 +91,10 @@ def stop_training(params):
 def get_epoch_list(params):
 
     return trainer.get_epoch_list(params)
+
+
+import evaluate
+
+def start_evaluation(params):
+
+    return evaluate.start_evaluation(params)

@@ -73,5 +73,24 @@ angular.module('sbAdminApp')
 
 
     };
+
+    
+    this.startEvaluation = function(mid, pid, did, curWeight){
+
+      var query = {
+        'type': 'start_evaluation',
+        'params': {
+          'modelId': mid,
+          'paramsId': pid,
+          'datasetId': did,
+          'currentEpoch': curWeight,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+      return defer;
+    };
+
+
   
 });

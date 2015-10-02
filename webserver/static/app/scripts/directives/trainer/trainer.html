@@ -27,6 +27,7 @@
 
   <br>
   <div class="form-group">
+    <label>Saved Weights</label>
     <select 
       class="form-control" 
       ng-model="currentWeight"  
@@ -58,14 +59,17 @@
     <h4> Evaluation </h4>
       
     <div style="text-align: center">
-    <button style="" type="button" class="btn btn-info btn-circle btn-lg">
+    <button  ng-click="onEvaluateClick()" style="" type="button" class="btn btn-info btn-circle btn-lg">
       <i class="fa fa-play"></i>
     </button>
   </div>
 
     <br>
-    <progressbar style="text-align: center"  animate="false" value="dynamic" type="primary">
-    <b>{{dynamic}}%</b>
+    <progressbar style="text-align: center"  
+    ng-class="{'progress-striped active': evalPercent == 100}"
+    animate="false" value="evalPercent" type="primary">
+    <b>{{evalProgressText}}</b>
+    <!-- <b>{{evalPercent}}%</b> -->
     </progressbar>
 
   <br>
@@ -73,7 +77,7 @@
     <label>Dataset</label>
     <select 
       class="form-control" 
-      ng-model="currentDataset"  
+      ng-model="testDatasetId"  
       ng-options="mapr.id as (mapr.name) for mapr in datasets"
       >
     </select>

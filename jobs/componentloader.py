@@ -17,6 +17,12 @@ class ComponentsLoader():
         self.mapper = M(self.dataset)
         # self.mapper_test = M(self.dataset_test, False)
 
+    def loadTestMapper(self, dataset_id):
+
+        DS = datasetsIndex.get(dataset_id)
+        dataset_test = DS()
+        M = mappersIndex.get(self.jinfo["mapper_id"])
+        self.mapper_test = M(dataset_test)
 
     def loadDataset(self):
         DS = datasetsIndex.get(self.jinfo["dataset_id"])

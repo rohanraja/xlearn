@@ -476,7 +476,7 @@ class Sequential(Model, containers.Sequential):
                     X_val may be a numpy array or a list of numpy arrays depending on your model input.")
             val_ins = X_val + [y_val, sample_weight_val]
 
-        elif 0 < validation_split < 1:
+        elif 0 < validation_split <=1:
             split_at = int(len(X[0]) * (1 - validation_split))
             X, X_val = (slice_X(X, 0, split_at), slice_X(X, split_at))
             y, y_val = (slice_X(y, 0, split_at), slice_X(y, split_at))

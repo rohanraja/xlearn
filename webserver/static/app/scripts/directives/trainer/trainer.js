@@ -118,7 +118,11 @@ angular.module('sbAdminApp')
               {
                 id: 0,
                 name: "Current Validation 20%"
-              }              
+              },
+              {
+                id: 1,
+                name: "Nepal Tweets"
+              }                     
             ]
               return out;
           };          
@@ -135,10 +139,29 @@ angular.module('sbAdminApp')
           // $scope.trainInfo = getTrainInfo();
           // $scope.savedWeights = getSavedWeights();
 
-          $scope.evalInfo = getEvalInfo();
+          // $scope.evalInfo = getEvalInfo();
           $scope.datasets = getTestDatasets();
+          $scope.testDatasetId = 1;
 
           $scope.currentTrainInfo = 0;
+
+          $scope.onEvaluateClick = function(){
+              
+              $scope.evalPercent = 100;
+              $scope.evalProgressText = "Calculating...";
+
+              var d = trainerservice.startEvaluation($scope.modelId, $scope.paramsId, $scope.testDatasetId, $scope.currentWeight);
+              
+              d.then(function(resp){
+
+                $scope.evalInfo = resp;
+                $scope.evalPercent = parseInt(resp.accuracy);
+                $scope.evalProgressText = resp.accuracy ;
+
+              });
+
+          };
+
 
 
         }

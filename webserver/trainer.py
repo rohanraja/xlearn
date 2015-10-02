@@ -173,6 +173,12 @@ from os.path import join
 from os import listdir
 import re
 
+import os
+import datetime
+def modification_date(filename):
+    t = os.path.getmtime(filename)
+    return datetime.datetime.fromtimestamp(t)
+
 def get_epoch_list(params):
 
     mid = params["modelId"]
@@ -190,7 +196,9 @@ def get_epoch_list(params):
             weight = {}
             wid = int(re.findall(r'\d+',val)[0])
             weight["id"] = wid
-            weight["name"] = "Weight_%d"%wid
+
+            modTime = modification_date(join(wpath, val))
+            weight["name"] = "Epoch: %d  -  %s"% (wid, modTime)
             weights.append(weight) 
         except:
             pass
