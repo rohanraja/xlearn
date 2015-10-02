@@ -51,11 +51,12 @@ class BatchCallBack(keras.callbacks.Callback):
 
     def send_message(self, message):
 
-        try:
-            ioloop = tornado.ioloop.IOLoop.instance()
-            ioloop.add_callback(lambda: self._send(message))
-        except:
-            print "Error in updating handlers"
+        self._send(message) # much better without ioloop
+        # try:
+        #     ioloop = tornado.ioloop.IOLoop.instance()
+        #     ioloop.add_callback(lambda: self._send(message))
+        # except:
+        #     print "Error in updating handlers"
 
     def _send(self, message):
         for handler in TRAINING_JOBS[self.jobid]["handlers"] :

@@ -9,8 +9,12 @@
     <div style="text-align: center">
     <button ng-click="onTrainClick()" style="" type="button" 
       class="btn btn-circle btn-lg"
-      ng-class="{'btn-primary': trainer_running, 'btn-danger': !trainer_running}" >
-      <i class="fa fa-pause"></i>
+      ng-class="{'btn-primary': trainer_running, 
+                  'btn-danger': !trainer_running}" >
+      
+     <i class="fa"
+         ng-class="{'fa-pause': trainer_running, 
+                  'fa-play': !trainer_running}"></i>
     </button>
   </div>
 
