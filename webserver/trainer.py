@@ -107,7 +107,7 @@ def stop_training(params):
 
 def _blocking_trainer(params, callback):
 
-    nepochs = params["nepochs"]
+    nepochs = int(params["nepochs"])
     job = getJob(params)
     callback.job = job
     job.start_training(nepochs, callbacks=[callback])
@@ -129,8 +129,8 @@ def get_job_id(params):
 def register_training_job(params):
     
     jobid = get_job_id(params)
-    nepochs = params["nepochs"]
-    current_epoch = params["currentEpoch"]
+    nepochs = int(params["nepochs"])
+    current_epoch = int(params["currentEpoch"])
 
     TRAINING_JOBS[jobid] = {
         

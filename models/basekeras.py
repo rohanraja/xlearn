@@ -10,7 +10,7 @@ class BaseKeras():
                 X, 
                 Y, 
                 nb_epoch=nepochs, 
-                batch_size=self.params["optimizer"]["batch_size"],
+                batch_size= int(self.params["optimizer"]["batch_size"]),
                 # show_accuracy=True,
                 verbose=0,
                 # validation_split=0.9,

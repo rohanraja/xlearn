@@ -7,7 +7,7 @@ from keras_custom.utils.np_utils import to_categorical
 from basekeras import BaseKeras
 
 import theano
-theano.config.mode = "FAST_COMPILE"
+# theano.config.mode = "FAST_COMPILE"
 
 class MLP_QUANT(BaseKeras):
 
