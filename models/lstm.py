@@ -7,7 +7,7 @@ from basekeras import BaseKeras
 
 import theano
 
-theano.config.mode = "FAST_COMPILE"
+# theano.config.mode = "FAST_COMPILE"
 
 class MLP_0(BaseKeras):
 

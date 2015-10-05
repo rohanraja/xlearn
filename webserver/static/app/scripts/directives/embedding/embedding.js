@@ -16,7 +16,10 @@ angular.module('sbAdminApp')
         controller: function ($scope, listservice) {
 
 
-          $scope.embeddings = listservice.loadEmbeddings($scope.modelId);
+          
+          listservice.loadEmbeddings($scope.modelId).then(function(resp){
+            $scope.embeddings = resp;
+          });
 
 
         }

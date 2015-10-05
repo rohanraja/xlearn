@@ -27,19 +27,21 @@ class TestWebInterface(unittest.TestCase):
         print Fore.GREEN, out
 
 
-    def tesT_starting_training(self):
+    def test_starting_training(self):
 
         params = { 
-                "modelId": 0,
+                "modelId": 4,
                 "paramsId": 0,
                 "nepochs": 5,
+                "currentEpoch": 0,
                 }
 
         # start_training(params)
-        print get_epoch_list(params)
+        blocking_trainer(params, BatchCallBack(""))
+        # print get_epoch_list(params)
 
 
-    def test_evaluation(self):
+    def Test_evaluation(self):
         params = { 
                 "modelId": 0,
                 "paramsId": 0,
@@ -49,3 +51,7 @@ class TestWebInterface(unittest.TestCase):
                 }
 
         print start_evaluation(params)
+
+    def Test_list_methods(self):
+
+        print mappers_list({})

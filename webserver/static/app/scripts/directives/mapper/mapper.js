@@ -16,7 +16,10 @@ angular.module('sbAdminApp')
         controller: function ($scope, listservice) {
 
 
-          $scope.mappers = listservice.loadMappers($scope.modelId);
+                    
+          listservice.loadMappers($scope.modelId).then(function(resp){
+            $scope.mappers = resp;
+          });
 
 
         }

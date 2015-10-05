@@ -47,6 +47,7 @@ class SimpleRNN(Recurrent):
                  truncate_gradient=-1, return_sequences=False):
 
         super(SimpleRNN, self).__init__()
+
         self.init = initializations.get(init)
         self.inner_init = initializations.get(inner_init)
         self.input_dim = input_dim

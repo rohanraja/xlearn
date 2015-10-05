@@ -16,7 +16,9 @@ angular.module('sbAdminApp')
         controller: function ($scope, listservice) {
 
 
-          $scope.models = listservice.loadModels($scope.modelId);
+          listservice.loadModels($scope.modelId).then(function(resp){
+            $scope.models = resp;
+          });
 
 
         }

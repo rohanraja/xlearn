@@ -48,6 +48,8 @@ class BatchCallBack(keras.callbacks.Callback):
                 "totbatches": logs["totalbatches"],
                 "epoch": logs["epoch"],
                 "totepochs": logs["totepochs"],
+                "loss": "%.4f"%logs["loss"],
+                "acc": "%.2f %%"%(logs["acc"]*100.0),
                 
         }
 
@@ -92,7 +94,7 @@ def start_training(params):
     jobid = register_training_job(params)
     callback = BatchCallBack(jobid)
 
-    f = lambda : _blocking_trainer(params, callback)
+    f = lambda : blocking_trainer(params, callback)
     g = lambda arg : _train_stop(jobid)
 
     poolWorkers.apply_async(f, (), {}, g)
@@ -105,7 +107,7 @@ def stop_training(params):
     jobid = get_job_id(params)
     TRAINING_JOBS[jobid]["stop"] = True
 
-def _blocking_trainer(params, callback):
+def blocking_trainer(params, callback):
 
     nepochs = int(params["nepochs"])
     job = getJob(params)

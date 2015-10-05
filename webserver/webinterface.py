@@ -98,3 +98,50 @@ import evaluate
 def start_evaluation(params):
 
     return evaluate.start_evaluation(params)
+
+
+from ..mappers import mappersIndex
+def mappers_list(params):
+    
+    out = []
+    
+    arr = mappersIndex
+
+    for k in arr:
+        obj = {}
+        obj["id"] = k
+        obj["name"] = arr[k].__name__
+        out.append(obj)
+
+    return out
+
+from ..models import modelsIndex
+def models_list(params):
+    
+    out = []
+    
+    arr = modelsIndex
+
+    for k in arr:
+        obj = {}
+        obj["id"] = k
+        obj["name"] = arr[k].__name__
+        out.append(obj)
+
+    return out
+
+
+from ..embeddings import embeddingsIndex
+def embeddings_list(params):
+    
+    out = []
+    
+    arr = embeddingsIndex
+
+    for k in arr:
+        obj = {}
+        obj["id"] = k
+        obj["name"] = arr[k].__name__
+        out.append(obj)
+
+    return out

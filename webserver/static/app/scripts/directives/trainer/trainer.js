@@ -42,7 +42,7 @@ angular.module('sbAdminApp')
           $scope.onTrainClick = function(){
              
             if ($scope.trainer_running == false){
-              var nepochs = 10;
+              var nepochs = 400;
 
               var d = trainerservice.startTraining($scope.modelId, $scope.paramsId, nepochs, $scope.currentWeight);
               
@@ -122,7 +122,11 @@ angular.module('sbAdminApp')
               {
                 id: 1,
                 name: "Nepal Tweets"
-              }                     
+              } ,
+              {
+                id: 3,
+                name: "Brown 1000"
+              }                      
             ]
               return out;
           };          

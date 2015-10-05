@@ -6,13 +6,18 @@ class BaseKeras():
         # print self.params
         # print X.shape
 
+        # ans = self.model.predict(X)
+        # print ans.shape
+        # print ans[0].shape
+        # print Y.shape
+
         self.model.fit(
                 X, 
                 Y, 
                 nb_epoch=nepochs, 
                 batch_size= int(self.params["optimizer"]["batch_size"]),
-                # show_accuracy=True,
-                verbose=0,
+                show_accuracy=True,
+                # verbose=0,
                 # validation_split=0.9,
                 callbacks=callbacks
         )

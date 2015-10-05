@@ -1,6 +1,7 @@
 from ..models import modelsIndex
 from ..datasets import datasetsIndex
 from ..mappers import mappersIndex
+from ..embeddings import embeddingsIndex
 
 class ComponentsLoader():
     
@@ -8,6 +9,7 @@ class ComponentsLoader():
 
         self.loadDataset()   # self.dataset contains the final dataset
         self.loadMapper()    
+        self.loadEmbedding()     
         self.loadModel()     # self.model contains the final model
 
 
@@ -35,6 +37,15 @@ class ComponentsLoader():
 
         modelClass = modelsIndex.get(self.jinfo["model_id"])
         self.model = modelClass(self.params)
+
+    def loadEmbedding(self):
+
+        try:
+            E = embeddingsIndex.get(self.jinfo["embedding_id"])
+            self.embedding = E(self.dataset)
+            self.params["embedding"] = self.embedding.getWord2VecMatrix()
+        except:
+            pass
 
     def loadWeights(self):
         return []

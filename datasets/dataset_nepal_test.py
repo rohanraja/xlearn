@@ -5,7 +5,18 @@ from __init__ import datasetsIndex
 class TestDatasetNepal(unittest.TestCase):
 
 
-    def test_quant(self):
+    def test_brown(self):
+
+        # print Fore.GREEN, "Loading Data"
+
+        DS = datasetsIndex[3]
+        ds = DS()
+
+        print Fore.GREEN, ds.X[0]
+
+        print Fore.YELLOW, ds.Y[0]
+        print Fore.YELLOW, ds.X.shape
+    def Test_quant(self):
 
         # print Fore.GREEN, "Loading Data"
 

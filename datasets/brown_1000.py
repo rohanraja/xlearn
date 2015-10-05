@@ -1,16 +1,26 @@
-class Brown_1000():
+from selfvocab import SelfVocab
 
-    def __init__(self, seed=10):
-        self.seed = seed
+from nltk.corpus import brown
 
-    def getXY_All(self):
-        X = []
-        Y = []
+from ..models.keras_custom.preprocessing.sequence import pad_sequences
+from keras.utils.np_utils import to_categorical
 
-        return X, Y
+import numpy as np
 
-    def partition(self):
-        test = []
-        train = []
+class Brown_1000(SelfVocab):
 
-        return test, train
+    def __init__(self, offset=0, num=200):
+        
+        self.sentances = brown.sents()[offset:(offset+num)]
+
+        self.fromSentances()
+
+        self.X = pad_sequences(self.X)
+        self.Y = pad_sequences(self.Y)
+
+        yTmp = np.empty((200,60,1439))
+
+        for i in range(self.Y.shape[0]):
+            yTmp[i] = (to_categorical(self.Y[i], 1439))
+
+        self.Y = (yTmp)

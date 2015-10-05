@@ -19,53 +19,68 @@ angular.module('sbAdminApp')
 
     this.loadMappers = function($modelid){
 
-      var out = [
-        {
-          id: 1,
-          name: "Self Vocab"
-        },
-        {
-          id: 2,
-          name: "Cat to Numerical"
+      var query = {
+        'type': 'mappers_list',
+        'params': {
         }
-        
-      ]
-      return out
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+
+      // var out = [
+      //   {
+      //     id: 1,
+      //     name: "Self Vocab"
+      //   },
+      //   {
+      //     id: 2,
+      //     name: "Cat to Numerical"
+      //   }
+      //   
+      // ]
+      // return out
 
     };
 
 
     this.loadEmbeddings = function($modelid){
 
-            var out = [
-              {
-                id: 0,
-                name: "Gaussian"
-              },
-              {
-                id: 2,
-                name: "Word2Vec"
-              }
-              
-            ];
-      return out
+      var query = {
+        'type': 'embeddings_list',
+        'params': {
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
 
     };
 
     this.loadModels = function($modelid){
+      var query = {
+        'type': 'models_list',
+        'params': {
+        }
+      };
 
-            var out = [
-              {
-                id: 0,
-                name: "RNN"
-              },
-              {
-                id: 3,
-                name: "MLP_QUANT"
-              }
-              
-            ]
-      return out
+      var defer = serverComm.getData(query);
+
+      return defer ;
+      //       var out = [
+      //         {
+      //           id: 0,
+      //           name: "RNN"
+      //         },
+      //         {
+      //           id: 3,
+      //           name: "MLP_QUANT"
+      //         }
+      //         
+      //       ]
+      // return out
 
     };
   });

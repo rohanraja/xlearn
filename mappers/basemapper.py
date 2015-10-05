@@ -2,7 +2,7 @@ from sklearn import cross_validation
 
 class BaseMapper():
 
-    def split_train_val(self, factor = 0.5):
+    def split_train_val(self, factor = 0.2):
 
 
         X_train, X_test, y_train, y_test = cross_validation.train_test_split(
