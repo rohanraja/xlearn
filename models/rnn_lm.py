@@ -9,6 +9,7 @@ from basekeras import BaseKeras
 import theano
 
 theano.config.mode = "FAST_RUN"
+theano.config.openmp = True
 
 class RNN_LM_Deep(BaseKeras):
 
