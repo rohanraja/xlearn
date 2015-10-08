@@ -3,6 +3,7 @@ from ..models.keras_custom import callbacks
 import tornado.ioloop
 import json
 import numpy as json
+import time
 
 TRAINING_JOBS = {}
 
@@ -49,11 +50,15 @@ class BatchCallBack(callbacks.Callback):
             
 
         self.model.starting_epoch = TRAINING_JOBS[self.jobid]["current_epoch"] + 1
+        self.t1 = time.time()
 
     def on_batch_end(self, batch, logs={}):
         
         if (TRAINING_JOBS[self.jobid]["stop"]):
             self.model.stop_training = True
+
+        timeTaken = "%.3f seconds" % (time.time() - self.t1)
+        self.t1 = time.time()
         msg = {
                 "batch": logs["batch"],
                 "totbatches": logs["totalbatches"],
@@ -61,6 +66,7 @@ class BatchCallBack(callbacks.Callback):
                 "totepochs": logs["totepochs"],
                 "loss": "%.4f"%logs["loss"],
                 "acc": "%.2f %%"%(logs["acc"]*100.0),
+                "batch time taken": timeTaken,
                 
         }
 
