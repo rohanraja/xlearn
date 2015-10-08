@@ -3,7 +3,7 @@ import tornado.httpserver   # the Tornado web server
 import tornado.ioloop       # the Tornado event-loop
 import tornado.websocket    # the Tornado event-loop
 import json
-from bson.json_util import dumps
+from json import dumps
 import webinterface
 import json
 

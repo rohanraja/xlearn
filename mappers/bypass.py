@@ -2,7 +2,7 @@ from basemapper import BaseMapper
 from selfvocab import SelfVocab
 
 from ..models.keras_custom.preprocessing.sequence import pad_sequences
-from keras.utils.np_utils import to_categorical
+from ..models.keras_custom.utils.np_utils import to_categorical
 
 import numpy as np
 from colorama import Fore
