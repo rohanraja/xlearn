@@ -2,7 +2,7 @@ from rnn import RNN
 from lstm import LSTM_0, MLP_0
 from mlp_quant_1 import MLP_QUANT
 from svm_quant import *
-from rnn_lm import RNN_LM
+from rnn_lm import *
 
 modelsIndex = {
 
@@ -17,6 +17,7 @@ modelsIndex = {
     8 : Multinomial,
     9 : ExtraTrees,
     10 : RNN_LM,
+    11 : RNN_LM_Deep,
 
 }
 

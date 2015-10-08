@@ -20,6 +20,15 @@ angular.module('sbAdminApp')
             $scope.models = resp;
           });
 
+          $scope.setDefaultParams = function(){
+            for(var i=0; i< $scope.models.length; i++){
+              
+              if($scope.models[i].id == $scope.jobInfo.model_id)
+                $scope.paramInfo.model = $scope.models[i].params;
+
+            }
+          };
+
 
         }
     

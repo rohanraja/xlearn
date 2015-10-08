@@ -9,13 +9,11 @@ class TestDatasetNepal(unittest.TestCase):
 
         # print Fore.GREEN, "Loading Data"
 
-        DS = datasetsIndex[3]
+        DS = datasetsIndex[5]
         ds = DS()
 
-        print Fore.GREEN, ds.X[0]
+        print Fore.GREEN, ds.sentances[160]
 
-        print Fore.YELLOW, ds.Y[0]
-        print Fore.YELLOW, ds.X.shape
     def Test_quant(self):
 
         # print Fore.GREEN, "Loading Data"

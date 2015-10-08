@@ -75,7 +75,7 @@ angular.module('sbAdminApp')
     };
 
     
-    this.startEvaluation = function(mid, pid, did, curWeight){
+    this.startEvaluation = function(mid, pid, did, curWeight, num){
 
       var query = {
         'type': 'start_evaluation',
@@ -83,6 +83,23 @@ angular.module('sbAdminApp')
           'modelId': mid,
           'paramsId': pid,
           'datasetId': did,
+          'nsents': num,
+          'currentEpoch': curWeight,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+      return defer;
+    };    
+
+    this.testSentance = function(mid, pid, sentance , curWeight){
+
+      var query = {
+        'type': 'test_sentance',
+        'params': {
+          'modelId': mid,
+          'paramsId': pid,
+          'sentance': sentance,
           'currentEpoch': curWeight,
         }
       };
@@ -91,6 +108,35 @@ angular.module('sbAdminApp')
       return defer;
     };
 
+    this.testSentancePrediction = function(mid, pid, sentance , curWeight){
+
+      var query = {
+        'type': 'test_sentance_prediction',
+        'params': {
+          'modelId': mid,
+          'paramsId': pid,
+          'sentance': sentance,
+          'currentEpoch': curWeight,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+      return defer;
+    };
+    this.generate_sequence = function(mid, pid, curWeight){
+
+      var query = {
+        'type': 'generate_sequence',
+        'params': {
+          'modelId': mid,
+          'paramsId': pid,
+          'currentEpoch': curWeight,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+      return defer;
+    };
 
   
 });

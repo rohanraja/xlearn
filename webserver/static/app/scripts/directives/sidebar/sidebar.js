@@ -50,7 +50,10 @@ angular.module('sbAdminApp')
             $scope.modelId = $stateParams.modelId ;
             $scope.paramsId = $stateParams.paramsId ;
             $scope.collapseVar = $scope.modelId;
-            $scope.activeDataset = $scope.datasets[$scope.datasetId]; // Todo: Change
+
+            for(var i=0; i<$scope.datasets.length; i++)
+              if($scope.datasets[i].id == $scope.datasetId)
+                $scope.activeDataset = $scope.datasets[i];
           });
 
           

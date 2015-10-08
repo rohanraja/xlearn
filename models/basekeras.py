@@ -1,3 +1,11 @@
+from os.path import join
+import cPickle
+import sys
+sys.setrecursionlimit(99999)
+
+import theano
+theano.config.reoptimize_unpickled_function = False
+
 class BaseKeras():
 
     def train(self, X, Y, nepochs, callbacks):
@@ -33,6 +41,16 @@ class BaseKeras():
 
         return out
 
+    def predict(self, X):
+        
+        # print "Predicting Keras Model"
+        out = self.model.predict(
+            X,  
+            batch_size=int(self.params["optimizer"]["batch_size"]),
+        )
+
+        return out
+
     def saveWeights(self, fpath):
 
         print "Saving KERAS Weights in %s" % fpath
@@ -44,3 +62,40 @@ class BaseKeras():
 
         print "Loading KERAS Weights in %s" % fpath
         self.model.load_weights(fpath)
+
+    def checkSavedModel(self):
+
+        try:
+            fpath = join(self.params["jobDir"], "model.save")
+            print "Trying Loading KERAS MODEL in %s" % fpath
+            f = file(fpath, 'rb')
+            self.model = cPickle.load(f)
+            f.close()
+            print "Sucessfully Loaded compiled model from file"
+            return True
+        except Exception, e:
+            print e
+            return False
+
+    def saveModel(self):
+
+        fpath = join(self.params["jobDir"], "model.save")
+        print "Saving KERAS MODEL in %s" % fpath
+
+        f = file(fpath, 'wb')
+        cPickle.dump(self.model, f, protocol=cPickle.HIGHEST_PROTOCOL)
+        f.close()
+
+
+    def setEmbeddingWeights(self, embed_matrix):
+
+        emb = Embedding(
+                embed_matrix.shape[0], 
+                embed_matrix.shape[1], 
+                weights=[embed_matrix], 
+                mask_zero=True,
+                # learn=(self.params["learn_embedding"] == 1)
+        )
+
+        self.model.layers[0] = emb
+        self.model.compile()

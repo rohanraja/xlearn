@@ -11,6 +11,8 @@
         ng-options="mapr.id as (mapr.id + ': ' + mapr.name) for mapr in models"
         >
       </select>
+      <br>
+      <button class="btn btn-primary" ng-click="setDefaultParams()">Set Default Params</button>
     </div>        
   </div>
 

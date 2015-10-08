@@ -8,7 +8,10 @@
 
 
       <label>Test Sentance</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" ng-model="sentance" 
+      ng-keypress="($event.which === 13)?onStartTest():0"
+      >
+      <!-- <button class="btn btn&#45;primary" ng&#45;click="onStartTest()"> > </button> -->
 
       <br>
       <h4>Results</h4>
@@ -25,25 +28,55 @@
       </table>
       </div>
       <br>
-      <h4> Next Word Probabilites </h4>
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <tbody>
-          <tr
-            ng-repeat="result in wordResults"
-            >
-            <td>{{result.word}}</td>
-            <td>{{result.score}}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+      
 
     </div>
 
     <div class="col-md-6">
 
+      <div class="form-group">
+        <label>Saved Weights</label>
+        <select 
+          class="form-control" 
+          ng-model="currentWeight"  
+          ng-options="mapr.id as (mapr.name) for mapr in savedWeights"
+          >
+        </select>
+      </div>
+      
+      <button class="btn btn-primary" ng-click="generate_sequence()">Generate Sequence</button>
+      <br>
+      <br>
+      <p>{{generated_sequence}}</p>
+
     </div>
+  </div>
+
+  <div class="col-md-12">
+      <h4> Next Word Probabilites </h4>
+  <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <td ng-repeat="word in wordResults"  > 
+              <span ng-repeat="(key,_) in word"> {{key}} </span>
+            </td>
+          </tr>
+        </thead>
+          <tbody>
+          <tr ng-repeat="i in [0,1,2,3,4,5,6,7,8,9]">
+            <td ng-repeat="word in wordResults"  > 
+              <table  ng-repeat="(key,val) in word"> 
+                <tr>
+                  <td>{{val[i][0]}}: {{val[i][1] | number:5}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+  
   </div>
 
 

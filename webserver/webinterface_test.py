@@ -27,7 +27,7 @@ class TestWebInterface(unittest.TestCase):
         print Fore.GREEN, out
 
 
-    def test_starting_training(self):
+    def Test_starting_training(self):
 
         params = { 
                 "modelId": 4,
@@ -55,3 +55,28 @@ class TestWebInterface(unittest.TestCase):
     def Test_list_methods(self):
 
         print mappers_list({})
+
+    
+    def test_sentance_eval(self):
+
+        params = { 
+                "modelId": 4,
+                "paramsId": 0,
+                "sentance": "This is a test sentance",
+                "currentEpoch": 5,
+                }
+
+        # import json
+        (predict_next_words(params))
+        # print json.dumps(predict_next_words(params))
+
+    def tesT_perplexicity(self):
+
+        params = { 
+                "modelId": 4,
+                "paramsId": 0,
+                "sentance": "This is a test sentance",
+                "currentEpoch": 5,
+                }
+
+

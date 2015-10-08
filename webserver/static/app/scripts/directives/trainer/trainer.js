@@ -42,7 +42,7 @@ angular.module('sbAdminApp')
           $scope.onTrainClick = function(){
              
             if ($scope.trainer_running == false){
-              var nepochs = 400;
+              var nepochs = $scope.nepochs;
 
               var d = trainerservice.startTraining($scope.modelId, $scope.paramsId, nepochs, $scope.currentWeight);
               
@@ -135,7 +135,13 @@ angular.module('sbAdminApp')
          $scope.currentWeight = 0;
           trainerservice.get_epoch_list($scope.modelId, $scope.paramsId).then(function(resp){
 
-             $scope.currentWeight = resp[resp.length - 1].id;
+             if(resp.length > 0){
+               $scope.currentWeight = resp[resp.length - 1].id;
+               $scope.nepochs = resp[resp.length - 1].id + 1;
+             }else{
+               $scope.currentWeight = -1;
+               $scope.nepochs = 10;
+             }
              $scope.savedWeights = resp;
           });
 
@@ -145,7 +151,8 @@ angular.module('sbAdminApp')
 
           // $scope.evalInfo = getEvalInfo();
           $scope.datasets = getTestDatasets();
-          $scope.testDatasetId = 1;
+          $scope.testDatasetId = 3;
+          $scope.nsents = 20;
 
           $scope.currentTrainInfo = 0;
 
@@ -154,7 +161,7 @@ angular.module('sbAdminApp')
               $scope.evalPercent = 100;
               $scope.evalProgressText = "Calculating...";
 
-              var d = trainerservice.startEvaluation($scope.modelId, $scope.paramsId, $scope.testDatasetId, $scope.currentWeight);
+              var d = trainerservice.startEvaluation($scope.modelId, $scope.paramsId, $scope.testDatasetId, $scope.currentWeight, $scope.nsents);
               
               d.then(function(resp){
 

@@ -9,14 +9,25 @@ TRAINING_JOBS = {}
 from multiprocessing.pool import ThreadPool
 poolWorkers = ThreadPool(10)
 
+CACHED_JOBS = {}
+
+from colorama import Fore
 def getJob(params):
 
     mid = params["modelId"]
     pid = params["paramsId"]
 
+    jid = "%s_%s" % (mid, pid)
     p = project.Project(str(mid))
 
-    job = p.getJob(pid)
+    try:
+        job = CACHED_JOBS[jid]
+        print Fore.GREEN, "\nGOT job from cache. Yay!", Fore.WHITE
+    except:
+        print Fore.RED, "\nJob not memcached! Creating!!", Fore.WHITE
+        job = p.getJob(pid)
+        CACHED_JOBS[jid] = job
+
 
     return job
 

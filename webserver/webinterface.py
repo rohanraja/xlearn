@@ -43,9 +43,16 @@ def createModelInfo(params):
 
     return [newMid, newPid]
 
+from ..datasets import datasetsIndex
+from ..models import modelsIndex
+
 def getDatasetName(dataId):
 
-    return str(dataId)
+    return datasetsIndex[int(dataId)].__name__
+
+def getJobName(pro):
+
+    return modelsIndex[int(pro.jinfo["model_id"])].__name__
 
 def loadDatasets(params):
 
@@ -60,7 +67,7 @@ def loadDatasets(params):
         pMap2 = pro.getJobInfo()
         pMap = {}
         pMap["id"] = p
-        pMap["name"] = p
+        pMap["name"] = getJobName(pro)
         pMap["params"] = pro.listJobs()
         outMap[pMap2["dataset_id"]] = outMap.get(pMap2["dataset_id"], []) + [pMap]
 
@@ -99,6 +106,17 @@ def start_evaluation(params):
 
     return evaluate.start_evaluation(params)
 
+def test_sentance(params):
+
+    return evaluate.test_sentance(params)
+
+def test_sentance_prediction(params):
+
+    return evaluate.predict_next_words(params)
+
+def generate_sequence(params):
+
+    return evaluate.generate_sequence(params)
 
 from ..mappers import mappersIndex
 def mappers_list(params):
@@ -115,7 +133,6 @@ def mappers_list(params):
 
     return out
 
-from ..models import modelsIndex
 def models_list(params):
     
     out = []
@@ -126,6 +143,11 @@ def models_list(params):
         obj = {}
         obj["id"] = k
         obj["name"] = arr[k].__name__
+        try:
+            obj["params"] = arr[k].defaultParams()
+        except:
+            obj["params"] = {}
+
         out.append(obj)
 
     return out

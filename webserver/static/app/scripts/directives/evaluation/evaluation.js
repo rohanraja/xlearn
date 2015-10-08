@@ -13,41 +13,29 @@ angular.module('sbAdminApp')
         restrict: 'E',
         replace: true,
         scope: false,
-        controller: function ($scope) {
+        controller: function ($scope, trainerservice) {
 
-          var getWordResults = function(){
-            
-            var out = [
-                    { 
-                      word: "the",
-                      score: "0.832"
-                    },
-                    { 
-                      word: "eat",
-                      score: "0.425"
-                    },
-            
-                ];
 
-            return out;
+          $scope.currentWeight = 5;
+          $scope.onStartTest = function(){
 
+            trainerservice.testSentance($scope.modelId, $scope.paramsId, $scope.sentance, $scope.currentWeight).then(function(resp){
+              $scope.testResults = resp;
+            });
+
+            trainerservice.testSentancePrediction($scope.modelId, $scope.paramsId, $scope.sentance, $scope.currentWeight).then(function(resp){
+              console.log(resp);
+              $scope.wordResults = resp;
+            });
           };
 
-          $scope.wordResults = getWordResults();
-          var getTestResults = function(){
-            
-            var out = {
 
-              "Probability": "0.45",
-              "Perplexicity": "167"
-              
-            };
-
-            return out;
-
+          $scope.generate_sequence = function(){
+            trainerservice.generate_sequence($scope.modelId, $scope.paramsId, $scope.currentWeight).then(function(resp){
+              $scope.generated_sequence = resp;
+            });
           };
 
-          $scope.testResults = getTestResults();
 
 
         }

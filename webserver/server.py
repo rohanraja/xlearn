@@ -16,6 +16,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 
+from colorama import Fore
 class HTTPApi(tornado.web.RequestHandler):
 
     def post(self):
@@ -25,6 +26,7 @@ class HTTPApi(tornado.web.RequestHandler):
         query = request.get('query', {})
 
         try:
+            print Fore.YELLOW, "\nRequest: %s\nParams: %s\n" % (query["type"], query["params"]) , Fore.WHITE
             result = getattr(webinterface, query.get("type"))(query.get("params"))
         except Exception, e:
             result = "Some Error %s" % e

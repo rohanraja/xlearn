@@ -34,6 +34,12 @@
       ng-options="mapr.id as (mapr.name) for mapr in savedWeights"
       >
     </select>
+  </div><div class="form-group">
+    <label>Total Epochs</label>
+    <input 
+      class="form-control" 
+      ng-model="nepochs"  
+      />
   </div>
     <br>
     <div class="table-responsive">
@@ -81,7 +87,13 @@
       ng-options="mapr.id as (mapr.name) for mapr in datasets"
       >
     </select>
-  </div>  <br>
+  </div> <div class="form-group">
+    <label>Number of Sentances</label>
+    <input 
+      class="form-control" 
+      ng-model="nsents"  
+      />
+  </div> <br>
     <br>
     <div class="table-responsive">
       <table class="table table-striped">
