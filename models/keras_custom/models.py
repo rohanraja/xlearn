@@ -118,7 +118,7 @@ def model_from_json(json_string):
 
 def model_from_config(config):
     model_name = config.get('name')
-    if model_name not in {'Graph', 'Sequential'}:
+    if model_name not in ['Graph', 'Sequential']:
         raise Exception('Unrecognized model:', model_name)
 
     # Create a container then set class to appropriate model

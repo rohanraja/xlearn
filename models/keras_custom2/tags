@@ -1,0 +1,825 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Activation	layers/core.py	/^class Activation(MaskedLayer):$/;"	c
+Activation	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+ActivityRegularization	layers/core.py	/^class ActivityRegularization(Layer):$/;"	c
+ActivityRegularization	utils/layer_utils.py	/^from ..layers.core import ActivityRegularization, TimeDistributedDense, AutoEncoder, MaxoutDense$/;"	i
+ActivityRegularizer	layers/core.py	/^from ..regularizers import ActivityRegularizer, Regularizer$/;"	i
+ActivityRegularizer	regularizers.py	/^class ActivityRegularizer(Regularizer):$/;"	c
+Adadelta	optimizers.py	/^class Adadelta(Optimizer):$/;"	c
+Adagrad	optimizers.py	/^class Adagrad(Optimizer):$/;"	c
+Adam	optimizers.py	/^class Adam(Optimizer):$/;"	c
+AutoEncoder	layers/core.py	/^class AutoEncoder(Layer):$/;"	c
+AutoEncoder	utils/layer_utils.py	/^from ..layers.core import ActivityRegularization, TimeDistributedDense, AutoEncoder, MaxoutDense$/;"	i
+AutoEncoder	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+BaseLogger	callbacks.py	/^class BaseLogger(Callback):$/;"	c
+BaseWrapper	wrappers/scikit_learn.py	/^class BaseWrapper(object):$/;"	c
+BatchNormalization	layers/normalization.py	/^class BatchNormalization(Layer):$/;"	c
+BatchNormalization	utils/layer_utils.py	/^from ..layers.normalization import BatchNormalization$/;"	i
+Callback	callbacks.py	/^class Callback(object):$/;"	c
+CallbackList	callbacks.py	/^class CallbackList(object):$/;"	c
+Constraint	constraints.py	/^class Constraint(object):$/;"	c
+Convolution1D	layers/convolutional.py	/^class Convolution1D(Layer):$/;"	c
+Convolution1D	utils/layer_utils.py	/^from ..layers.convolutional import Convolution1D, Convolution2D, MaxPooling1D, MaxPooling2D, ZeroPadding2D$/;"	i
+Convolution2D	layers/convolutional.py	/^class Convolution2D(Layer):$/;"	c
+Convolution2D	utils/layer_utils.py	/^from ..layers.convolutional import Convolution1D, Convolution2D, MaxPooling1D, MaxPooling2D, ZeroPadding2D$/;"	i
+Dense	layers/core.py	/^class Dense(Layer):$/;"	c
+Dense	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+Dropout	layers/core.py	/^class Dropout(MaskedLayer):$/;"	c
+Dropout	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+EarlyStopping	callbacks.py	/^class EarlyStopping(Callback):$/;"	c
+Embedding	layers/embeddings.py	/^class Embedding(Layer):$/;"	c
+Embedding	utils/layer_utils.py	/^from ..layers.embeddings import Embedding, WordContextProduct$/;"	i
+FancyURLopener	datasets/data_utils.py	/^from six.moves.urllib.request import FancyURLopener$/;"	i
+Flatten	layers/core.py	/^class Flatten(Layer):$/;"	c
+Flatten	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+GRU	layers/recurrent.py	/^class GRU(Recurrent):$/;"	c
+GRU	utils/layer_utils.py	/^from ..layers.recurrent import SimpleRNN, SimpleDeepRNN, GRU, LSTM, JZS1, JZS2, JZS3$/;"	i
+GaussianDropout	layers/noise.py	/^class GaussianDropout(MaskedLayer):$/;"	c
+GaussianDropout	utils/layer_utils.py	/^from ..layers.noise import GaussianNoise, GaussianDropout$/;"	i
+GaussianNoise	layers/noise.py	/^class GaussianNoise(MaskedLayer):$/;"	c
+GaussianNoise	utils/layer_utils.py	/^from ..layers.noise import GaussianNoise, GaussianDropout$/;"	i
+Graph	layers/containers.py	/^class Graph(Layer):$/;"	c
+Graph	models.py	/^class Graph(Model, containers.Graph):$/;"	c
+HDF5Matrix	utils/io_utils.py	/^class HDF5Matrix():$/;"	c
+History	callbacks.py	/^class History(Callback):$/;"	c
+Image	preprocessing/image.py	/^    from PIL import Image$/;"	i
+ImageDataGenerator	preprocessing/image.py	/^class ImageDataGenerator(object):$/;"	c
+JZS1	layers/recurrent.py	/^class JZS1(Recurrent):$/;"	c
+JZS1	utils/layer_utils.py	/^from ..layers.recurrent import SimpleRNN, SimpleDeepRNN, GRU, LSTM, JZS1, JZS2, JZS3$/;"	i
+JZS2	layers/recurrent.py	/^class JZS2(Recurrent):$/;"	c
+JZS2	utils/layer_utils.py	/^from ..layers.recurrent import SimpleRNN, SimpleDeepRNN, GRU, LSTM, JZS1, JZS2, JZS3$/;"	i
+JZS3	layers/recurrent.py	/^class JZS3(Recurrent):$/;"	c
+JZS3	utils/layer_utils.py	/^from ..layers.recurrent import SimpleRNN, SimpleDeepRNN, GRU, LSTM, JZS1, JZS2, JZS3$/;"	i
+KerasClassifier	wrappers/scikit_learn.py	/^class KerasClassifier(BaseWrapper):$/;"	c
+KerasRegressor	wrappers/scikit_learn.py	/^class KerasRegressor(BaseWrapper):$/;"	c
+LRN2D	layers/normalization.py	/^class LRN2D(Layer):$/;"	c
+LSTM	layers/recurrent.py	/^class LSTM(Recurrent):$/;"	c
+LSTM	utils/layer_utils.py	/^from ..layers.recurrent import SimpleRNN, SimpleDeepRNN, GRU, LSTM, JZS1, JZS2, JZS3$/;"	i
+Layer	layers/advanced_activations.py	/^from ..layers.core import Layer, MaskedLayer$/;"	i
+Layer	layers/containers.py	/^from ..layers.core import Layer, Merge$/;"	i
+Layer	layers/convolutional.py	/^from ..layers.core import Layer$/;"	i
+Layer	layers/core.py	/^class Layer(object):$/;"	c
+Layer	layers/embeddings.py	/^from ..layers.core import Layer, MaskedLayer$/;"	i
+Layer	layers/normalization.py	/^from ..layers.core import Layer$/;"	i
+Layer	layers/recurrent.py	/^from ..layers.core import Layer, MaskedLayer$/;"	i
+Layer	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+LeakyReLU	layers/advanced_activations.py	/^class LeakyReLU(MaskedLayer):$/;"	c
+LeakyReLU	utils/layer_utils.py	/^from ..layers.advanced_activations import LeakyReLU, PReLU$/;"	i
+LearningRateScheduler	callbacks.py	/^class LearningRateScheduler(Callback):$/;"	c
+MaskedLayer	layers/advanced_activations.py	/^from ..layers.core import Layer, MaskedLayer$/;"	i
+MaskedLayer	layers/core.py	/^class MaskedLayer(Layer):$/;"	c
+MaskedLayer	layers/embeddings.py	/^from ..layers.core import Layer, MaskedLayer$/;"	i
+MaskedLayer	layers/noise.py	/^from .core import MaskedLayer$/;"	i
+MaskedLayer	layers/recurrent.py	/^from ..layers.core import Layer, MaskedLayer$/;"	i
+Masking	layers/core.py	/^class Masking(MaskedLayer):$/;"	c
+Masking	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+MaxNorm	constraints.py	/^class MaxNorm(Constraint):$/;"	c
+MaxPooling1D	layers/convolutional.py	/^class MaxPooling1D(Layer):$/;"	c
+MaxPooling1D	utils/layer_utils.py	/^from ..layers.convolutional import Convolution1D, Convolution2D, MaxPooling1D, MaxPooling2D, ZeroPadding2D$/;"	i
+MaxPooling2D	layers/convolutional.py	/^class MaxPooling2D(Layer):$/;"	c
+MaxPooling2D	utils/layer_utils.py	/^from ..layers.convolutional import Convolution1D, Convolution2D, MaxPooling1D, MaxPooling2D, ZeroPadding2D$/;"	i
+MaxoutDense	layers/core.py	/^class MaxoutDense(Layer):$/;"	c
+MaxoutDense	utils/layer_utils.py	/^from ..layers.core import ActivityRegularization, TimeDistributedDense, AutoEncoder, MaxoutDense$/;"	i
+Merge	layers/containers.py	/^from ..layers.core import Layer, Merge$/;"	i
+Merge	layers/core.py	/^class Merge(Layer):$/;"	c
+Merge	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+Model	models.py	/^class Model(object):$/;"	c
+ModelCheckpoint	callbacks.py	/^class ModelCheckpoint(Callback):$/;"	c
+NonNeg	constraints.py	/^class NonNeg(Constraint):$/;"	c
+Optimizer	optimizers.py	/^class Optimizer(object):$/;"	c
+PReLU	layers/advanced_activations.py	/^class PReLU(MaskedLayer):$/;"	c
+PReLU	utils/layer_utils.py	/^from ..layers.advanced_activations import LeakyReLU, PReLU$/;"	i
+ParametricSoftplus	layers/advanced_activations.py	/^class ParametricSoftplus(MaskedLayer):$/;"	c
+ParanoidURLopener	datasets/data_utils.py	/^class ParanoidURLopener(FancyURLopener):$/;"	c
+Permute	layers/core.py	/^class Permute(Layer):$/;"	c
+Progbar	callbacks.py	/^from .utils.generic_utils import Progbar$/;"	i
+Progbar	datasets/data_utils.py	/^from ..utils.generic_utils import Progbar$/;"	i
+Progbar	models.py	/^from .utils.generic_utils import Progbar, printv$/;"	i
+Progbar	utils/generic_utils.py	/^class Progbar(object):$/;"	c
+RMSprop	optimizers.py	/^class RMSprop(Optimizer):$/;"	c
+RandomStreams	layers/core.py	/^from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams$/;"	i
+RandomStreams	layers/noise.py	/^from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams$/;"	i
+Recurrent	layers/recurrent.py	/^class Recurrent(MaskedLayer):$/;"	c
+Regularizer	layers/core.py	/^from ..regularizers import ActivityRegularizer, Regularizer$/;"	i
+Regularizer	regularizers.py	/^class Regularizer(object):$/;"	c
+RemoteMonitor	callbacks.py	/^class RemoteMonitor(Callback):$/;"	c
+RepeatVector	layers/core.py	/^class RepeatVector(Layer):$/;"	c
+RepeatVector	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+Reshape	layers/core.py	/^class Reshape(Layer):$/;"	c
+Reshape	utils/layer_utils.py	/^from ..layers.core import Dense, Merge, Dropout, Activation, Reshape, Flatten, RepeatVector, Layer, AutoEncoder, Masking$/;"	i
+SGD	optimizers.py	/^class SGD(Optimizer):$/;"	c
+Sequential	layers/containers.py	/^class Sequential(Layer):$/;"	c
+Sequential	models.py	/^class Sequential(Model, containers.Sequential):$/;"	c
+SimpleDeepRNN	layers/recurrent.py	/^class SimpleDeepRNN(Recurrent):$/;"	c
+SimpleDeepRNN	utils/layer_utils.py	/^from ..layers.recurrent import SimpleRNN, SimpleDeepRNN, GRU, LSTM, JZS1, JZS2, JZS3$/;"	i
+SimpleRNN	layers/recurrent.py	/^class SimpleRNN(Recurrent):$/;"	c
+SimpleRNN	utils/layer_utils.py	/^from ..layers.recurrent import SimpleRNN, SimpleDeepRNN, GRU, LSTM, JZS1, JZS2, JZS3$/;"	i
+T	activations.py	/^import theano.tensor as T$/;"	i
+T	constraints.py	/^import theano.tensor as T$/;"	i
+T	initializations.py	/^import theano.tensor as T$/;"	i
+T	layers/advanced_activations.py	/^import theano.tensor as T$/;"	i
+T	layers/containers.py	/^import theano.tensor as T$/;"	i
+T	layers/convolutional.py	/^import theano.tensor as T$/;"	i
+T	layers/core.py	/^import theano.tensor as T$/;"	i
+T	layers/embeddings.py	/^import theano.tensor as T$/;"	i
+T	layers/noise.py	/^import theano.tensor as T$/;"	i
+T	layers/normalization.py	/^import theano.tensor as T$/;"	i
+T	layers/recurrent.py	/^import theano.tensor as T$/;"	i
+T	models.py	/^import theano.tensor as T$/;"	i
+T	objectives.py	/^import theano.tensor as T$/;"	i
+T	optimizers.py	/^import theano.tensor as T$/;"	i
+T	regularizers.py	/^import theano.tensor as T$/;"	i
+T	utils/theano_utils.py	/^import theano.tensor as T$/;"	i
+ThresholdedLinear	layers/advanced_activations.py	/^class ThresholdedLinear(MaskedLayer):$/;"	c
+ThresholdedReLu	layers/advanced_activations.py	/^class ThresholdedReLu(MaskedLayer):$/;"	c
+TimeDistributedDense	layers/core.py	/^class TimeDistributedDense(MaskedLayer):$/;"	c
+TimeDistributedDense	utils/layer_utils.py	/^from ..layers.core import ActivityRegularization, TimeDistributedDense, AutoEncoder, MaxoutDense$/;"	i
+TimeDistributedMerge	layers/core.py	/^class TimeDistributedMerge(Layer):$/;"	c
+Tokenizer	datasets/reuters.py	/^    from ..preprocessing.text import Tokenizer$/;"	i
+Tokenizer	preprocessing/text.py	/^class Tokenizer(object):$/;"	c
+UnitNorm	constraints.py	/^class UnitNorm(Constraint):$/;"	c
+UpSample1D	layers/convolutional.py	/^class UpSample1D(Layer):$/;"	c
+UpSample2D	layers/convolutional.py	/^class UpSample2D(Layer):$/;"	c
+WeightRegularizer	regularizers.py	/^class WeightRegularizer(Regularizer):$/;"	c
+WordContextProduct	layers/embeddings.py	/^class WordContextProduct(Layer):$/;"	c
+WordContextProduct	utils/layer_utils.py	/^from ..layers.embeddings import Embedding, WordContextProduct$/;"	i
+ZeroPadding2D	layers/convolutional.py	/^class ZeroPadding2D(Layer):$/;"	c
+ZeroPadding2D	utils/layer_utils.py	/^from ..layers.convolutional import Convolution1D, Convolution2D, MaxPooling1D, MaxPooling2D, ZeroPadding2D$/;"	i
+__call__	constraints.py	/^    def __call__(self, p):$/;"	m	class:Constraint	file:
+__call__	constraints.py	/^    def __call__(self, p):$/;"	m	class:MaxNorm	file:
+__call__	constraints.py	/^    def __call__(self, p):$/;"	m	class:NonNeg	file:
+__call__	constraints.py	/^    def __call__(self, p):$/;"	m	class:UnitNorm	file:
+__call__	regularizers.py	/^    def __call__(self, loss):$/;"	m	class:ActivityRegularizer	file:
+__call__	regularizers.py	/^    def __call__(self, loss):$/;"	m	class:Regularizer	file:
+__call__	regularizers.py	/^    def __call__(self, loss):$/;"	m	class:WeightRegularizer	file:
+__getitem__	utils/io_utils.py	/^    def __getitem__(self, key):$/;"	m	class:HDF5Matrix	file:
+__init__	callbacks.py	/^    def __init__(self):$/;"	m	class:Callback
+__init__	callbacks.py	/^    def __init__(self, callbacks=[], queue_length=10):$/;"	m	class:CallbackList
+__init__	callbacks.py	/^    def __init__(self, filepath, monitor='val_loss', verbose=0, save_best_only=False):$/;"	m	class:ModelCheckpoint
+__init__	callbacks.py	/^    def __init__(self, monitor='val_loss', patience=0, verbose=0):$/;"	m	class:EarlyStopping
+__init__	callbacks.py	/^    def __init__(self, root='http:\/\/localhost:9000'):$/;"	m	class:RemoteMonitor
+__init__	callbacks.py	/^    def __init__(self, schedule):$/;"	m	class:LearningRateScheduler
+__init__	constraints.py	/^    def __init__(self, m=2):$/;"	m	class:MaxNorm
+__init__	layers/advanced_activations.py	/^    def __init__(self, alpha=0.3):$/;"	m	class:LeakyReLU
+__init__	layers/advanced_activations.py	/^    def __init__(self, input_shape, alpha_init=0.2, beta_init=5.0, weights=None):$/;"	m	class:ParametricSoftplus
+__init__	layers/advanced_activations.py	/^    def __init__(self, input_shape, init='zero', weights=None):$/;"	m	class:PReLU
+__init__	layers/advanced_activations.py	/^    def __init__(self, theta=1.0):$/;"	m	class:ThresholdedLinear
+__init__	layers/advanced_activations.py	/^    def __init__(self, theta=1.0):$/;"	m	class:ThresholdedReLu
+__init__	layers/containers.py	/^    def __init__(self):$/;"	m	class:Graph
+__init__	layers/containers.py	/^    def __init__(self, layers=[]):$/;"	m	class:Sequential
+__init__	layers/convolutional.py	/^    def __init__(self, input_dim, nb_filter, filter_length,$/;"	m	class:Convolution1D
+__init__	layers/convolutional.py	/^    def __init__(self, length=2):$/;"	m	class:UpSample1D
+__init__	layers/convolutional.py	/^    def __init__(self, nb_filter, stack_size, nb_row, nb_col,$/;"	m	class:Convolution2D
+__init__	layers/convolutional.py	/^    def __init__(self, pad=(1, 1)):$/;"	m	class:ZeroPadding2D
+__init__	layers/convolutional.py	/^    def __init__(self, pool_length=2, stride=None, ignore_border=True):$/;"	m	class:MaxPooling1D
+__init__	layers/convolutional.py	/^    def __init__(self, poolsize=(2, 2), stride=None, ignore_border=True):$/;"	m	class:MaxPooling2D
+__init__	layers/convolutional.py	/^    def __init__(self, size=(2, 2)):$/;"	m	class:UpSample2D
+__init__	layers/core.py	/^    def __init__(self):$/;"	m	class:Flatten
+__init__	layers/core.py	/^    def __init__(self):$/;"	m	class:Layer
+__init__	layers/core.py	/^    def __init__(self, *dims):$/;"	m	class:Reshape
+__init__	layers/core.py	/^    def __init__(self, activation, target=0, beta=0.1):$/;"	m	class:Activation
+__init__	layers/core.py	/^    def __init__(self, dims):$/;"	m	class:Permute
+__init__	layers/core.py	/^    def __init__(self, encoder, decoder, output_reconstruction=True, weights=None):$/;"	m	class:AutoEncoder
+__init__	layers/core.py	/^    def __init__(self, input_dim, output_dim, init='glorot_uniform', activation='linear', weights=None, name=None,$/;"	m	class:Dense
+__init__	layers/core.py	/^    def __init__(self, input_dim, output_dim, init='glorot_uniform', activation='linear', weights=None,$/;"	m	class:TimeDistributedDense
+__init__	layers/core.py	/^    def __init__(self, input_dim, output_dim, nb_feature=4, init='glorot_uniform', weights=None,$/;"	m	class:MaxoutDense
+__init__	layers/core.py	/^    def __init__(self, l1=0., l2=0.):$/;"	m	class:ActivityRegularization
+__init__	layers/core.py	/^    def __init__(self, layers, mode='sum', concat_axis=-1):$/;"	m	class:Merge
+__init__	layers/core.py	/^    def __init__(self, mask_value=0.):$/;"	m	class:Masking
+__init__	layers/core.py	/^    def __init__(self, mode='sum'):$/;"	m	class:TimeDistributedMerge
+__init__	layers/core.py	/^    def __init__(self, n):$/;"	m	class:RepeatVector
+__init__	layers/core.py	/^    def __init__(self, p):$/;"	m	class:Dropout
+__init__	layers/embeddings.py	/^    def __init__(self, input_dim, output_dim, init='uniform',$/;"	m	class:Embedding
+__init__	layers/embeddings.py	/^    def __init__(self, input_dim, proj_dim=128,$/;"	m	class:WordContextProduct
+__init__	layers/noise.py	/^    def __init__(self, p):$/;"	m	class:GaussianDropout
+__init__	layers/noise.py	/^    def __init__(self, sigma):$/;"	m	class:GaussianNoise
+__init__	layers/normalization.py	/^    def __init__(self, alpha=1e-4, k=2, beta=0.75, n=5):$/;"	m	class:LRN2D
+__init__	layers/normalization.py	/^    def __init__(self, input_shape, epsilon=1e-6, mode=0, momentum=0.9, weights=None):$/;"	m	class:BatchNormalization
+__init__	layers/recurrent.py	/^    def __init__(self, input_dim, output_dim, depth=3,$/;"	m	class:SimpleDeepRNN
+__init__	layers/recurrent.py	/^    def __init__(self, input_dim, output_dim,$/;"	m	class:SimpleRNN
+__init__	layers/recurrent.py	/^    def __init__(self, input_dim, output_dim=128,$/;"	m	class:GRU
+__init__	layers/recurrent.py	/^    def __init__(self, input_dim, output_dim=128,$/;"	m	class:JZS1
+__init__	layers/recurrent.py	/^    def __init__(self, input_dim, output_dim=128,$/;"	m	class:JZS2
+__init__	layers/recurrent.py	/^    def __init__(self, input_dim, output_dim=128,$/;"	m	class:JZS3
+__init__	layers/recurrent.py	/^    def __init__(self, input_dim, output_dim=128,$/;"	m	class:LSTM
+__init__	optimizers.py	/^    def __init__(self, **kwargs):$/;"	m	class:Optimizer
+__init__	optimizers.py	/^    def __init__(self, lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-8, *args, **kwargs):$/;"	m	class:Adam
+__init__	optimizers.py	/^    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):$/;"	m	class:RMSprop
+__init__	optimizers.py	/^    def __init__(self, lr=0.01, epsilon=1e-6, *args, **kwargs):$/;"	m	class:Adagrad
+__init__	optimizers.py	/^    def __init__(self, lr=0.01, momentum=0., decay=0., nesterov=False, *args, **kwargs):$/;"	m	class:SGD
+__init__	optimizers.py	/^    def __init__(self, lr=1.0, rho=0.95, epsilon=1e-6, *args, **kwargs):$/;"	m	class:Adadelta
+__init__	preprocessing/image.py	/^    def __init__(self, $/;"	m	class:ImageDataGenerator
+__init__	preprocessing/text.py	/^    def __init__(self, nb_words=None, filters=base_filter(), lower=True, split=" "):$/;"	m	class:Tokenizer
+__init__	regularizers.py	/^    def __init__(self, l1=0., l2=0.):$/;"	m	class:ActivityRegularizer
+__init__	regularizers.py	/^    def __init__(self, l1=0., l2=0.):$/;"	m	class:WeightRegularizer
+__init__	utils/generic_utils.py	/^    def __init__(self, target, width=30, verbose=1):$/;"	m	class:Progbar
+__init__	utils/io_utils.py	/^    def __init__(self, datapath, dataset, start, end, normalizer=None):$/;"	m	class:HDF5Matrix
+__init__	wrappers/scikit_learn.py	/^    def __init__(self, model, optimizer, loss,$/;"	m	class:BaseWrapper
+__init__	wrappers/scikit_learn.py	/^    def __init__(self, model, optimizer='adam', loss='categorical_crossentropy', **kwargs):$/;"	m	class:KerasClassifier
+__init__	wrappers/scikit_learn.py	/^    def __init__(self, model, optimizer='adam', loss='mean_squared_error', **kwargs):$/;"	m	class:KerasRegressor
+__len__	utils/io_utils.py	/^    def __len__(self):$/;"	m	class:HDF5Matrix	file:
+__metaclass__	wrappers/scikit_learn.py	/^    __metaclass__ = abc.ABCMeta$/;"	v	class:BaseWrapper
+_fit	models.py	/^    def _fit(self, f, ins, out_labels=[], batch_size=128, nb_epoch=100, verbose=1, callbacks=[],$/;"	m	class:Model
+_get_hidden	layers/core.py	/^    def _get_hidden(self, train=False):$/;"	m	class:AutoEncoder
+_predict_loop	models.py	/^    def _predict_loop(self, f, ins, batch_size=128, verbose=0):$/;"	m	class:Model
+_set_model	callbacks.py	/^    def _set_model(self, model):$/;"	m	class:Callback
+_set_model	callbacks.py	/^    def _set_model(self, model):$/;"	m	class:CallbackList
+_set_params	callbacks.py	/^    def _set_params(self, params):$/;"	m	class:Callback
+_set_params	callbacks.py	/^    def _set_params(self, params):$/;"	m	class:CallbackList
+_step	layers/recurrent.py	/^    def _step(self, x_t, *args):$/;"	m	class:SimpleDeepRNN
+_step	layers/recurrent.py	/^    def _step(self, x_t, mask_tm1, h_tm1, u):$/;"	m	class:SimpleRNN
+_step	layers/recurrent.py	/^    def _step(self,$/;"	m	class:GRU
+_step	layers/recurrent.py	/^    def _step(self,$/;"	m	class:JZS1
+_step	layers/recurrent.py	/^    def _step(self,$/;"	m	class:JZS2
+_step	layers/recurrent.py	/^    def _step(self,$/;"	m	class:JZS3
+_step	layers/recurrent.py	/^    def _step(self,$/;"	m	class:LSTM
+_test_loop	models.py	/^    def _test_loop(self, f, ins, batch_size=128, verbose=0):$/;"	m	class:Model
+abc	wrappers/scikit_learn.py	/^import abc$/;"	i
+absolute_import	activations.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	callbacks.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	constraints.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	datasets/cifar.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	datasets/cifar10.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	datasets/cifar100.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	datasets/data_utils.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	datasets/imdb.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	datasets/reuters.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	initializations.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	layers/containers.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	layers/convolutional.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	layers/core.py	/^from __future__ import absolute_import, division$/;"	i
+absolute_import	layers/embeddings.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	layers/noise.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	layers/recurrent.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	models.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	objectives.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	optimizers.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	preprocessing/image.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	preprocessing/sequence.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	preprocessing/text.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	regularizers.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	utils/generic_utils.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	utils/io_utils.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	utils/np_utils.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	utils/theano_utils.py	/^from __future__ import absolute_import$/;"	i
+absolute_import	wrappers/scikit_learn.py	/^from __future__ import absolute_import$/;"	i
+accuracy	utils/np_utils.py	/^def accuracy(p, y):$/;"	f
+activations	layers/convolutional.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+activations	layers/core.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+activations	layers/embeddings.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+activations	layers/recurrent.py	/^from .. import activations, initializations$/;"	i
+activity_l1	regularizers.py	/^def activity_l1(l=0.01):$/;"	f
+activity_l1l2	regularizers.py	/^def activity_l1l2(l1=0.01, l2=0.01):$/;"	f
+activity_l2	regularizers.py	/^def activity_l2(l=0.01):$/;"	f
+adadelta	optimizers.py	/^adadelta = Adadelta$/;"	v
+adagrad	optimizers.py	/^adagrad = Adagrad$/;"	v
+adam	optimizers.py	/^adam = Adam$/;"	v
+add	layers/containers.py	/^    def add(self, layer):$/;"	m	class:Sequential
+add	utils/generic_utils.py	/^    def add(self, n, values=[]):$/;"	m	class:Progbar
+add_input	layers/containers.py	/^    def add_input(self, name, ndim=2, dtype='float'):$/;"	m	class:Graph
+add_node	layers/containers.py	/^    def add_node(self, layer, name, input=None, inputs=[],$/;"	m	class:Graph
+add_output	layers/containers.py	/^    def add_output(self, name, input=None, inputs=[],$/;"	m	class:Graph
+alloc_zeros_matrix	layers/recurrent.py	/^from ..utils.theano_utils import shared_scalar, shared_zeros, alloc_zeros_matrix$/;"	i
+alloc_zeros_matrix	utils/theano_utils.py	/^def alloc_zeros_matrix(*dims):$/;"	f
+append	callbacks.py	/^    def append(self, callback):$/;"	m	class:CallbackList
+array_to_img	preprocessing/image.py	/^def array_to_img(x, scale=True):$/;"	f
+base_filter	preprocessing/text.py	/^def base_filter():$/;"	f
+batch_shuffle	models.py	/^def batch_shuffle(index_array, batch_size):$/;"	f
+binary_crossentropy	objectives.py	/^def binary_crossentropy(y_true, y_pred):$/;"	f
+binary_logloss	utils/np_utils.py	/^def binary_logloss(p, y):$/;"	f
+cPickle	datasets/cifar.py	/^from six.moves import cPickle$/;"	i
+cPickle	datasets/imdb.py	/^from six.moves import cPickle$/;"	i
+cPickle	datasets/mnist.py	/^from six.moves import cPickle$/;"	i
+cPickle	datasets/reuters.py	/^from six.moves import cPickle$/;"	i
+categorical_crossentropy	objectives.py	/^def categorical_crossentropy(y_true, y_pred):$/;"	f
+categorical_probas_to_classes	utils/np_utils.py	/^def categorical_probas_to_classes(p):$/;"	f
+cbks	models.py	/^from . import callbacks as cbks$/;"	i
+clip_norm	optimizers.py	/^def clip_norm(g, c, n):$/;"	f
+compile	models.py	/^    def compile(self, optimizer, loss, class_mode="categorical", theano_mode=None):$/;"	m	class:Sequential
+compile	models.py	/^    def compile(self, optimizer, loss, theano_mode=None):$/;"	m	class:Graph
+constraints	layers/convolutional.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+constraints	layers/core.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+constraints	layers/embeddings.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+constraints	models.py	/^from . import constraints$/;"	i
+constraints	utils/layer_utils.py	/^from .. import constraints$/;"	i
+container_from_config	models.py	/^from .utils.layer_utils import container_from_config$/;"	i
+container_from_config	utils/layer_utils.py	/^def container_from_config(original_layer_dict):$/;"	f
+containers	models.py	/^from .layers import containers$/;"	i
+containers	utils/layer_utils.py	/^from ..layers import containers$/;"	i
+copy	models.py	/^import warnings, time, copy, pprint$/;"	i
+copy	utils/layer_utils.py	/^import copy$/;"	i
+copy	wrappers/scikit_learn.py	/^import copy$/;"	i
+count_params	layers/containers.py	/^    def count_params(self):$/;"	m	class:Graph
+count_params	layers/containers.py	/^    def count_params(self):$/;"	m	class:Sequential
+count_params	layers/core.py	/^    def count_params(self):$/;"	m	class:Layer
+defaultdict	utils/io_utils.py	/^from collections import defaultdict$/;"	i
+deque	callbacks.py	/^from collections import deque$/;"	i
+division	layers/core.py	/^from __future__ import absolute_import, division$/;"	i
+dl_progress	datasets/data_utils.py	/^        def dl_progress(count, block_size, total_size):$/;"	f	function:get_file
+dnn	layers/convolutional.py	/^    from theano.sandbox.cuda import dnn$/;"	i
+downsample	layers/convolutional.py	/^from theano.tensor.signal import downsample$/;"	i
+epsilon	objectives.py	/^    epsilon = 1.0e-7$/;"	v
+epsilon	objectives.py	/^    epsilon = 1.0e-9$/;"	v
+evaluate	models.py	/^    def evaluate(self, X, y, batch_size=128, show_accuracy=False, verbose=1, sample_weight=None):$/;"	m	class:Sequential
+evaluate	models.py	/^    def evaluate(self, data, batch_size=128, verbose=0, sample_weight={}):$/;"	m	class:Graph
+fit	models.py	/^    def fit(self, X, y, batch_size=128, nb_epoch=100, verbose=1, callbacks=[],$/;"	m	class:Sequential
+fit	models.py	/^    def fit(self, data, batch_size=128, nb_epoch=100, verbose=1, callbacks=[],$/;"	m	class:Graph
+fit	preprocessing/image.py	/^    def fit(self, X, $/;"	m	class:ImageDataGenerator
+fit	wrappers/scikit_learn.py	/^    def fit(self, X, y):$/;"	m	class:BaseWrapper
+fit_on_sequences	preprocessing/text.py	/^    def fit_on_sequences(self, sequences):$/;"	m	class:Tokenizer
+fit_on_texts	preprocessing/text.py	/^    def fit_on_texts(self, texts):$/;"	m	class:Tokenizer
+floatX	layers/core.py	/^from ..utils.theano_utils import shared_zeros, floatX$/;"	i
+floatX	layers/normalization.py	/^from ..utils.theano_utils import shared_zeros, shared_ones, ndim_tensor, floatX$/;"	i
+floatX	optimizers.py	/^from .utils.theano_utils import shared_zeros, shared_scalar, floatX$/;"	i
+floatX	utils/theano_utils.py	/^def floatX(X):$/;"	f
+flow	preprocessing/image.py	/^    def flow(self, X, y, batch_size=32, shuffle=False, seed=None, save_to_dir=None, save_prefix="", save_format="jpeg"):$/;"	m	class:ImageDataGenerator
+get	activations.py	/^def get(identifier):$/;"	f
+get	constraints.py	/^def get(identifier, kwargs=None):$/;"	f
+get	initializations.py	/^def get(identifier):$/;"	f
+get	objectives.py	/^def get(identifier):$/;"	f
+get	optimizers.py	/^def get(identifier, kwargs=None):$/;"	f
+get	regularizers.py	/^def get(identifier, kwargs=None):$/;"	f
+get_config	constraints.py	/^    def get_config(self):$/;"	m	class:Constraint
+get_config	constraints.py	/^    def get_config(self):$/;"	m	class:MaxNorm
+get_config	layers/advanced_activations.py	/^    def get_config(self):$/;"	m	class:LeakyReLU
+get_config	layers/advanced_activations.py	/^    def get_config(self):$/;"	m	class:PReLU
+get_config	layers/advanced_activations.py	/^    def get_config(self):$/;"	m	class:ParametricSoftplus
+get_config	layers/advanced_activations.py	/^    def get_config(self):$/;"	m	class:ThresholdedLinear
+get_config	layers/advanced_activations.py	/^    def get_config(self):$/;"	m	class:ThresholdedReLu
+get_config	layers/containers.py	/^    def get_config(self):$/;"	m	class:Graph
+get_config	layers/containers.py	/^    def get_config(self):$/;"	m	class:Sequential
+get_config	layers/convolutional.py	/^    def get_config(self):$/;"	m	class:Convolution1D
+get_config	layers/convolutional.py	/^    def get_config(self):$/;"	m	class:Convolution2D
+get_config	layers/convolutional.py	/^    def get_config(self):$/;"	m	class:MaxPooling1D
+get_config	layers/convolutional.py	/^    def get_config(self):$/;"	m	class:MaxPooling2D
+get_config	layers/convolutional.py	/^    def get_config(self):$/;"	m	class:UpSample1D
+get_config	layers/convolutional.py	/^    def get_config(self):$/;"	m	class:UpSample2D
+get_config	layers/convolutional.py	/^    def get_config(self):$/;"	m	class:ZeroPadding2D
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Activation
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:ActivityRegularization
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:AutoEncoder
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Dense
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Dropout
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Layer
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Masking
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:MaxoutDense
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Merge
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Permute
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:RepeatVector
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:Reshape
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:TimeDistributedDense
+get_config	layers/core.py	/^    def get_config(self):$/;"	m	class:TimeDistributedMerge
+get_config	layers/embeddings.py	/^    def get_config(self):$/;"	m	class:Embedding
+get_config	layers/embeddings.py	/^    def get_config(self):$/;"	m	class:WordContextProduct
+get_config	layers/noise.py	/^    def get_config(self):$/;"	m	class:GaussianDropout
+get_config	layers/noise.py	/^    def get_config(self):$/;"	m	class:GaussianNoise
+get_config	layers/normalization.py	/^    def get_config(self):$/;"	m	class:BatchNormalization
+get_config	layers/normalization.py	/^    def get_config(self):$/;"	m	class:LRN2D
+get_config	layers/recurrent.py	/^    def get_config(self):$/;"	m	class:GRU
+get_config	layers/recurrent.py	/^    def get_config(self):$/;"	m	class:JZS1
+get_config	layers/recurrent.py	/^    def get_config(self):$/;"	m	class:JZS2
+get_config	layers/recurrent.py	/^    def get_config(self):$/;"	m	class:JZS3
+get_config	layers/recurrent.py	/^    def get_config(self):$/;"	m	class:LSTM
+get_config	layers/recurrent.py	/^    def get_config(self):$/;"	m	class:SimpleDeepRNN
+get_config	layers/recurrent.py	/^    def get_config(self):$/;"	m	class:SimpleRNN
+get_config	models.py	/^    def get_config(self, verbose=0):$/;"	m	class:Model
+get_config	optimizers.py	/^    def get_config(self):$/;"	m	class:Adadelta
+get_config	optimizers.py	/^    def get_config(self):$/;"	m	class:Adagrad
+get_config	optimizers.py	/^    def get_config(self):$/;"	m	class:Adam
+get_config	optimizers.py	/^    def get_config(self):$/;"	m	class:Optimizer
+get_config	optimizers.py	/^    def get_config(self):$/;"	m	class:RMSprop
+get_config	optimizers.py	/^    def get_config(self):$/;"	m	class:SGD
+get_config	regularizers.py	/^    def get_config(self):$/;"	m	class:ActivityRegularizer
+get_config	regularizers.py	/^    def get_config(self):$/;"	m	class:Regularizer
+get_config	regularizers.py	/^    def get_config(self):$/;"	m	class:WeightRegularizer
+get_fans	initializations.py	/^def get_fans(shape):$/;"	f
+get_file	datasets/cifar10.py	/^from .data_utils import get_file$/;"	i
+get_file	datasets/cifar100.py	/^from .data_utils import get_file$/;"	i
+get_file	datasets/data_utils.py	/^def get_file(fname, origin, untar=False):$/;"	f
+get_file	datasets/imdb.py	/^from .data_utils import get_file$/;"	i
+get_file	datasets/mnist.py	/^from .data_utils import get_file$/;"	i
+get_file	datasets/reuters.py	/^from .data_utils import get_file$/;"	i
+get_from_module	activations.py	/^from .utils.generic_utils import get_from_module$/;"	i
+get_from_module	constraints.py	/^from .utils.generic_utils import get_from_module$/;"	i
+get_from_module	initializations.py	/^from .utils.generic_utils import get_from_module$/;"	i
+get_from_module	objectives.py	/^from .utils.generic_utils import get_from_module$/;"	i
+get_from_module	optimizers.py	/^from .utils.generic_utils import get_from_module$/;"	i
+get_from_module	regularizers.py	/^from .utils.generic_utils import get_from_module$/;"	i
+get_from_module	utils/generic_utils.py	/^def get_from_module(identifier, module_params, module_name, instantiate=False, kwargs=None):$/;"	f
+get_from_module	utils/layer_utils.py	/^from .generic_utils import get_from_module$/;"	i
+get_function_name	models.py	/^def get_function_name(o):$/;"	f
+get_gradients	optimizers.py	/^    def get_gradients(self, loss, params):$/;"	m	class:Optimizer
+get_input	layers/containers.py	/^    def get_input(self, train=False):$/;"	m	class:Graph
+get_input	layers/containers.py	/^    def get_input(self, train=False):$/;"	m	class:Sequential
+get_input	layers/core.py	/^    def get_input(self, train=False):$/;"	m	class:AutoEncoder
+get_input	layers/core.py	/^    def get_input(self, train=False):$/;"	m	class:Layer
+get_input	layers/core.py	/^    def get_input(self, train=False):$/;"	m	class:Merge
+get_input_mask	layers/core.py	/^    def get_input_mask(self, train=False):$/;"	m	class:MaskedLayer
+get_layer	utils/layer_utils.py	/^def get_layer(identifier, kwargs=None):$/;"	f
+get_output	layers/advanced_activations.py	/^    def get_output(self, train):$/;"	m	class:LeakyReLU
+get_output	layers/advanced_activations.py	/^    def get_output(self, train):$/;"	m	class:PReLU
+get_output	layers/advanced_activations.py	/^    def get_output(self, train):$/;"	m	class:ParametricSoftplus
+get_output	layers/advanced_activations.py	/^    def get_output(self, train):$/;"	m	class:ThresholdedLinear
+get_output	layers/advanced_activations.py	/^    def get_output(self, train):$/;"	m	class:ThresholdedReLu
+get_output	layers/containers.py	/^    def get_output(self, train=False):$/;"	m	class:Graph
+get_output	layers/containers.py	/^    def get_output(self, train=False):$/;"	m	class:Sequential
+get_output	layers/convolutional.py	/^    def get_output(self, train):$/;"	m	class:Convolution1D
+get_output	layers/convolutional.py	/^    def get_output(self, train):$/;"	m	class:Convolution2D
+get_output	layers/convolutional.py	/^    def get_output(self, train):$/;"	m	class:MaxPooling1D
+get_output	layers/convolutional.py	/^    def get_output(self, train):$/;"	m	class:MaxPooling2D
+get_output	layers/convolutional.py	/^    def get_output(self, train):$/;"	m	class:UpSample1D
+get_output	layers/convolutional.py	/^    def get_output(self, train):$/;"	m	class:UpSample2D
+get_output	layers/convolutional.py	/^    def get_output(self, train):$/;"	m	class:ZeroPadding2D
+get_output	layers/core.py	/^    def get_output(self, train):$/;"	m	class:Permute
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Activation
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:ActivityRegularization
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:AutoEncoder
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Dense
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Dropout
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Flatten
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Layer
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Masking
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:MaxoutDense
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Merge
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:RepeatVector
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:Reshape
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:TimeDistributedDense
+get_output	layers/core.py	/^    def get_output(self, train=False):$/;"	m	class:TimeDistributedMerge
+get_output	layers/embeddings.py	/^    def get_output(self, train=False):$/;"	m	class:Embedding
+get_output	layers/embeddings.py	/^    def get_output(self, train=False):$/;"	m	class:WordContextProduct
+get_output	layers/noise.py	/^    def get_output(self, train):$/;"	m	class:GaussianDropout
+get_output	layers/noise.py	/^    def get_output(self, train=False):$/;"	m	class:GaussianNoise
+get_output	layers/normalization.py	/^    def get_output(self, train):$/;"	m	class:BatchNormalization
+get_output	layers/normalization.py	/^    def get_output(self, train):$/;"	m	class:LRN2D
+get_output	layers/recurrent.py	/^    def get_output(self, train=False):$/;"	m	class:GRU
+get_output	layers/recurrent.py	/^    def get_output(self, train=False):$/;"	m	class:JZS1
+get_output	layers/recurrent.py	/^    def get_output(self, train=False):$/;"	m	class:JZS2
+get_output	layers/recurrent.py	/^    def get_output(self, train=False):$/;"	m	class:JZS3
+get_output	layers/recurrent.py	/^    def get_output(self, train=False):$/;"	m	class:LSTM
+get_output	layers/recurrent.py	/^    def get_output(self, train=False):$/;"	m	class:SimpleDeepRNN
+get_output	layers/recurrent.py	/^    def get_output(self, train=False):$/;"	m	class:SimpleRNN
+get_output_mask	layers/core.py	/^    def get_output_mask(self, train=False):$/;"	m	class:MaskedLayer
+get_output_mask	layers/core.py	/^    def get_output_mask(self, train=False):$/;"	m	class:Masking
+get_output_mask	layers/core.py	/^    def get_output_mask(self, train=None):$/;"	m	class:Layer
+get_output_mask	layers/core.py	/^    def get_output_mask(self, train=None):$/;"	m	class:Merge
+get_output_mask	layers/embeddings.py	/^    def get_output_mask(self, train=None):$/;"	m	class:Embedding
+get_output_mask	layers/recurrent.py	/^    def get_output_mask(self, train=None):$/;"	m	class:Recurrent
+get_padded_shuffled_mask	layers/recurrent.py	/^    def get_padded_shuffled_mask(self, train, X, pad=0):$/;"	m	class:Recurrent
+get_params	layers/core.py	/^    def get_params(self):$/;"	m	class:Layer
+get_params	layers/core.py	/^    def get_params(self):$/;"	m	class:Merge
+get_params	wrappers/scikit_learn.py	/^    def get_params(self, deep=True):$/;"	m	class:BaseWrapper
+get_state	optimizers.py	/^    def get_state(self):$/;"	m	class:Optimizer
+get_test_data	utils/test_utils.py	/^def get_test_data(nb_train=1000, nb_test=500, input_shape=(10,), output_shape=(2,),$/;"	f
+get_updates	optimizers.py	/^    def get_updates(self, params, constraints, loss):$/;"	m	class:Adadelta
+get_updates	optimizers.py	/^    def get_updates(self, params, constraints, loss):$/;"	m	class:Adagrad
+get_updates	optimizers.py	/^    def get_updates(self, params, constraints, loss):$/;"	m	class:Adam
+get_updates	optimizers.py	/^    def get_updates(self, params, constraints, loss):$/;"	m	class:Optimizer
+get_updates	optimizers.py	/^    def get_updates(self, params, constraints, loss):$/;"	m	class:RMSprop
+get_updates	optimizers.py	/^    def get_updates(self, params, constraints, loss):$/;"	m	class:SGD
+get_weights	layers/containers.py	/^    def get_weights(self):$/;"	m	class:Sequential
+get_weights	layers/core.py	/^    def get_weights(self):$/;"	m	class:AutoEncoder
+get_weights	layers/core.py	/^    def get_weights(self):$/;"	m	class:Layer
+get_weights	layers/core.py	/^    def get_weights(self):$/;"	m	class:Merge
+get_weights	layers/normalization.py	/^    def get_weights(self):$/;"	m	class:BatchNormalization
+get_word_index	datasets/reuters.py	/^def get_word_index(path="reuters_word_index.pkl"):$/;"	f
+glorot_normal	initializations.py	/^def glorot_normal(shape):$/;"	f
+glorot_uniform	initializations.py	/^def glorot_uniform(shape):$/;"	f
+gzip	datasets/imdb.py	/^import gzip$/;"	i
+gzip	datasets/mnist.py	/^import gzip$/;"	i
+h5py	models.py	/^        import h5py$/;"	i
+h5py	utils/io_utils.py	/^import h5py$/;"	i
+hard_sigmoid	activations.py	/^def hard_sigmoid(x):$/;"	f
+he_normal	initializations.py	/^def he_normal(shape):$/;"	f
+he_uniform	initializations.py	/^def he_uniform(shape):$/;"	f
+hinge	objectives.py	/^def hinge(y_true, y_pred):$/;"	f
+horizontal_flip	preprocessing/image.py	/^def horizontal_flip(x):$/;"	f
+http_error_default	datasets/data_utils.py	/^  def http_error_default(self, url, fp, errcode, errmsg, headers):$/;"	m	class:ParanoidURLopener
+identity	constraints.py	/^identity = Constraint$/;"	v
+identity	initializations.py	/^def identity(shape, scale=1):$/;"	f
+identity	regularizers.py	/^identity = Regularizer$/;"	v
+img_to_array	preprocessing/image.py	/^def img_to_array(img):$/;"	f
+init_updates	layers/core.py	/^    def init_updates(self):$/;"	m	class:Layer
+init_updates	layers/normalization.py	/^    def init_updates(self):$/;"	m	class:BatchNormalization
+initializations	layers/advanced_activations.py	/^from .. import initializations$/;"	i
+initializations	layers/convolutional.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+initializations	layers/core.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+initializations	layers/embeddings.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+initializations	layers/normalization.py	/^from .. import initializations$/;"	i
+initializations	layers/recurrent.py	/^from .. import activations, initializations$/;"	i
+input	layers/containers.py	/^    def input(self):$/;"	m	class:Graph
+input	layers/containers.py	/^    def input(self):$/;"	m	class:Sequential
+input	layers/core.py	/^    def input(self):$/;"	m	class:AutoEncoder
+input	layers/core.py	/^    def input(self):$/;"	m	class:Merge
+inspect	datasets/data_utils.py	/^import tarfile, inspect, os$/;"	i
+inspect	utils/layer_utils.py	/^import inspect$/;"	i
+isfile	preprocessing/image.py	/^from os.path import isfile, join$/;"	i
+join	preprocessing/image.py	/^from os.path import isfile, join$/;"	i
+json	callbacks.py	/^import time, json, warnings$/;"	i
+json	models.py	/^        import json$/;"	i
+json	models.py	/^    import json$/;"	i
+kl_divergence	optimizers.py	/^def kl_divergence(p, p_hat):$/;"	f
+l1	regularizers.py	/^def l1(l=0.01):$/;"	f
+l1l2	regularizers.py	/^def l1l2(l1=0.01, l2=0.01):$/;"	f
+l2	regularizers.py	/^def l2(l=0.01):$/;"	f
+lecun_uniform	initializations.py	/^def lecun_uniform(shape):$/;"	f
+linalg	preprocessing/image.py	/^from scipy import linalg$/;"	i
+linear	activations.py	/^def linear(x):$/;"	f
+list_pictures	preprocessing/image.py	/^def list_pictures(directory, ext='jpg|jpeg|bmp|png'):$/;"	f
+listdir	preprocessing/image.py	/^from os import listdir$/;"	i
+load_array	utils/io_utils.py	/^def load_array(name):$/;"	f
+load_batch	datasets/cifar.py	/^def load_batch(fpath, label_key='labels'):$/;"	f
+load_batch	datasets/cifar10.py	/^from .cifar import load_batch$/;"	i
+load_batch	datasets/cifar100.py	/^from .cifar import load_batch$/;"	i
+load_data	datasets/cifar10.py	/^def load_data():$/;"	f
+load_data	datasets/cifar100.py	/^def load_data(label_mode='fine'):$/;"	f
+load_data	datasets/imdb.py	/^def load_data(path="imdb.pkl", nb_words=None, skip_top=0, maxlen=None, test_split=0.2, seed=113,$/;"	f
+load_data	datasets/mnist.py	/^def load_data(path="mnist.pkl.gz"):$/;"	f
+load_data	datasets/reuters.py	/^def load_data(path="reuters.pkl", nb_words=None, skip_top=0, maxlen=None, test_split=0.2, seed=113,$/;"	f
+load_img	preprocessing/image.py	/^def load_img(path, grayscale=False):$/;"	f
+load_weights	models.py	/^    def load_weights(self, filepath):$/;"	m	class:Graph
+load_weights	models.py	/^    def load_weights(self, filepath):$/;"	m	class:Sequential
+make_batches	models.py	/^def make_batches(size, batch_size):$/;"	f
+make_reuters_dataset	datasets/reuters.py	/^def make_reuters_dataset(path=os.path.join('datasets', 'temp', 'reuters21578'), min_samples_per_topic=15):$/;"	f
+make_sampling_table	preprocessing/sequence.py	/^def make_sampling_table(size, sampling_factor=1e-5):$/;"	f
+make_tuple	layers/core.py	/^from ..utils.generic_utils import make_tuple$/;"	i
+make_tuple	utils/generic_utils.py	/^def make_tuple(*args):$/;"	f
+maketrans	preprocessing/text.py	/^    maketrans = str.maketrans$/;"	v
+maketrans	preprocessing/text.py	/^    maketrans = string.maketrans$/;"	v
+math	preprocessing/image.py	/^import random, math$/;"	i
+maxnorm	constraints.py	/^maxnorm = MaxNorm$/;"	v
+mean_absolute_error	objectives.py	/^def mean_absolute_error(y_true, y_pred):$/;"	f
+mean_absolute_percentage_error	objectives.py	/^def mean_absolute_percentage_error(y_true, y_pred):$/;"	f
+mean_squared_error	objectives.py	/^def mean_squared_error(y_true, y_pred):$/;"	f
+mean_squared_logarithmic_error	objectives.py	/^def mean_squared_logarithmic_error(y_true, y_pred):$/;"	f
+model_from_config	models.py	/^def model_from_config(config):$/;"	f
+model_from_json	models.py	/^def model_from_json(json_string):$/;"	f
+model_from_yaml	models.py	/^def model_from_yaml(yaml_string):$/;"	f
+multiclass_logloss	utils/np_utils.py	/^def multiclass_logloss(P, Y):$/;"	f
+nb_input	layers/containers.py	/^    def nb_input(self):$/;"	m	class:Graph
+nb_input	layers/core.py	/^    def nb_input(self):$/;"	m	class:Layer
+nb_output	layers/containers.py	/^    def nb_output(self):$/;"	m	class:Graph
+nb_output	layers/core.py	/^    def nb_output(self):$/;"	m	class:Layer
+ndim_tensor	layers/containers.py	/^from ..utils.theano_utils import ndim_tensor$/;"	i
+ndim_tensor	layers/normalization.py	/^from ..utils.theano_utils import shared_zeros, shared_ones, ndim_tensor, floatX$/;"	i
+ndim_tensor	utils/theano_utils.py	/^def ndim_tensor(ndim):$/;"	f
+ndimage	preprocessing/image.py	/^from scipy import ndimage$/;"	i
+nonneg	constraints.py	/^nonneg = NonNeg$/;"	v
+normal	initializations.py	/^def normal(shape, scale=0.05):$/;"	f
+normalize	utils/np_utils.py	/^def normalize(a, axis=-1, order=2):$/;"	f
+np	callbacks.py	/^import numpy as np$/;"	i
+np	constraints.py	/^import numpy as np$/;"	i
+np	datasets/cifar10.py	/^import numpy as np$/;"	i
+np	datasets/cifar100.py	/^import numpy as np$/;"	i
+np	datasets/imdb.py	/^import numpy as np$/;"	i
+np	datasets/reuters.py	/^import numpy as np$/;"	i
+np	initializations.py	/^import numpy as np$/;"	i
+np	layers/advanced_activations.py	/^import numpy as np$/;"	i
+np	layers/core.py	/^import numpy as np$/;"	i
+np	layers/noise.py	/^import numpy as np$/;"	i
+np	layers/recurrent.py	/^import numpy as np$/;"	i
+np	models.py	/^import numpy as np$/;"	i
+np	objectives.py	/^import numpy as np$/;"	i
+np	preprocessing/image.py	/^import numpy as np$/;"	i
+np	preprocessing/sequence.py	/^import numpy as np$/;"	i
+np	preprocessing/text.py	/^import numpy as np$/;"	i
+np	utils/generic_utils.py	/^import numpy as np$/;"	i
+np	utils/io_utils.py	/^import numpy as np$/;"	i
+np	utils/layer_utils.py	/^import numpy as np$/;"	i
+np	utils/np_utils.py	/^import numpy as np$/;"	i
+np	utils/test_utils.py	/^import numpy as np$/;"	i
+np	utils/theano_utils.py	/^import numpy as np$/;"	i
+np	wrappers/scikit_learn.py	/^import numpy as np$/;"	i
+objectives	models.py	/^from . import objectives$/;"	i
+on_batch_begin	callbacks.py	/^    def on_batch_begin(self, batch, logs={}):$/;"	m	class:BaseLogger
+on_batch_begin	callbacks.py	/^    def on_batch_begin(self, batch, logs={}):$/;"	m	class:Callback
+on_batch_begin	callbacks.py	/^    def on_batch_begin(self, batch, logs={}):$/;"	m	class:CallbackList
+on_batch_end	callbacks.py	/^    def on_batch_end(self, batch, logs={}):$/;"	m	class:BaseLogger
+on_batch_end	callbacks.py	/^    def on_batch_end(self, batch, logs={}):$/;"	m	class:Callback
+on_batch_end	callbacks.py	/^    def on_batch_end(self, batch, logs={}):$/;"	m	class:CallbackList
+on_batch_end	callbacks.py	/^    def on_batch_end(self, batch, logs={}):$/;"	m	class:History
+on_batch_end	callbacks.py	/^    def on_batch_end(self, batch, logs={}):$/;"	m	class:RemoteMonitor
+on_epoch_begin	callbacks.py	/^    def on_epoch_begin(self, epoch, logs={}):$/;"	m	class:BaseLogger
+on_epoch_begin	callbacks.py	/^    def on_epoch_begin(self, epoch, logs={}):$/;"	m	class:Callback
+on_epoch_begin	callbacks.py	/^    def on_epoch_begin(self, epoch, logs={}):$/;"	m	class:CallbackList
+on_epoch_begin	callbacks.py	/^    def on_epoch_begin(self, epoch, logs={}):$/;"	m	class:History
+on_epoch_begin	callbacks.py	/^    def on_epoch_begin(self, epoch, logs={}):$/;"	m	class:LearningRateScheduler
+on_epoch_begin	callbacks.py	/^    def on_epoch_begin(self, epoch, logs={}):$/;"	m	class:RemoteMonitor
+on_epoch_end	callbacks.py	/^    def on_epoch_end(self, epoch, logs={}):$/;"	m	class:BaseLogger
+on_epoch_end	callbacks.py	/^    def on_epoch_end(self, epoch, logs={}):$/;"	m	class:Callback
+on_epoch_end	callbacks.py	/^    def on_epoch_end(self, epoch, logs={}):$/;"	m	class:CallbackList
+on_epoch_end	callbacks.py	/^    def on_epoch_end(self, epoch, logs={}):$/;"	m	class:EarlyStopping
+on_epoch_end	callbacks.py	/^    def on_epoch_end(self, epoch, logs={}):$/;"	m	class:History
+on_epoch_end	callbacks.py	/^    def on_epoch_end(self, epoch, logs={}):$/;"	m	class:ModelCheckpoint
+on_epoch_end	callbacks.py	/^    def on_epoch_end(self, epoch, logs={}):$/;"	m	class:RemoteMonitor
+on_gpu	layers/convolutional.py	/^from ..utils.theano_utils import shared_zeros, on_gpu$/;"	i
+on_gpu	utils/theano_utils.py	/^def on_gpu():$/;"	f
+on_train_begin	callbacks.py	/^    def on_train_begin(self, logs={}):$/;"	m	class:BaseLogger
+on_train_begin	callbacks.py	/^    def on_train_begin(self, logs={}):$/;"	m	class:Callback
+on_train_begin	callbacks.py	/^    def on_train_begin(self, logs={}):$/;"	m	class:CallbackList
+on_train_begin	callbacks.py	/^    def on_train_begin(self, logs={}):$/;"	m	class:History
+on_train_end	callbacks.py	/^    def on_train_end(self, logs={}):$/;"	m	class:Callback
+on_train_end	callbacks.py	/^    def on_train_end(self, logs={}):$/;"	m	class:CallbackList
+one	initializations.py	/^def one(shape):$/;"	f
+one_hot	preprocessing/text.py	/^def one_hot(text, n, filters=base_filter(), lower=True, split=" "):$/;"	f
+optimizers	models.py	/^from . import optimizers$/;"	i
+orthogonal	initializations.py	/^def orthogonal(shape, scale=1.1):$/;"	f
+os	datasets/cifar10.py	/^import os$/;"	i
+os	datasets/cifar100.py	/^import os$/;"	i
+os	datasets/data_utils.py	/^import tarfile, inspect, os$/;"	i
+os	datasets/reuters.py	/^import os$/;"	i
+os	models.py	/^        import os.path$/;"	i
+pad_sequences	preprocessing/sequence.py	/^def pad_sequences(sequences, maxlen=None, dtype='int32', padding='pre', truncating='pre', value=0.):$/;"	f
+path	models.py	/^        import os.path$/;"	i
+plot	utils/visualize_util.py	/^def plot(model, to_file='model.png'):$/;"	f
+poisson_loss	objectives.py	/^def poisson_loss(y_true, y_pred):$/;"	f
+pprint	models.py	/^import warnings, time, copy, pprint$/;"	i
+predict	models.py	/^    def predict(self, X, batch_size=128, verbose=0):$/;"	m	class:Sequential
+predict	models.py	/^    def predict(self, data, batch_size=128, verbose=0):$/;"	m	class:Graph
+predict	wrappers/scikit_learn.py	/^    def predict(self, X):$/;"	m	class:KerasClassifier
+predict	wrappers/scikit_learn.py	/^    def predict(self, X):$/;"	m	class:KerasRegressor
+predict_classes	models.py	/^    def predict_classes(self, X, batch_size=128, verbose=1):$/;"	m	class:Sequential
+predict_on_batch	models.py	/^    def predict_on_batch(self, X):$/;"	m	class:Sequential
+predict_on_batch	models.py	/^    def predict_on_batch(self, data):$/;"	m	class:Graph
+predict_proba	models.py	/^    def predict_proba(self, X, batch_size=128, verbose=1):$/;"	m	class:Sequential
+predict_proba	wrappers/scikit_learn.py	/^    def predict_proba(self, X):$/;"	m	class:KerasClassifier
+print_function	callbacks.py	/^from __future__ import print_function$/;"	i
+print_function	datasets/data_utils.py	/^from __future__ import print_function$/;"	i
+print_function	datasets/reuters.py	/^from __future__ import print_function$/;"	i
+print_function	layers/containers.py	/^from __future__ import print_function$/;"	i
+print_function	models.py	/^from __future__ import print_function$/;"	i
+print_function	utils/layer_utils.py	/^from __future__ import print_function$/;"	i
+print_layer_shapes	utils/layer_utils.py	/^def print_layer_shapes(model, input_shapes):$/;"	f
+printv	models.py	/^from .utils.generic_utils import Progbar, printv$/;"	i
+printv	utils/generic_utils.py	/^def printv(v, prefix=''):$/;"	f
+probas_to_classes	utils/np_utils.py	/^def probas_to_classes(y_pred):$/;"	f
+pydot	utils/visualize_util.py	/^import pydot$/;"	i
+random	datasets/imdb.py	/^import random$/;"	i
+random	datasets/reuters.py	/^import random$/;"	i
+random	preprocessing/image.py	/^import random, math$/;"	i
+random	preprocessing/sequence.py	/^import random$/;"	i
+random_barrel_transform	preprocessing/image.py	/^def random_barrel_transform(x, intensity):$/;"	f
+random_channel_shift	preprocessing/image.py	/^def random_channel_shift(x, rg):$/;"	f
+random_rotation	preprocessing/image.py	/^def random_rotation(x, rg, fill_mode="nearest", cval=0.):$/;"	f
+random_shear	preprocessing/image.py	/^def random_shear(x, intensity):$/;"	f
+random_shift	preprocessing/image.py	/^def random_shift(x, wrg, hrg, fill_mode="nearest", cval=0.):$/;"	f
+random_transform	preprocessing/image.py	/^    def random_transform(self, x):$/;"	m	class:ImageDataGenerator
+random_zoom	preprocessing/image.py	/^def random_zoom(x, rg, fill_mode="nearest", cval=0.):$/;"	f
+range	datasets/cifar.py	/^from six.moves import range$/;"	i
+range	layers/containers.py	/^from six.moves import range$/;"	i
+range	layers/recurrent.py	/^from six.moves import range$/;"	i
+range	models.py	/^from six.moves import range$/;"	i
+range	objectives.py	/^from six.moves import range$/;"	i
+range	preprocessing/image.py	/^from six.moves import range$/;"	i
+range	preprocessing/sequence.py	/^from six.moves import range$/;"	i
+range	preprocessing/text.py	/^from six.moves import range$/;"	i
+range	utils/np_utils.py	/^from six.moves import range$/;"	i
+re	datasets/reuters.py	/^    import re$/;"	i
+re	preprocessing/image.py	/^import re$/;"	i
+refs	utils/io_utils.py	/^    refs = defaultdict(int)$/;"	v	class:HDF5Matrix
+regularizers	layers/convolutional.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+regularizers	layers/core.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+regularizers	layers/embeddings.py	/^from .. import activations, initializations, regularizers, constraints$/;"	i
+regularizers	models.py	/^from . import regularizers$/;"	i
+regularizers	utils/layer_utils.py	/^from .. import regularizers$/;"	i
+relu	activations.py	/^def relu(x):$/;"	f
+requests	callbacks.py	/^        import requests$/;"	i
+rmsprop	optimizers.py	/^rmsprop = RMSprop$/;"	v
+save_array	utils/io_utils.py	/^def save_array(array, name):$/;"	f
+save_weights	models.py	/^    def save_weights(self, filepath, overwrite=False):$/;"	m	class:Graph
+save_weights	models.py	/^    def save_weights(self, filepath, overwrite=False):$/;"	m	class:Sequential
+score	wrappers/scikit_learn.py	/^    def score(self, X, y):$/;"	m	class:KerasClassifier
+score	wrappers/scikit_learn.py	/^    def score(self, X, y):$/;"	m	class:KerasRegressor
+sequences_to_matrix	preprocessing/text.py	/^    def sequences_to_matrix(self, sequences, mode="binary"):$/;"	m	class:Tokenizer
+set_input	layers/containers.py	/^    def set_input(self):$/;"	m	class:Sequential
+set_layer	regularizers.py	/^    def set_layer(self, layer):$/;"	m	class:ActivityRegularizer
+set_layer	regularizers.py	/^    def set_layer(self, layer):$/;"	m	class:Regularizer
+set_name	layers/core.py	/^    def set_name(self, name):$/;"	m	class:Dense
+set_name	layers/core.py	/^    def set_name(self, name):$/;"	m	class:Layer
+set_param	regularizers.py	/^    def set_param(self, p):$/;"	m	class:Regularizer
+set_param	regularizers.py	/^    def set_param(self, p):$/;"	m	class:WeightRegularizer
+set_params	wrappers/scikit_learn.py	/^    def set_params(self, **params):$/;"	m	class:BaseWrapper
+set_previous	layers/containers.py	/^    def set_previous(self, layer):$/;"	m	class:Sequential
+set_previous	layers/containers.py	/^    def set_previous(self, layer, connection_map={}):$/;"	m	class:Graph
+set_previous	layers/core.py	/^    def set_previous(self, layer, connection_map={}):$/;"	m	class:Layer
+set_previous	layers/core.py	/^    def set_previous(self, node):$/;"	m	class:AutoEncoder
+set_state	optimizers.py	/^    def set_state(self, value_list):$/;"	m	class:Optimizer
+set_weights	layers/containers.py	/^    def set_weights(self, weights):$/;"	m	class:Sequential
+set_weights	layers/core.py	/^    def set_weights(self, weights):$/;"	m	class:AutoEncoder
+set_weights	layers/core.py	/^    def set_weights(self, weights):$/;"	m	class:Layer
+set_weights	layers/core.py	/^    def set_weights(self, weights):$/;"	m	class:Merge
+set_weights	layers/normalization.py	/^    def set_weights(self, weights):$/;"	m	class:BatchNormalization
+sgd	optimizers.py	/^sgd = SGD$/;"	v
+shape	utils/io_utils.py	/^    def shape(self):$/;"	m	class:HDF5Matrix
+sharedX	initializations.py	/^from .utils.theano_utils import sharedX, shared_zeros, shared_ones$/;"	i
+sharedX	layers/advanced_activations.py	/^from ..utils.theano_utils import shared_zeros, shared_ones, sharedX$/;"	i
+sharedX	layers/embeddings.py	/^from ..utils.theano_utils import sharedX$/;"	i
+sharedX	utils/theano_utils.py	/^def sharedX(X, dtype=theano.config.floatX, name=None):$/;"	f
+shared_ones	initializations.py	/^from .utils.theano_utils import sharedX, shared_zeros, shared_ones$/;"	i
+shared_ones	layers/advanced_activations.py	/^from ..utils.theano_utils import shared_zeros, shared_ones, sharedX$/;"	i
+shared_ones	layers/normalization.py	/^from ..utils.theano_utils import shared_zeros, shared_ones, ndim_tensor, floatX$/;"	i
+shared_ones	utils/theano_utils.py	/^def shared_ones(shape, dtype=theano.config.floatX, name=None):$/;"	f
+shared_scalar	layers/recurrent.py	/^from ..utils.theano_utils import shared_scalar, shared_zeros, alloc_zeros_matrix$/;"	i
+shared_scalar	optimizers.py	/^from .utils.theano_utils import shared_zeros, shared_scalar, floatX$/;"	i
+shared_scalar	utils/theano_utils.py	/^def shared_scalar(val=0., dtype=theano.config.floatX, name=None):$/;"	f
+shared_zeros	initializations.py	/^from .utils.theano_utils import sharedX, shared_zeros, shared_ones$/;"	i
+shared_zeros	layers/advanced_activations.py	/^from ..utils.theano_utils import shared_zeros, shared_ones, sharedX$/;"	i
+shared_zeros	layers/convolutional.py	/^from ..utils.theano_utils import shared_zeros, on_gpu$/;"	i
+shared_zeros	layers/core.py	/^from ..utils.theano_utils import shared_zeros, floatX$/;"	i
+shared_zeros	layers/normalization.py	/^from ..utils.theano_utils import shared_zeros, shared_ones, ndim_tensor, floatX$/;"	i
+shared_zeros	layers/recurrent.py	/^from ..utils.theano_utils import shared_scalar, shared_zeros, alloc_zeros_matrix$/;"	i
+shared_zeros	optimizers.py	/^from .utils.theano_utils import shared_zeros, shared_scalar, floatX$/;"	i
+shared_zeros	utils/theano_utils.py	/^def shared_zeros(shape, dtype=theano.config.floatX, name=None):$/;"	f
+sigmoid	activations.py	/^def sigmoid(x):$/;"	f
+six	models.py	/^import six$/;"	i
+six	utils/generic_utils.py	/^import six$/;"	i
+skipgrams	preprocessing/sequence.py	/^def skipgrams(sequence, vocabulary_size, $/;"	f
+slice_X	models.py	/^def slice_X(X, start=None, stop=None):$/;"	f
+softmax	activations.py	/^def softmax(x):$/;"	f
+softplus	activations.py	/^def softplus(x):$/;"	f
+sp	utils/np_utils.py	/^import scipy as sp$/;"	i
+squared_hinge	objectives.py	/^def squared_hinge(y_true, y_pred):$/;"	f
+standardize	preprocessing/image.py	/^    def standardize(self, x):$/;"	m	class:ImageDataGenerator
+standardize_X	models.py	/^def standardize_X(X):$/;"	f
+standardize_weights	models.py	/^def standardize_weights(y, sample_weight=None, class_weight=None):$/;"	f
+standardize_y	models.py	/^def standardize_y(y):$/;"	f
+string	datasets/reuters.py	/^import string$/;"	i
+string	preprocessing/text.py	/^import string, sys$/;"	i
+supports_masked_input	layers/core.py	/^    def supports_masked_input(self):$/;"	m	class:Layer
+supports_masked_input	layers/core.py	/^    def supports_masked_input(self):$/;"	m	class:MaskedLayer
+supports_masked_input	layers/core.py	/^    def supports_masked_input(self):$/;"	m	class:Merge
+sys	datasets/cifar.py	/^import sys$/;"	i
+sys	datasets/mnist.py	/^import sys$/;"	i
+sys	models.py	/^            import sys$/;"	i
+sys	preprocessing/text.py	/^import string, sys$/;"	i
+sys	utils/generic_utils.py	/^import sys$/;"	i
+tables	utils/io_utils.py	/^    import tables$/;"	i
+tanh	activations.py	/^def tanh(x):$/;"	f
+tarfile	datasets/data_utils.py	/^import tarfile, inspect, os$/;"	i
+test_on_batch	models.py	/^    def test_on_batch(self, X, y, accuracy=False, sample_weight=None):$/;"	m	class:Sequential
+test_on_batch	models.py	/^    def test_on_batch(self, data, sample_weight={}):$/;"	m	class:Graph
+text_to_word_sequence	preprocessing/text.py	/^def text_to_word_sequence(text, filters=base_filter(), lower=True, split=" "):$/;"	f
+texts_to_matrix	preprocessing/text.py	/^    def texts_to_matrix(self, texts, mode="binary"):$/;"	m	class:Tokenizer
+texts_to_sequences	preprocessing/text.py	/^    def texts_to_sequences(self, texts):$/;"	m	class:Tokenizer
+texts_to_sequences_generator	preprocessing/text.py	/^    def texts_to_sequences_generator(self, texts):$/;"	m	class:Tokenizer
+theano	activations.py	/^import theano.tensor as T$/;"	i
+theano	constraints.py	/^import theano$/;"	i
+theano	constraints.py	/^import theano.tensor as T$/;"	i
+theano	initializations.py	/^import theano$/;"	i
+theano	initializations.py	/^import theano.tensor as T$/;"	i
+theano	layers/advanced_activations.py	/^import theano.tensor as T$/;"	i
+theano	layers/containers.py	/^import theano.tensor as T$/;"	i
+theano	layers/convolutional.py	/^import theano$/;"	i
+theano	layers/convolutional.py	/^import theano.tensor as T$/;"	i
+theano	layers/core.py	/^import theano$/;"	i
+theano	layers/core.py	/^import theano.tensor as T$/;"	i
+theano	layers/embeddings.py	/^import theano$/;"	i
+theano	layers/embeddings.py	/^import theano.tensor as T$/;"	i
+theano	layers/noise.py	/^import theano$/;"	i
+theano	layers/noise.py	/^import theano.tensor as T$/;"	i
+theano	layers/normalization.py	/^import theano.tensor as T$/;"	i
+theano	layers/recurrent.py	/^import theano$/;"	i
+theano	layers/recurrent.py	/^import theano.tensor as T$/;"	i
+theano	models.py	/^import theano$/;"	i
+theano	models.py	/^import theano.tensor as T$/;"	i
+theano	objectives.py	/^import theano$/;"	i
+theano	objectives.py	/^import theano.tensor as T$/;"	i
+theano	optimizers.py	/^import theano$/;"	i
+theano	optimizers.py	/^import theano.tensor as T$/;"	i
+theano	regularizers.py	/^import theano.tensor as T$/;"	i
+theano	utils/layer_utils.py	/^import theano$/;"	i
+theano	utils/theano_utils.py	/^import theano$/;"	i
+theano	utils/theano_utils.py	/^import theano.tensor as T$/;"	i
+time	callbacks.py	/^import time, json, warnings$/;"	i
+time	models.py	/^import warnings, time, copy, pprint$/;"	i
+time	utils/generic_utils.py	/^import time$/;"	i
+time_distributed_softmax	activations.py	/^def time_distributed_softmax(x):$/;"	f
+to_categorical	utils/np_utils.py	/^def to_categorical(y, nb_classes=None):$/;"	f
+to_categorical	wrappers/scikit_learn.py	/^from ..utils.np_utils import to_categorical$/;"	i
+to_json	models.py	/^    def to_json(self):$/;"	m	class:Model
+to_yaml	models.py	/^    def to_yaml(self):$/;"	m	class:Model
+train_on_batch	models.py	/^    def train_on_batch(self, X, y, accuracy=False, class_weight=None, sample_weight=None):$/;"	m	class:Sequential
+train_on_batch	models.py	/^    def train_on_batch(self, data, class_weight={}, sample_weight={}):$/;"	m	class:Graph
+uniform	initializations.py	/^def uniform(shape, scale=0.05):$/;"	f
+unitnorm	constraints.py	/^unitnorm = UnitNorm$/;"	v
+unitnorm	layers/embeddings.py	/^from ..constraints import unitnorm$/;"	i
+update	utils/generic_utils.py	/^    def update(self, current, values=[]):$/;"	m	class:Progbar
+vertical_flip	preprocessing/image.py	/^def vertical_flip(x):$/;"	f
+warnings	activations.py	/^    import warnings$/;"	i
+warnings	callbacks.py	/^import time, json, warnings$/;"	i
+warnings	models.py	/^import warnings, time, copy, pprint$/;"	i
+weighted	models.py	/^    def weighted(y_true, y_pred, weights, mask=None):$/;"	f	function:weighted_objective
+weighted_objective	models.py	/^def weighted_objective(fn):$/;"	f
+yaml	models.py	/^        import yaml$/;"	i
+yaml	models.py	/^    import yaml$/;"	i
+zero	initializations.py	/^def zero(shape):$/;"	f
+zip	datasets/imdb.py	/^from six.moves import zip$/;"	i
+zip	datasets/reuters.py	/^from six.moves import zip$/;"	i
+zip	layers/core.py	/^from six.moves import zip$/;"	i
+zip	optimizers.py	/^from six.moves import zip$/;"	i
+zip	preprocessing/text.py	/^from six.moves import zip$/;"	i
+zip	utils/np_utils.py	/^from six.moves import zip$/;"	i

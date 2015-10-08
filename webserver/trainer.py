@@ -1,5 +1,5 @@
 from ..jobs import project
-import keras.callbacks
+from ..models.keras_custom import callbacks
 import tornado.ioloop
 import json
 import numpy as json
@@ -33,7 +33,7 @@ def getJob(params):
 
 
 
-class BatchCallBack(keras.callbacks.Callback):
+class BatchCallBack(callbacks.Callback):
 
     def __init__(self, jobid):
         self.jobid = jobid

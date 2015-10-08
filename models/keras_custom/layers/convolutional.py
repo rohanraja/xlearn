@@ -20,7 +20,7 @@ class Convolution1D(Layer):
                  W_regularizer=None, b_regularizer=None, activity_regularizer=None,
                  W_constraint=None, b_constraint=None):
 
-        if border_mode not in {'valid', 'full', 'same'}:
+        if border_mode not in ['valid', 'full', 'same']:
             raise Exception('Invalid border mode for Convolution1D:', border_mode)
 
         super(Convolution1D, self).__init__()
@@ -104,7 +104,7 @@ class Convolution2D(Layer):
                  W_regularizer=None, b_regularizer=None, activity_regularizer=None,
                  W_constraint=None, b_constraint=None):
 
-        if border_mode not in {'valid', 'full', 'same'}:
+        if border_mode not in ['valid', 'full', 'same']:
             raise Exception('Invalid border mode for Convolution2D:', border_mode)
 
         super(Convolution2D, self).__init__()
