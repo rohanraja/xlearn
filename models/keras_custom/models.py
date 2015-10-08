@@ -555,11 +555,11 @@ class Sequential(Model, containers.Sequential):
         f = h5py.File(filepath, 'w')
         f.attrs['nb_layers'] = len(self.layers)
         for k, l in enumerate(self.layers):
-            g = f.create_group('layer_{}'.format(k))
+            g = f.create_group("layer_%d"%(k))
             weights = l.get_weights()
             g.attrs['nb_params'] = len(weights)
             for n, param in enumerate(weights):
-                param_name = 'param_{}'.format(n)
+                param_name = "param_%d"%(n)
                 param_dset = g.create_dataset(param_name, param.shape, dtype=param.dtype)
                 param_dset[:] = param
         f.flush()
@@ -574,8 +574,8 @@ class Sequential(Model, containers.Sequential):
         import h5py
         f = h5py.File(filepath)
         for k in range(f.attrs['nb_layers']):
-            g = f['layer_{}'.format(k)]
-            weights = [g['param_{}'.format(p)] for p in range(g.attrs['nb_params'])]
+            g = f["layer_%d"%(k)]
+            weights = [g["param_%d"%(p)] for p in range(g.attrs['nb_params'])]
             self.layers[k].set_weights(weights)
         f.close()
 
