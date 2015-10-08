@@ -726,7 +726,8 @@ class Graph(Model, containers.Graph):
         weights = self.get_weights()
         g.attrs['nb_params'] = len(weights)
         for n, param in enumerate(weights):
-            param_name = 'param_{}'.format(n)
+            param_name = "param_%d"%(n)
+            # param_name = 'param_{}'.format(n)
             param_dset = g.create_dataset(param_name, param.shape, dtype=param.dtype)
             param_dset[:] = param
         f.flush()
@@ -737,6 +738,7 @@ class Graph(Model, containers.Graph):
         import h5py
         f = h5py.File(filepath)
         g = f['graph']
-        weights = [g['param_{}'.format(p)] for p in range(g.attrs['nb_params'])]
+        weights = [g["param_%d"%(p)] for p in range(g.attrs['nb_params'])]
+        # weights = [g['param_{}'.format(p)] for p in range(g.attrs['nb_params'])]
         self.set_weights(weights)
         f.close()
