@@ -9,7 +9,7 @@ class TestDatasetNepal(unittest.TestCase):
 
         # print Fore.GREEN, "Loading Data"
 
-        DS = datasetsIndex[5]
+        DS = datasetsIndex[6]
         ds = DS()
 
         print Fore.GREEN, ds.sentances[160]
