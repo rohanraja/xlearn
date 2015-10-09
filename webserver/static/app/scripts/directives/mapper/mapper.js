@@ -22,6 +22,13 @@ angular.module('sbAdminApp')
           });
 
 
+          $scope.onGetStats = function(){
+            listservice.getMapperStats($scope.modelId).then(function(resp){
+              console.log(resp);
+              $scope.mapperStats = resp;
+            });
+          };
+
         }
     
     }

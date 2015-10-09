@@ -29,19 +29,6 @@ angular.module('sbAdminApp')
 
       return defer ;
 
-      // var out = [
-      //   {
-      //     id: 1,
-      //     name: "Self Vocab"
-      //   },
-      //   {
-      //     id: 2,
-      //     name: "Cat to Numerical"
-      //   }
-      //   
-      // ]
-      // return out
-
     };
 
 
@@ -69,18 +56,20 @@ angular.module('sbAdminApp')
       var defer = serverComm.getData(query);
 
       return defer ;
-      //       var out = [
-      //         {
-      //           id: 0,
-      //           name: "RNN"
-      //         },
-      //         {
-      //           id: 3,
-      //           name: "MLP_QUANT"
-      //         }
-      //         
-      //       ]
-      // return out
-
     };
+
+  
+    this.getMapperStats = function($modelid){
+      var query = {
+        'type': 'get_mapper_stats',
+        'params': {
+          "modelId": $modelid
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
+
   });

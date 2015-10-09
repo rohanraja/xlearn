@@ -7,13 +7,14 @@ class TestMapping(unittest.TestCase):
 
     def test_GS_Map1(self):
 
-        DS = datasetsIndex[1]
+        DS = datasetsIndex[3]
         data = DS()
-        M = mappersIndex[1]
+        M = mappersIndex[2]
         m = M(data)
 
         print Fore.GREEN, "\n", m.X
-        print Fore.YELLOW, "\n", data.X[2][8]
+        print Fore.CYAN, "\n", m.getstats()
+        # print Fore.YELLOW, "\n", data.X[2][8]
 
     def tesT_mapper_output(self):
 

@@ -1,2 +1,3 @@
 *.pyc
 projects/
+__pycache__

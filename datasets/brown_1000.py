@@ -1,12 +1,12 @@
 from nltk.corpus import brown
 
-class Brown_1000():
+class Brown_200():
 
     def __init__(self, offset=0, num=200):
         
         self.sentances = brown.sents()[offset:(offset+num)]
 
-class Brown_5000():
+class Brown_1000():
 
     def __init__(self, offset=0, num=1000):
         

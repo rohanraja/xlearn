@@ -9,7 +9,8 @@ from basekeras import BaseKeras
 import theano
 
 theano.config.mode = "FAST_RUN"
-theano.config.openmp = True
+theano.config.profile = True
+# theano.config.openmp = True
 
 class RNN_LM_Deep(BaseKeras):
 
@@ -130,7 +131,14 @@ class RNN_LM(BaseKeras):
         print "Compiling..."
         
         # sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
-        self.model.compile(loss='categorical_crossentropy', optimizer='adagrad')
+        
+        # self.profmode = theano.ProfileMode(optimizer='fast_run', linker=theano.gof.OpWiseCLinker())
+
+        self.model.compile(
+                loss='categorical_crossentropy', 
+                optimizer='adagrad',
+                # theano_mode=self.profmode
+        )
 
         # self.model.compile(loss='binary_crossentropy', optimizer='rmsprop')
         # self.model.compile(loss='binary_crossentropy', optimizer='rmsprop', class_mode="binary")

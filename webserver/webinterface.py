@@ -133,6 +133,16 @@ def mappers_list(params):
 
     return out
 
+def get_mapper_stats(params):
+    jinfo = getModelInfo(params)
+
+    DS = datasetsIndex[jinfo["dataset_id"]]
+    data = DS()
+    M = mappersIndex[jinfo["mapper_id"]]
+    m = M(data)
+
+    return m.getstats()
+
 def models_list(params):
     
     out = []

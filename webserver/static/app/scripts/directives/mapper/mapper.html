@@ -11,7 +11,27 @@
         ng-options="mapr.id as (mapr.id + ': ' + mapr.name) for mapr in mappers"
         >
       </select>
-    </div>        
+    </div>    
+
+    <button class="btn btn-primary" ng-click="onGetStats()">Get Stats</button>
+    <br>
+    <br>
+    <h4> Stats </h4>    
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+        <tbody>
+        <tr
+          ng-repeat="(pLabel, pValue) in mapperStats"
+          >
+          <td>{{pLabel}}</td>
+          <td>{{pValue}}</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <br>
+
   </div>
 
   <div class="col-md-4">
@@ -19,7 +39,7 @@
 
 
   <div class="col-md-4">
-  Vocabulary Test
+     
   </div>
 
 

@@ -1,12 +1,14 @@
 from numpy import array
+from vstats import VocabStats
 
-class SelfVocab():
+class SelfVocab(VocabStats):
 
     def generateVocab(self, sentances):
         """
         Create self.vocab from self.sentances
         """
     
+        self.sentances = sentances
         self.brown = True
         self.vocab = set(["UNKNOWN","<s>"])
         for s in sentances :
