@@ -12,7 +12,8 @@ class TestMapping(unittest.TestCase):
         M = mappersIndex[2]
         m = M(data)
 
-        print Fore.GREEN, "\n", m.X
+        print Fore.GREEN, "\n", m.X[[10,22]]
+        print Fore.GREEN, "\n", m.Y.shape
         print Fore.CYAN, "\n", m.getstats()
         # print Fore.YELLOW, "\n", data.X[2][8]
 

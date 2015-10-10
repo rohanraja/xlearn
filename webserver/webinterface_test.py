@@ -32,22 +32,23 @@ class TestWebInterface(unittest.TestCase):
         params = { 
                 "modelId": 4,
                 "paramsId": 0,
-                "nepochs": 5,
-                "currentEpoch": 0,
+                "nepochs": 465,
+                "currentEpoch": 400,
                 }
 
         # start_training(params)
-        blocking_trainer(params, BatchCallBack(""))
+        jobid = register_training_job(params)
+        blocking_trainer(params, BatchCallBack(jobid))
         # print get_epoch_list(params)
 
 
-    def Test_evaluation(self):
+    def test_evaluation(self):
         params = { 
-                "modelId": 0,
+                "modelId": 4,
                 "paramsId": 0,
-                "datasetId": 1,
-                "nepochs": 5,
-                "currentEpoch": 5,
+                "datasetId": 3,
+                "nsents": 5,
+                "currentEpoch": 400,
                 }
 
         print start_evaluation(params)
@@ -57,7 +58,7 @@ class TestWebInterface(unittest.TestCase):
         print mappers_list({})
 
     
-    def test_sentance_eval(self):
+    def tesT_sentance_eval(self):
 
         params = { 
                 "modelId": 4,

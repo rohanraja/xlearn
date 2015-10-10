@@ -217,7 +217,11 @@ class Model(object):
                 batch_logs['epoch'] = epoch
                 batch_logs['totepochs'] = nb_epoch
                 callbacks.on_batch_begin(batch_index, batch_logs)
-                outs = f(*ins_batch)
+                try:
+                  ins_batch[2] = np.ones(ins_batch[1].shape[:-1] + (1,))
+                  outs = f(*ins_batch)
+                except Exception, e:
+                  print(e)
 
                 if type(outs) != list:
                     outs = [outs]
