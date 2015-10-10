@@ -106,6 +106,7 @@ class SimpleRNN(Recurrent):
                 "return_sequences": self.return_sequences}
 
 
+
 class SimpleDeepRNN(Recurrent):
     '''
         Fully connected RNN where the output of multiple timesteps

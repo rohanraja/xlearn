@@ -1,5 +1,5 @@
 from keras_custom.models import Sequential
-from keras_custom.layers.core import Dense, Dropout, Activation
+from keras_custom.layers.core import Dense, Dropout, Activation, TimeDistributedDense
 from keras_custom.layers.embeddings import Embedding
 from keras_custom.layers.recurrent import LSTM
 from keras_custom.layers.recurrent import SimpleRNN, SimpleDeepRNN
@@ -11,6 +11,81 @@ import theano
 theano.config.mode = "FAST_RUN"
 theano.config.profile = True
 # theano.config.openmp = True
+
+
+class RNN_LM_trunc(BaseKeras):
+
+    def __init__(self, hyperParams=None):
+
+        self.params = hyperParams
+
+        if(self.checkSavedModel()):
+            return
+
+        p = self.params["model"]
+        model = Sequential()
+        
+        embed_matrix = self.params["embedding"] 
+
+        emb = Embedding(
+                embed_matrix.shape[0], 
+                embed_matrix.shape[1], 
+                weights=[embed_matrix], 
+                mask_zero=True,
+                # learn=(self.params["learn_embedding"] == 1)
+        )
+
+        model.add(emb)
+
+        print "Initialized Embeddings"
+        srnn = SimpleRNN(
+                input_dim=embed_matrix.shape[1],
+                output_dim=int(p.get("hidden_nodes", 100)),
+                activation='sigmoid', 
+                init='uniform', 
+                inner_init='uniform', 
+                # inner_activation='hard_sigmoid',
+                return_sequences=True,
+                truncate_gradient=int(p.get("depth", 3)),
+        )
+
+        model.add(srnn)
+        print "Initialized Recurrent Layer"
+
+        denseL = TimeDistributedDense(
+                input_dim=int(p.get("hidden_nodes", 100)),
+                output_dim=embed_matrix.shape[0],
+                activation='softmax', 
+                init='uniform', 
+        )
+
+        model.add(denseL)
+        print "Initialized Dense Layer"
+
+        self.model = model
+        self.compile()
+        self.saveModel()
+
+
+    def compile(self):
+        print "Compiling..."
+        self.model.compile(
+                loss='categorical_crossentropy', 
+                optimizer='adagrad',
+                # theano_mode=self.profmode
+        )
+
+        print "Compiling Done"
+
+    @staticmethod
+    def defaultParams():
+
+        out = {
+                "depth": 4,
+                "hidden_nodes": 100
+        }
+
+        return out
 
 class RNN_LM_Deep(BaseKeras):
 

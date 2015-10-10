@@ -18,6 +18,7 @@ modelsIndex = {
     9 : ExtraTrees,
     10 : RNN_LM,
     11 : RNN_LM_Deep,
+    12 : RNN_LM_trunc,
 
 }
 
