@@ -90,11 +90,9 @@ class Job(ComponentsLoader):
         # return self.evaluate(self.X_test, self.Y_test)
 
     def evaluate_sentance(self, sentance):
-        class dummy():
-            pass
-        ds = dummy()
-        ds.sentances = [sentance.split(" ")]
-        X, Y = self.mapper.getXY(ds)
+
+        sentances = [sentance.split(" ")]
+        X, Y = self.mapper.processSentances(sentances)
         X = np.delete(X,0,1)
         return self.perplexicity_sequence(X[0])
 
@@ -102,8 +100,8 @@ class Job(ComponentsLoader):
         """
         x - sequence of word ids
         """
-        X = self.X_test[0]# x[:-1]
-        y = self.Y_test[0]# x[1:]
+        X = x[:-1]
+        y = x[1:]
         predictions = self.model.predict(np.array([X]))
         
         totalProb = 0.0
@@ -122,11 +120,8 @@ class Job(ComponentsLoader):
 
     def predict_sentance(self, sentance):
 
-        class dummy():
-            pass
-        ds = dummy()
-        ds.sentances = [sentance.split(" ")]
-        X, Y = self.mapper.getXY(ds)
+        sentances = [sentance.split(" ")]
+        X, Y = self.mapper.processSentances(sentances)
         X = np.delete(X,0,1)
 
 
