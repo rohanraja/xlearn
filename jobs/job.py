@@ -70,7 +70,11 @@ class Job(ComponentsLoader):
 
         ppxConcat = self.perplexicity_sequence(self.X_test.ravel())
 
+        loss = self.model.model.evaluate(self.X_test, self.Y_test)
+
         print Fore.GREEN, "\nPerplexicity %.2f\n" % ppxConcat
+        import pdb; pdb.set_trace()
+
         ppxs = []
 
         for i in range(self.X_test.shape[0]):
@@ -98,19 +102,20 @@ class Job(ComponentsLoader):
         """
         x - sequence of word ids
         """
-        X = x[:-1]
-        y = x[1:]
+        X = self.X_test[0]# x[:-1]
+        y = self.Y_test[0]# x[1:]
         predictions = self.model.predict(np.array([X]))
         
         totalProb = 0.0
 
         for i, wordPreds in enumerate(predictions[0]):
-            pWord = wordPreds[y[i]]
+            pWord = wordPreds[np.argmax(y[i])]
             totalProb -= np.log2(pWord)
 
         meanProb = totalProb / float(len(X))
         
         perplexicity = np.exp2(meanProb)
+
 
         return perplexicity
  

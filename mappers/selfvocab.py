@@ -1,3 +1,4 @@
+import copy
 from numpy import array
 from vstats import VocabStats
 
@@ -43,7 +44,7 @@ class SelfVocab(VocabStats):
             try:
                 words = seq.split(' ')
             except:
-                words = seq
+                words = copy.copy(seq)
 
             words.append("</s>")
             words.insert(0,"<s>")

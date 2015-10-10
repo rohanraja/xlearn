@@ -293,6 +293,7 @@ class Model(object):
         for batch_index, (batch_start, batch_end) in enumerate(batches):
             batch_ids = index_array[batch_start:batch_end]
             ins_batch = slice_X(ins, batch_ids)
+            ins_batch[2] = np.ones(ins_batch[1].shape[:-1] + (1,))
 
             batch_outs = f(*ins_batch)
             if type(batch_outs) == list:

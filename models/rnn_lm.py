@@ -41,6 +41,8 @@ class RNN_LM_Deep(BaseKeras):
                 input_dim=embed_matrix.shape[1],
                 output_dim=embed_matrix.shape[0],
                 activation='softmax', 
+                init='uniform', 
+                inner_init='uniform', 
                 depth = int(p.get("depth", 3)),
                 inner_activation='sigmoid',
                 return_sequences=True,
@@ -102,6 +104,7 @@ class RNN_LM(BaseKeras):
                 input_dim=embed_matrix.shape[1],
                 output_dim=embed_matrix.shape[0],
                 activation='softmax', 
+                init='uniform', 
                 # inner_activation='hard_sigmoid',
                 return_sequences=True,
         )

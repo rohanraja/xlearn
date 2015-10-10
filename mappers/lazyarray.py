@@ -16,7 +16,8 @@ class LazyArray():
 
         retSingle = False
 
-        if type(index) != list:
+        # if type(index) != list:
+        if not hasattr(index, "__len__"):
             index = [index]
             retSingle = True
 
@@ -24,8 +25,20 @@ class LazyArray():
         X, Y = self.processor(sents)
 
         if self.isX :
-            return X
+            out = X
         else:
-            return Y
+            out = Y
 
+
+        if retSingle:
+            return out[0]
+        else:
+            return out
+
+    def ravel(self):
+
+        X, Y = self.processor(self.dataset.sentances)
+        return X.ravel()
+
+    
 
