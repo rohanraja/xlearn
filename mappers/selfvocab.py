@@ -11,7 +11,7 @@ class SelfVocab(VocabStats):
     
         self.sentances = sentances
         self.brown = True
-        self.vocab = set(["UNKNOWN","<s>"])
+        self.vocab = set(["<UNKNOWN>","<s>"])
         for s in sentances :
             for w in s :
                 self.vocab.add(w.lower())
@@ -20,7 +20,13 @@ class SelfVocab(VocabStats):
 
         self.V = len(self.vocab)        
         self.numToWord = dict(enumerate(self.vocab))
+        self.numToWord[self.V] = self.numToWord[0]
+        self.numToWord[0] = "<pad>"
+        self.V += 1
+
         self.wordToNum = dict((v,k) for k,v in self.numToWord.iteritems())
+
+        self.unIdx = self.wordToNum["<UNKNOWN>"]
 
 
     def seqs_to_XY(self, sentances):
@@ -32,7 +38,7 @@ class SelfVocab(VocabStats):
 
     def seq_to_indices(self, words):
 
-        return array([self.wordToNum.get(w.lower(), 0) for w in words])
+        return array([self.wordToNum.get(w.lower(), self.unIdx) for w in words])
 
     def docs_to_indices(self, docs=None):
         # docs = [pad_sequence(seq, left=1, right=1) for seq in docs]

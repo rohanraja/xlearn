@@ -9,7 +9,7 @@ from basekeras import BaseKeras
 import theano
 
 theano.config.mode = "FAST_RUN"
-theano.config.profile = True
+# theano.config.profile = True
 # theano.config.openmp = True
 
 
@@ -41,7 +41,7 @@ class RNN_LM_trunc(BaseKeras):
         srnn = SimpleRNN(
                 input_dim=embed_matrix.shape[1],
                 output_dim=int(p.get("hidden_nodes", 100)),
-                activation='sigmoid', 
+                activation='tanh', 
                 init='uniform', 
                 inner_init='uniform', 
                 # inner_activation='hard_sigmoid',

@@ -44,6 +44,31 @@ def categorical_crossentropy(y_true, y_pred):
     return cce
 
 
+def categorical_crossentropy_time(y_true, y_pred):
+
+    eleProds = -T.sum(y_true.flatten() * T.log(y_pred.flatten()) )
+
+    return eleProds
+
+    def _step(ytrue_t, ypred_t, sum_t):
+        cse = categorical_crossentropy(ytrue_t, ypred_t)
+        return sum_t + cse
+
+    results, updates = theano.scan(fn=_step,
+                                  outputs_info=T.as_tensor_variable(np.asarray(0, y_pred.dtype)),
+                                  sequences=[y_true, y_pred],
+                                  )
+
+    return results[-1]
+
+    # if true_dist.ndim == coding_dist.ndim:
+    #     return -T.sum(true_dist * T.log(coding_dist), axis=coding_dist.ndim-1)
+    # elif true_dist.ndim == coding_dist.ndim - 1:
+    #     return crossentropy_categorical_1hot(coding_dist, true_dist)
+    # else:
+    #     raise TypeError('rank mismatch between coding and true distributions')
+
+
 def binary_crossentropy(y_true, y_pred):
     y_pred = T.clip(y_pred, epsilon, 1.0 - epsilon)
     bce = T.nnet.binary_crossentropy(y_pred, y_true).mean(axis=-1)
