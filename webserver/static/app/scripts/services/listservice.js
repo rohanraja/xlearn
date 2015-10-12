@@ -72,4 +72,19 @@ angular.module('sbAdminApp')
       return defer ;
     };
 
+  
+    this.getSearchPhrase = function($modelid, phrase){
+      var query = {
+        'type': 'search_dataset',
+        'params': {
+          "modelId": $modelid,
+          "phrase": phrase,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
+
   });

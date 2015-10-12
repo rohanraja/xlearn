@@ -123,6 +123,21 @@ angular.module('sbAdminApp')
       var defer = serverComm.getData(query);
       return defer;
     };
+    this.predictWordEmbedding = function(mid, pid, word , curWeight){
+
+      var query = {
+        'type': 'predict_word_embedding',
+        'params': {
+          'modelId': mid,
+          'paramsId': pid,
+          'word': word,
+          'currentEpoch': curWeight,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+      return defer;
+    };
     this.generate_sequence = function(mid, pid, curWeight){
 
       var query = {

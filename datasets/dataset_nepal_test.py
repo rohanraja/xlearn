@@ -12,7 +12,7 @@ class TestDatasetNepal(unittest.TestCase):
         DS = datasetsIndex[6]
         ds = DS()
 
-        print Fore.GREEN, ds.sentances[160]
+        print Fore.GREEN, ds.search("the most")
 
     def Test_quant(self):
 

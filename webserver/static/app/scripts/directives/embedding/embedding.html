@@ -3,8 +3,9 @@
 <div class="row">
   <br>
 
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="form-group">
+        <label>Embedding</label>
       <select 
         class="form-control" 
         ng-model="jobInfo.embedding_id"  
@@ -12,9 +13,8 @@
         >
       </select>
     </div>        
-  </div>
 
-  <div class="col-md-4">
+    <br>
     <button type="button" 
             class="btn btn-success" 
             ng-model="paramInfo.learn_embedding" 
@@ -27,7 +27,34 @@
   </div>
 
 
-  <div class="col-md-4">
+  <div class="col-md-6">
+      <div class="form-group">
+        <label>Saved Weights</label>
+        <select 
+          class="form-control" 
+          ng-model="currentWeight"  
+          ng-options="mapr.id as (mapr.name) for mapr in savedWeights"
+          >
+        </select>
+      </div>
+
+      <input type="text" class="form-control" ng-model="word" 
+      ng-keypress="($event.which === 13)?onPredictEmbedding():0"
+      >
+      <br>
+      <div class="table-responsive">
+        <table class="table table-striped">
+        <tbody>
+        <tr
+          ng-repeat="result in embed_results"
+          >
+          <td>{{result[0]}}</td>
+          <td>{{result[1]}}</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+
   </div>
 
 

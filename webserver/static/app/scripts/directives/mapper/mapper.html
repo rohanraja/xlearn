@@ -34,14 +34,38 @@
 
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-8">
+
+    <p> Search Dataset </p>
+      <input type="text" class="form-control"
+            ng-keypress="($event.which === 13)?onSearchPhrase():0"
+     ng-model="phrase">
+
+     <br>
+    <!-- <button class="btn btn&#45;primary" ng&#45;click="onSearchPhrase()">Search Dataset</button> -->
+     <!-- <br> -->
+
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+        <tbody>
+        <tr
+          ng-repeat="result in phraseResults"
+          >
+          <td> <p ng-bind-html="result">{{result}}</p></td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <br>
+
   </div>
 
 
-  <div class="col-md-4">
-     
-  </div>
-
+  <!-- <div class="col&#45;md&#45;4"> -->
+  <!--     -->
+  <!-- </div> -->
+  <!--  -->
 
 </div>
 

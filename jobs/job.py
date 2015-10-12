@@ -64,6 +64,30 @@ class Job(ComponentsLoader):
     def viewSample(self):
         pass
 
+
+    def evaluate_word_embedding(self, word="the"):
+
+        embed_mat = self.model.model.layers[0].get_weights()[0]
+        wordIdx = self.mapper.wordToNum.get(word, 0)
+        wordVec = embed_mat[wordIdx]
+
+        dots = embed_mat.dot(wordVec)
+        norms = np.linalg.norm(embed_mat, axis=1)
+        wNorm = np.linalg.norm(wordVec)
+
+        similarities = dots / (norms * wNorm)
+        top10 = similarities.argsort()[-10:]
+        top10 = top10[::-1]
+
+        topNWords = self.mapper.idx_to_sequence(top10)
+        topNsimilarities = similarities[top10]
+
+        omap = (zip(topNWords, topNsimilarities))
+
+        return omap
+
+
+
     def evaluate_dataset(self, dataset_id, num=20):
 
         self.loadTestMapper(dataset_id, num)

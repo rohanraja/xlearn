@@ -63,6 +63,19 @@ def test_sentance(params):
 
 
 
+def predict_word_embedding(params):
+    mid = params["modelId"]
+    pid = params["paramsId"]
+    word = params["word"]
+    epoch = params["currentEpoch"]
+
+    job = getJob(params)
+    
+    fname = "weights_%s" % epoch 
+    job.load_weights(fname)
+
+    return job.evaluate_word_embedding(word)
+
 def predict_next_words(params):
     mid = params["modelId"]
     pid = params["paramsId"]

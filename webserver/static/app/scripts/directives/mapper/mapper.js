@@ -29,6 +29,12 @@ angular.module('sbAdminApp')
             });
           };
 
+          $scope.onSearchPhrase = function(){
+            listservice.getSearchPhrase($scope.modelId, $scope.phrase).then(function(resp){
+              $scope.phraseResults = resp;
+            });
+          };
+
         }
     
     }

@@ -100,6 +100,7 @@ def get_epoch_list(params):
     return trainer.get_epoch_list(params)
 
 
+
 import evaluate
 
 def start_evaluation(params):
@@ -117,6 +118,10 @@ def test_sentance_prediction(params):
 def generate_sequence(params):
 
     return evaluate.generate_sequence(params)
+
+def predict_word_embedding(params):
+
+    return evaluate.predict_word_embedding(params)
 
 from ..mappers import mappersIndex
 def mappers_list(params):
@@ -142,6 +147,15 @@ def get_mapper_stats(params):
     m = M(data)
 
     return m.getstats()
+
+def search_dataset(params):
+
+    jinfo = getModelInfo(params)
+    DS = datasetsIndex[jinfo["dataset_id"]]
+    data = DS()
+    phrase = params["phrase"]
+
+    return data.search(phrase)
 
 def models_list(params):
     

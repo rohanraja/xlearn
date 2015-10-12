@@ -157,6 +157,7 @@ class RNN_LM(BaseKeras):
     def __init__(self, hyperParams=None):
 
         self.params = hyperParams
+        p = self.params["model"]
 
         if(self.checkSavedModel()):
             return
@@ -182,6 +183,7 @@ class RNN_LM(BaseKeras):
                 init='uniform', 
                 # inner_activation='hard_sigmoid',
                 return_sequences=True,
+                truncate_gradient=int(p.get("depth", -1)),
         )
 
 
