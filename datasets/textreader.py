@@ -3,9 +3,13 @@ from os.path import join
 class TextReader():
 
     baseDir = "../datasets/googlebench"
+    baseTrainDir = "/home/rohanr/datasets/training-monolingual.tokenized.shuffled"
 
-    def readFile(self, fname):
-        fpath = join(self.baseDir, fname)
+    def readFile(self, fname, train=False):
+        if train:
+            fpath = join(self.baseTrainDir, fname)
+        else:
+            fpath = join(self.baseDir, fname)
 
         f = open(fpath, 'r')
         
