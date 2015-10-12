@@ -135,7 +135,7 @@ class Job(ComponentsLoader):
         totalProb = 0.0
 
         for i, wordPreds in enumerate(predictions[0]):
-            pWord = wordPreds[np.argmax(y[i])]
+            pWord = wordPreds[(y[i])]
             totalProb -= np.log2(pWord)
 
         meanProb = totalProb / float(len(X))
