@@ -224,3 +224,12 @@ class RNN_LM(BaseKeras):
         # self.model.compile(loss='binary_crossentropy', optimizer='rmsprop', class_mode="binary")
 
         print "Compiling Done"
+
+    @staticmethod
+    def defaultParams():
+
+        out = {
+                "depth": 3
+        }
+
+        return out
