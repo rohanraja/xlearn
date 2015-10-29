@@ -4,6 +4,7 @@ from ..models.keras_custom.utils.np_utils import to_categorical
 from colorama import Fore
 import numpy as np
 from random import randint
+from ..embeddings import embeddingsIndex
 
 # ayandas84@gmail.com
 
@@ -88,7 +89,7 @@ class Job(ComponentsLoader):
 
 
 
-    def evaluate_dataset(self, dataset_id, num=20):
+    def evaluate_dataset_lm(self, dataset_id, num=20):
 
         self.loadTestMapper(dataset_id, num)
 
@@ -110,10 +111,45 @@ class Job(ComponentsLoader):
 
         ppxs = np.array(ppxs)
 
-            
-        return ppxs.mean(), ppxs.std(), ppxConcat
+        out = {
+        "Perplexicity Mean": ppxs.mean(),
+        "Perplexicity Standard Deviation": ppxs.std(),
+        "Perplexicity Single Sequence": ppxConcat,
+        }
 
-        # return self.evaluate(self.X_test, self.Y_test)
+        return out
+
+    def evaluate_dataset(self, dataset_id, num=20):
+
+        self.loadTestMapper(dataset_id, num)
+
+        # ppxConcat = self.perplexicity_sequence(self.X_test.ravel())
+
+        X = self.mapper_test.X
+        Y = self.mapper_test.Y
+
+
+        embedmat_bak = self.model.model.layers[0].W
+
+        self.E = embeddingsIndex.get(self.jinfo["embedding_id"])
+        emb = self.E(self.mapper_test)
+        embedmat = emb.getWord2VecMatrix()
+
+        import pdb; pdb.set_trace()
+        self.model.setEmbeddingWeights(embedmat)
+
+        loss, acc = self.model.evaluate(X,Y)
+
+        print Fore.GREEN, "\nLoss %.2f\n" % loss
+        print Fore.CYAN, "Accuracy %.2f %%\n" % (acc*100.0)
+
+        out = {
+        "Loss": loss,
+        "Accuracy": "%.2f %%" % (acc*100.0),
+        }
+
+        self.model.setEmbeddingWeights(embedmat_bak.get_value())
+        return out
 
     def evaluate_sentance(self, sentance):
 
@@ -146,7 +182,7 @@ class Job(ComponentsLoader):
         return perplexicity
  
 
-    def predict_sentance(self, sentance):
+    def predict_sentance_words(self, sentance):
 
         sentances = [sentance.split(" ")]
         X, Y = self.mapper.processSentances(sentances)
@@ -154,9 +190,9 @@ class Job(ComponentsLoader):
 
 
         predictions = self.model.predict(X)
+        
 
         outMap = []
-        # import pdb; pdb.set_trace()
         
         N = 10 # Top N Predictions
         X_words = self.mapper.idx_to_sequence(X[0])
@@ -173,7 +209,48 @@ class Job(ComponentsLoader):
             omap = {}
             omap[val] = zip(topNWords, topNProbabs)
             outMap.append(omap)
+
+        return outMap
+
+    def predict_sentance(self, sentance):
+
+        sentances = [sentance.split(" ")]
+        X, Y = self.mapper.processSentances(sentances)
+        # X = np.delete(X,0,1)
+
+
+        predictions = self.model.predict(X)
         
+
+        outMap = []
+        # import pdb; pdb.set_trace()
+        
+        N = 6 # Top N Predictions
+        X_words = self.mapper.idx_to_sequence(X[0])
+        #
+        # for i, val in enumerate(X_words):
+        #
+        #     wordPreds = predictions[0][i]
+        #     topNWords = wordPreds.argsort()[-10:]
+        #     topNWords = topNWords[::-1]
+        #     topNProbabs = wordPreds[topNWords]
+        #
+        #     topNWords = self.mapper.idx_to_sequence(topNWords)
+        #
+        #     omap = {}
+        #     omap[val] = zip(topNWords, topNProbabs)
+        #     outMap.append(omap)
+        
+        wordPreds = predictions[0]
+        topNWords = wordPreds.argsort()[-N:]
+        topNWords = topNWords[::-1]
+        topNProbabs = wordPreds[topNWords]
+
+        # topNWords = self.mapper.idx_to_sequence(topNWords)
+
+        omap = {}
+        omap["Category"] = zip(topNWords, topNProbabs)
+        outMap.append(omap)
         return outMap
 
     def generate_sentance(self, start="<s>", limit=30):

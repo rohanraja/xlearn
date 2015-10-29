@@ -117,11 +117,11 @@ angular.module('sbAdminApp')
             var out = [
               {
                 id: 0,
-                name: "Current Validation 20%"
+                name: "Nepal Tweet"
               },
               {
-                id: 1,
-                name: "Nepal Tweets"
+                id: 8,
+                name: "Gurdaspur Tweets"
               } ,
               {
                 id: 3,

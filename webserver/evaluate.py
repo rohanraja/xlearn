@@ -15,12 +15,7 @@ def start_evaluation(params):
     job.load_weights(fname)
 
 
-    mean, std, psingle = job.evaluate_dataset(did, num)
-    out = {
-        "Perplexicity Mean": mean,
-        "Perplexicity Standard Deviation": std,
-        "Perplexicity Single Sequence": psingle,
-    }
+    out = job.evaluate_dataset(did, num)
 
     # loss, accuracy = job.evaluate_dataset(did)
     #

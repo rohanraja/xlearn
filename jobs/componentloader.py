@@ -28,8 +28,12 @@ class ComponentsLoader():
     def loadTestMapper(self, dataset_id, num):
 
         DS = datasetsIndex.get(dataset_id)
-        dataset_test = DS(3000, int(num))
-        self.X_test, self.Y_test = self.mapper.getXY(dataset_test)
+        dataset_test = DS()
+        M = mappersIndex.get(self.jinfo["mapper_id"])
+        self.mapper_test = M(dataset_test)
+
+        # dataset_test = DS(3000, int(num))
+        # self.X_test, self.Y_test = self.mapper.getXY(dataset_test)
         # M = mappersIndex.get(self.jinfo["mapper_id"])
         # self.mapper_test = M(dataset_test)
 
@@ -51,7 +55,7 @@ class ComponentsLoader():
         try:
             E = embeddingsIndex.get(self.jinfo["embedding_id"])
             self.embedding = E(self.mapper)
-            self.params["embedding"] = self.embedding.getWord2VecMatrix()
+            self.params["embedding"] = self.embedding
         except Exception, e:
             print e
             pass
