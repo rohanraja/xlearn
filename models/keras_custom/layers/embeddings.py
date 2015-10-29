@@ -19,7 +19,7 @@ class Embedding(Layer):
     '''
     def __init__(self, input_dim, output_dim, init='uniform',
                  W_regularizer=None, activity_regularizer=None, W_constraint=None,
-                 mask_zero=False, weights=None):
+                 mask_zero=False, weights=None, learn=True):
 
         super(Embedding, self).__init__()
         self.init = initializations.get(init)
@@ -30,7 +30,10 @@ class Embedding(Layer):
         self.W = self.init((self.input_dim, self.output_dim))
         self.mask_zero = mask_zero
 
-        self.params = [self.W]
+        if learn:
+            self.params = [self.W]
+        else:
+            self.params = []
 
         self.W_constraint = constraints.get(W_constraint)
         self.constraints = [self.W_constraint]

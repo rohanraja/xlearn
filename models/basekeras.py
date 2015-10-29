@@ -2,6 +2,8 @@ from os.path import join
 import cPickle
 import sys
 sys.setrecursionlimit(99999)
+from keras_custom.layers.embeddings import Embedding
+from keras_custom.utils.theano_utils import floatX
 
 import theano
 theano.config.reoptimize_unpickled_function = False
@@ -89,13 +91,18 @@ class BaseKeras():
 
     def setEmbeddingWeights(self, embed_matrix):
 
-        emb = Embedding(
-                embed_matrix.shape[0], 
-                embed_matrix.shape[1], 
-                weights=[embed_matrix], 
-                mask_zero=True,
-                # learn=(self.params["learn_embedding"] == 1)
-        )
+        # emb = Embedding(
+        #         embed_matrix.shape[0], 
+        #         embed_matrix.shape[1], 
+        #         weights=[embed_matrix], 
+        #         mask_zero=True,
+        #         # learn=(self.params["learn_embedding"] == 1)
+        # )
+        #
+        # self.model.layers[0] = emb
 
-        self.model.layers[0] = emb
-        self.model.compile()
+        self.model.layers[0].W.set_value(floatX(embed_matrix))
+        # self.model.layers[0].set_weights([embed_matrix])
+        print "Changed embed layer weights!"
+
+        # self.compile()

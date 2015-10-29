@@ -4,6 +4,7 @@ from keras_custom.layers.embeddings import Embedding
 from keras_custom.layers.recurrent import LSTM
 from keras_custom.layers.recurrent import SimpleRNN, SimpleDeepRNN
 
+from keras_custom.utils.theano_utils import floatX
 from basekeras import BaseKeras
 
 import theano
@@ -12,6 +13,83 @@ theano.config.mode = "FAST_RUN"
 # theano.config.profile = True
 # theano.config.openmp = True
 
+
+class RNN_classify(BaseKeras):
+
+    def __init__(self, hyperParams=None):
+
+        self.params = hyperParams
+
+        if(self.checkSavedModel()):
+            return
+
+        p = self.params["model"]
+        model = Sequential()
+        
+        embed_matrix = self.params["embedding"].getWord2VecMatrix() 
+
+        emb = Embedding(
+                embed_matrix.shape[0], 
+                embed_matrix.shape[1], 
+                # weights=[embed_matrix], 
+                mask_zero=True,
+                learn=(int(self.params["learn_embedding"]) == 1)
+        )
+        emb.W.set_value(floatX(embed_matrix))
+
+        model.add(emb)
+
+        print "Initialized Embeddings"
+        srnn = SimpleRNN(
+                input_dim=embed_matrix.shape[1],
+                output_dim=int(p.get("hidden_nodes", 100)),
+                activation='tanh', 
+                init='uniform', 
+                inner_init='uniform', 
+                # inner_activation='hard_sigmoid',
+                return_sequences=False,
+                truncate_gradient=int(p.get("depth", 3)),
+        )
+
+        model.add(srnn)
+        print "Initialized Recurrent Layer"
+
+        denseL = Dense(
+                input_dim=int(p.get("hidden_nodes", 100)),
+                output_dim=int(p.get("output_nodes", 4)),
+                activation='softmax', 
+                init='uniform', 
+        )
+
+        model.add(denseL)
+        print "Initialized Dense Layer"
+
+        self.model = model
+        self.compile()
+        self.model.layers[0].params = [self.model.layers[0].W]
+        self.saveModel()
+
+
+    def compile(self):
+        print "Compiling..."
+        self.model.compile(
+                loss='categorical_crossentropy', 
+                optimizer='adagrad',
+                # theano_mode=self.profmode
+        )
+
+        print "Compiling Done"
+
+    @staticmethod
+    def defaultParams():
+
+        out = {
+                "depth": 4,
+                "hidden_nodes": 100,
+                "output_nodes": 4,
+        }
+
+        return out
 
 class RNN_LM_trunc(BaseKeras):
 
@@ -25,7 +103,7 @@ class RNN_LM_trunc(BaseKeras):
         p = self.params["model"]
         model = Sequential()
         
-        embed_matrix = self.params["embedding"] 
+        embed_matrix = self.params["embedding"].getWord2VecMatrix() 
 
         emb = Embedding(
                 embed_matrix.shape[0], 
@@ -100,7 +178,7 @@ class RNN_LM_Deep(BaseKeras):
 
         model = Sequential()
         
-        embed_matrix = self.params["embedding"] 
+        embed_matrix = self.params["embedding"].getWord2VecMatrix() 
 
         emb = Embedding(
                 embed_matrix.shape[0], 
@@ -164,7 +242,7 @@ class RNN_LM(BaseKeras):
 
         model = Sequential()
         
-        embed_matrix = self.params["embedding"] 
+        embed_matrix = self.params["embedding"].getWord2VecMatrix() 
 
         emb = Embedding(
                 embed_matrix.shape[0], 
