@@ -14,7 +14,10 @@ class BaseDataset():
         phrase = phrase.lower()
 
         for s in self.sentances :
-            sent = ' '.join(map(lambda w: w.lower(),s))
+            try:
+                sent = ' '.join(map(lambda w: w.lower(),s))
+            except:
+                sent = s
             if phrase in sent:
                 results.append(sent.replace(phrase, "<b>%s</b>"%phrase))
 

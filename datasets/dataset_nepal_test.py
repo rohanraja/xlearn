@@ -4,8 +4,17 @@ from __init__ import datasetsIndex
 
 class TestDatasetNepal(unittest.TestCase):
 
+    def test_nepal(self):
 
-    def test_brown(self):
+        # print Fore.GREEN, "Loading Data"
+
+        DS = datasetsIndex[8]
+        ds = DS()
+
+        print Fore.GREEN, ds.Y[100:120]
+
+
+    def Test_brown(self):
 
         # print Fore.GREEN, "Loading Data"
 

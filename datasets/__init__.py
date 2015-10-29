@@ -1,4 +1,4 @@
-from tweet_nepal import Tweet_Nepal
+from tweet_nepal import *
 from gsquant import *
 from brown_1000 import *
 from google_bench import *
@@ -13,6 +13,7 @@ datasetsIndex = {
     5 : Brown_500_short_10,
     6 : Google_held_00,
     7 : Google_train_1,
+    8 : Tweet_Gurdaspur,
 
 }
 
