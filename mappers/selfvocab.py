@@ -13,7 +13,11 @@ class SelfVocab(VocabStats):
         self.brown = True
         self.vocab = set(["<UNKNOWN>","<s>"])
         for s in sentances :
-            for w in s :
+            try:
+                words = s.split(' ')
+            except:
+                words = s
+            for w in words :
                 self.vocab.add(w.lower())
 
         self.vocab.add("</s>")

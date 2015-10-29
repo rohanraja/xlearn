@@ -5,7 +5,17 @@ from ..datasets import datasetsIndex
 
 class TestMapping(unittest.TestCase):
 
-    def test_GS_Map1(self):
+    def test_nepal_map(self):
+
+        DS = datasetsIndex[0]
+        data = DS()
+        M = mappersIndex[3]
+        m = M(data)
+        
+        print m.X[0], m.Y.shape
+        # print data.X[0], m.Y[0]
+
+    def Test_GS_Map1(self):
 
         DS = datasetsIndex[3]
         data = DS(0, 20)
