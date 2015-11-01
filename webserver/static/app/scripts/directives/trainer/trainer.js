@@ -17,6 +17,8 @@ angular.module('sbAdminApp')
 
           $scope.epoch_percent = 0;
 
+          var curEpoch = -1 ;
+
           $scope.trainer_running = false ;
           var stopping = false;
 
@@ -27,6 +29,13 @@ angular.module('sbAdminApp')
             if(stopping == false)
               $scope.trainer_running = true;
               $scope.trainInfo = JSON.parse(data.data);
+
+              if(curEpoch != $scope.trainInfo.epoch){
+
+               get_epochs();
+              }
+
+              curEpoch = $scope.trainInfo.epoch;
               
               $scope.epoch_percent = parseInt($scope.trainInfo["batch"]) / parseInt($scope.trainInfo["totbatches"]); 
               $scope.epoch_percent = parseInt($scope.epoch_percent * 100);
@@ -122,9 +131,13 @@ angular.module('sbAdminApp')
               {
                 id: 8,
                 name: "Gurdaspur Tweets"
-              } ,
+              }  ,
               {
                 id: 3,
+                name: "Brown 200"
+              } ,
+              {
+                id: 4,
                 name: "Brown 1000"
               }                      
             ]
@@ -133,6 +146,9 @@ angular.module('sbAdminApp')
 
 
          $scope.currentWeight = 0;
+
+         var get_epochs = function(){
+
           trainerservice.get_epoch_list($scope.modelId, $scope.paramsId).then(function(resp){
 
              if(resp.length > 0){
@@ -144,6 +160,9 @@ angular.module('sbAdminApp')
              }
              $scope.savedWeights = resp;
           });
+
+         };
+         get_epochs();
 
 
           // $scope.trainInfo = getTrainInfo();
