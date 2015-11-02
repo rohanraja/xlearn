@@ -106,3 +106,12 @@ class BaseKeras():
         print "Changed embed layer weights!"
 
         # self.compile()
+
+    def getSize(self):
+
+        ans = 0.0
+
+        for W in self.model.params :
+            ans += W.get_value().nbytes
+
+        return ans/pow(2,20)

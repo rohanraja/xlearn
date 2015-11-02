@@ -28,6 +28,7 @@ def getJob(params):
         print Fore.RED, "\nJob not memcached! Creating!!", Fore.WHITE
         job = p.getJob(pid)
         CACHED_JOBS[jid] = job
+        print Fore.YELLOW, "Size of Model %.3f MB\n" % (job.model.getSize()), Fore.WHITE
 
 
     return job
