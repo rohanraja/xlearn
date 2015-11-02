@@ -37,7 +37,7 @@ class BaseKeras():
         print "Evaluating Keras Model"
         out = self.model.evaluate(
             X, Y, 
-            batch_size=32, 
+            batch_size=1, 
             show_accuracy=True, 
         )
 

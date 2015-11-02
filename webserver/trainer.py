@@ -170,12 +170,13 @@ def register_handler(params, handler):
 
     try:
         TRAINING_JOBS[jobid]["handlers"].append(handler)
-        print "Attached Hander!!"
+        # print "Attached Hander!!"
 
         msg = { "status" : "compiling.."}
         handler(msg)
     except:
-        print "Failed to attach handler!"
+        # print "Failed to attach handler!"
+        pass
 
 def unregister_handler(params):
 
@@ -183,9 +184,10 @@ def unregister_handler(params):
 
     try:
         TRAINING_JOBS[jobid]["handlers"] = []
-        print "UNREGISTERED Hander!!"
+        # print "UNREGISTERED Hander!!"
     except:
-        print "Failed to attach handler!"
+        # print "Failed to attach handler!"
+        pass
 
 
 from os.path import join
