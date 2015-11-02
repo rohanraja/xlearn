@@ -171,7 +171,7 @@ angular.module('sbAdminApp')
           // $scope.evalInfo = getEvalInfo();
           $scope.datasets = getTestDatasets();
           $scope.testDatasetId = 3;
-          $scope.nsents = 20;
+          $scope.nsents = "0 10";
 
           $scope.currentTrainInfo = 0;
 

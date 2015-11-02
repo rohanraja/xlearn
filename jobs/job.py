@@ -100,6 +100,12 @@ class Job(ComponentsLoader):
 
         print Fore.GREEN, "\nPerplexicity %.2f\n" % ppxConcat
 
+        out = {
+        "Perplexicity Single Sequence": ppxConcat,
+        }
+
+        return out
+
         loss, acc = self.model.evaluate(self.X_test, self.Y_test)
 
         print Fore.CYAN, "\nPerplexicity from LOSS %.2f\n" % np.exp(loss)

@@ -29,7 +29,9 @@ class ComponentsLoader():
 
         DS = datasetsIndex.get(dataset_id)
         try:
-            dataset_test = DS(0,int(num))
+            nums = num.split(' ')
+            print nums
+            dataset_test = DS(int(nums[0]),int(nums[1]))
         except Exception, e:
             print e
             dataset_test = DS()
