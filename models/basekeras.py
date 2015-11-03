@@ -81,14 +81,16 @@ class BaseKeras():
 
     def saveModel(self):
 
-        fpath = join(self.params["jobDir"], "model.save")
-        print "Saving KERAS MODEL in %s" % fpath
+        try:
+            fpath = join(self.params["jobDir"], "model.save")
+            print "Saving KERAS MODEL in %s" % fpath
 
-        f = file(fpath, 'wb')
-        cPickle.dump(self.model, f, protocol=cPickle.HIGHEST_PROTOCOL)
-        f.close()
-        print "Model Saved"
-
+            f = file(fpath, 'wb')
+            cPickle.dump(self.model, f, protocol=cPickle.HIGHEST_PROTOCOL)
+            f.close()
+            print "Model Saved"
+        except Exception, e:
+            print "Error %s in saving" % e
 
     def setEmbeddingWeights(self, embed_matrix):
 

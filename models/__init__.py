@@ -3,6 +3,7 @@ from lstm import LSTM_0, MLP_0
 from mlp_quant_1 import MLP_QUANT
 from svm_quant import *
 from rnn_lm import *
+from mikilov import *
 
 modelsIndex = {
 
@@ -20,6 +21,7 @@ modelsIndex = {
     11 : RNN_LM_Deep,
     12 : RNN_LM_trunc,
     13 : RNN_classify,
+    14 : RNNLM_Mikolov,
 
 }
 

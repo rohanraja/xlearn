@@ -34,6 +34,81 @@ class Recurrent(MaskedLayer):
         return mask.astype('int8')
 
 
+class SimpleRNN_Mikolov(Recurrent):
+    '''
+        Fully connected RNN where output is to fed back to input.
+
+        Not a particularly useful model,
+        included for demonstration purposes
+        (demonstrates how to use theano.scan to build a basic RNN).
+    '''
+    def __init__(self, input_dim, output_dim,
+                 init='glorot_uniform', inner_init='orthogonal', activation='sigmoid', weights=None,
+                 truncate_gradient=-1, return_sequences=False):
+
+        super(SimpleRNN_Mikolov, self).__init__()
+
+        self.init = initializations.get(init)
+        self.inner_init = initializations.get(inner_init)
+        self.input_dim = input_dim
+        self.output_dim = output_dim
+        self.truncate_gradient = truncate_gradient
+        self.activation = activations.get(activation)
+        self.return_sequences = return_sequences
+        self.input = T.tensor3()
+
+        # self.W = self.init((self.input_dim, self.output_dim))
+        # self.b = shared_zeros((self.output_dim))
+        # self.params = [self.W, self.U, self.b]
+
+        self.U = self.inner_init((self.output_dim, self.output_dim))
+        self.params =  [self.U]
+
+        if weights is not None:
+            self.set_weights(weights)
+
+    def _step(self, x_t, mask_tm1, h_tm1, u):
+        '''
+            Variable names follow the conventions from:
+            http://deeplearning.net/software/theano/library/scan.html
+
+        '''
+        return self.activation(x_t + mask_tm1 * T.dot(h_tm1, u))
+
+    def get_output(self, train=False):
+        X = self.get_input(train)  # shape: (nb_samples, time (padded with zeros), input_dim)
+        # new shape: (time, nb_samples, input_dim) -> because theano.scan iterates over main dimension
+        padded_mask = self.get_padded_shuffled_mask(train, X, pad=1)
+        X = X.dimshuffle((1, 0, 2))
+        # x = T.dot(X, self.W) + self.b
+        x = X
+
+        # scan = theano symbolic loop.
+        # See: http://deeplearning.net/software/theano/library/scan.html
+        # Iterate over the first dimension of the x array (=time).
+        outputs, updates = theano.scan(
+            self._step,  # this will be called with arguments (sequences[i], outputs[i-1], non_sequences[i])
+            sequences=[x, dict(input=padded_mask, taps=[-1])],  # tensors to iterate over, inputs to _step
+            # initialization of the output. Input to _step with default tap=-1.
+            outputs_info=T.unbroadcast(alloc_zeros_matrix(X.shape[1], self.output_dim), 1),
+            non_sequences=self.U,  # static inputs to _step
+            truncate_gradient=self.truncate_gradient)
+
+        if self.return_sequences:
+            return outputs.dimshuffle((1, 0, 2))
+        return outputs[-1]
+
+    def get_config(self):
+        return {"name": self.__class__.__name__,
+                "input_dim": self.input_dim,
+                "output_dim": self.output_dim,
+                "init": self.init.__name__,
+                "inner_init": self.inner_init.__name__,
+                "activation": self.activation.__name__,
+                "truncate_gradient": self.truncate_gradient,
+                "return_sequences": self.return_sequences}
+
+
 class SimpleRNN(Recurrent):
     '''
         Fully connected RNN where output is to fed back to input.
