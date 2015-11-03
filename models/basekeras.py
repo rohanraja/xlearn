@@ -87,6 +87,7 @@ class BaseKeras():
         f = file(fpath, 'wb')
         cPickle.dump(self.model, f, protocol=cPickle.HIGHEST_PROTOCOL)
         f.close()
+        print "Model Saved"
 
 
     def setEmbeddingWeights(self, embed_matrix):
