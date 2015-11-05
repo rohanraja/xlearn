@@ -16,3 +16,5 @@ class Google_train_1(TextReader, BaseDataset):
         fname = "news.en-00001-of-00100"
         # fname = "news.en.heldout-00000-of-00050"
         self.readFile(fname, True)
+
+

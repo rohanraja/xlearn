@@ -11,9 +11,14 @@ class TextReader():
         else:
             fpath = join(self.baseDir, fname)
 
-        f = open(fpath, 'r')
+        self.fpath = fpath
+
+    def sentances(self):
+        f = open(self.fpath, 'r')
         
         self.sentances = f.read().splitlines() #.readlines()
         self.sentances = map(lambda s: s.split(' '), self.sentances)
 
         f.close()
+
+        return self.sentances

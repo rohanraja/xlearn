@@ -4,6 +4,7 @@ from mlp_quant_1 import MLP_QUANT
 from svm_quant import *
 from rnn_lm import *
 from mikilov import *
+from rnn_toolkit import *
 
 modelsIndex = {
 
@@ -22,6 +23,7 @@ modelsIndex = {
     12 : RNN_LM_trunc,
     13 : RNN_classify,
     14 : RNNLM_Mikolov,
+    15 : RNNLM_miktoolkit,
 
 }
 

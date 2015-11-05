@@ -3,6 +3,7 @@ from keras_custom.layers.core import Dense, Dropout, Activation, TimeDistributed
 from keras_custom.layers.embeddings import Embedding
 from keras_custom.layers.recurrent import LSTM
 from keras_custom.layers.recurrent import SimpleRNN, SimpleDeepRNN, SimpleRNN_Mikolov
+from keras_custom.optimizers import SGD
 
 from keras_custom.utils.theano_utils import floatX
 from basekeras import BaseKeras
@@ -70,9 +71,12 @@ class RNNLM_Mikolov(BaseKeras):
 
     def compile(self):
         print "Compiling..."
+        sgd = SGD(lr=1,
+                decay=1e-6
+                )
         self.model.compile(
                 loss='categorical_crossentropy', 
-                optimizer='adagrad',
+                optimizer=sgd,
                 # theano_mode=self.profmode
         )
 

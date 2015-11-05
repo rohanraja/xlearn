@@ -1,6 +1,7 @@
 from self_vocab import SelfVocab
 from quantmap import QuantMapper
 from bypass import *
+from mikomap import *
 
 mappersIndex = {
 
@@ -8,6 +9,7 @@ mappersIndex = {
     1 : QuantMapper,
     2 : SelfWordIndex,
     3 : SelfWordIndexClassify,
+    4 : MikoMap,
 }
 
 

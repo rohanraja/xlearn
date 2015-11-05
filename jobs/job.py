@@ -91,6 +91,7 @@ class Job(ComponentsLoader):
 
     def evaluate_dataset(self, dataset_id, num=20):
 
+        import pdb; pdb.set_trace()
         self.loadTestMapper(dataset_id, num)
         # self.X_tewt = self.mapper_test.X
         # self.Y_test = self.mapper_test.Y

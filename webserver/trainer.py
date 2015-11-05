@@ -53,6 +53,15 @@ class BatchCallBack(callbacks.Callback):
         self.model.starting_epoch = TRAINING_JOBS[self.jobid]["current_epoch"] + 1
         self.t1 = time.time()
 
+    def on_cmd_update(self, msg={}):
+        self.send_message(msg)
+
+    def checkStop(self):
+        if (TRAINING_JOBS[self.jobid]["stop"]):
+            return True
+        else:
+            return False
+
     def on_batch_end(self, batch, logs={}):
         
         if (TRAINING_JOBS[self.jobid]["stop"]):
@@ -112,7 +121,12 @@ def start_training(params):
     jobid = register_training_job(params)
     callback = BatchCallBack(jobid)
 
-    f = lambda : blocking_trainer(params, callback)
+    def f():
+        try:
+            blocking_trainer(params, callback)
+        except Exception,e:
+            print Fore.RED, "EXCEPTION: ", e
+
     g = lambda arg : _train_stop(jobid)
 
     poolWorkers.apply_async(f, (), {}, g)

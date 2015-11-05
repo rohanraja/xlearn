@@ -12,7 +12,7 @@ class SelfWordIndexClassify(BaseMapper, SelfVocab):
 
     def __init__(self, dataset):
         
-        self.generateVocab(dataset.sentances)
+        self.generateVocab(dataset.sentances())
         
         # print Fore.MAGENTA, "\n** Mapping Dataset **\n"
         self.X, self.Y = self.getXY(dataset)
@@ -51,7 +51,7 @@ class SelfWordIndex(BaseMapper, SelfVocab):
 
     def __init__(self, dataset):
         
-        self.generateVocab(dataset.sentances)
+        self.generateVocab(dataset.sentances())
         
         # print Fore.MAGENTA, "\n** Mapping Dataset **\n"
         self.X, self.Y = self.getXY(dataset)
