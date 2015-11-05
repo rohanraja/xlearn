@@ -4,6 +4,7 @@ from os.path import join
 import datetime
 from colorama import Fore
 from ..datasets import datasetsIndex
+import time
 
 class BaseMikov():
 
@@ -39,13 +40,24 @@ class BaseMikov():
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
 
-        p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+        # p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+        p = Popen(' '.join(progArgs), shell=True)
 
         allOut = ''
+        line = ''
 
         while True:
 
             pl = p.poll()
+            if pl != None and line == '':
+                break
+
+            if callbacks[0].checkStop():
+                p.kill()
+                break
+
+            time.sleep(3)
+            continue
 
             line = p.stdout.read(100)
             allOut += line
@@ -69,11 +81,7 @@ class BaseMikov():
             for cb in callbacks:
                 cb.on_cmd_update(msg)
 
-            if pl != None and line == '':
-                break
 
-            if callbacks[0].checkStop():
-                p.kill()
 
         
         print "Training Complete"
