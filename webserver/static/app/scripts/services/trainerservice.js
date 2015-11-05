@@ -4,7 +4,7 @@ angular.module('sbAdminApp')
   .service('trainerservice', function(serverComm) {
 
 
-    this.startTraining = function(mid, pid, nepochs, curWeight){
+    this.startTraining = function(mid, pid, nepochs, curWeight, valset){
 
       var query = {
         'type': 'start_training',
@@ -13,6 +13,7 @@ angular.module('sbAdminApp')
           'paramsId': pid,
           'nepochs': nepochs,
           'currentEpoch': curWeight,
+          'valset': valset,
         }
       };
 

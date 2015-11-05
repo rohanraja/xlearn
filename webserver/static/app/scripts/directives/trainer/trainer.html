@@ -27,6 +27,15 @@
 
   <br>
   <div class="form-group">
+    <label>Validation Dataset</label>
+    <select 
+      class="form-control" 
+      ng-model="valDatasetId"  
+      ng-options="mapr.id as (mapr.name) for mapr in datasets"
+      >
+    </select>
+  </div>
+  <div class="form-group">
     <label>Saved Weights</label>
     <select 
       class="form-control" 
@@ -34,7 +43,8 @@
       ng-options="mapr.id as (mapr.name) for mapr in savedWeights"
       >
     </select>
-  </div><div class="form-group">
+  </div>
+  <div class="form-group">
     <label>Total Epochs</label>
     <input 
       class="form-control" 
@@ -80,7 +90,7 @@
 
   <br>
   <div class="form-group">
-    <label>Dataset</label>
+    <label>Test Dataset</label>
     <select 
       class="form-control" 
       ng-model="testDatasetId"  

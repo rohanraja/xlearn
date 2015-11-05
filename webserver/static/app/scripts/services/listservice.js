@@ -17,6 +17,20 @@ angular.module('sbAdminApp')
       return defer ;
     };
 
+    this.datasetList = function($modelid){
+
+      var query = {
+        'type': 'dataset_list',
+        'params': {
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+
+    };
+
     this.loadMappers = function($modelid){
 
       var query = {

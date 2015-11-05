@@ -142,8 +142,10 @@ def stop_training(params):
 def blocking_trainer(params, callback):
 
     nepochs = int(params["nepochs"])
+    valset = int(params["valset"])
     job = getJob(params)
     callback.job = job
+    job.model.valset = valset
     job.start_training(nepochs, callbacks=[callback])
 
 def _train_stop(jobid):

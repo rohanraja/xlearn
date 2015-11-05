@@ -3,6 +3,7 @@ import os, signal
 from os.path import join
 import datetime
 from colorama import Fore
+from ..datasets import datasetsIndex
 
 class BaseMikov():
 
@@ -24,11 +25,13 @@ class BaseMikov():
 
         modelFname = join(callbacks[0].job.jobDir , "weights_0")
 
+        valset = datasetsIndex[self.valset]()
+
         progArgs = [
                 
             self.execFile,
             "-train '%s'"%X,
-            "-valid '%s'"%Y,
+            "-valid '%s'"%valset.fpath,
             "-rnnlm '%s'"%modelFname,
             "-hidden %d" % self.numHidden,
             "-rand-seed 1 -debug 2 -class 100 -bptt 4 -bptt-block 10 -direct-order 3 -direct 2 -binary",

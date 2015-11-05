@@ -148,6 +148,19 @@ def get_mapper_stats(params):
 
     return m.getstats()
 
+def dataset_list(params):
+    
+    out = []
+    
+    arr = datasetsIndex
+
+    for k in arr:
+        obj = {}
+        obj["id"] = k
+        obj["name"] = arr[k].__name__
+        out.append(obj)
+
+    return out
 def search_dataset(params):
 
     jinfo = getModelInfo(params)
