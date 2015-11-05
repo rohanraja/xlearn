@@ -34,7 +34,7 @@ class BaseMikov():
             "-valid '%s'"%valset.fpath,
             "-rnnlm '%s'"%modelFname,
             "-hidden %d" % self.numHidden,
-            "-rand-seed 1 -debug 2 -class 100 -bptt 4 -bptt-block 10 -direct-order 3 -direct 2 -binary",
+            self.flags,
         ]
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE

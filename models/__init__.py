@@ -24,6 +24,7 @@ modelsIndex = {
     13 : RNN_classify,
     14 : RNNLM_Mikolov,
     15 : RNNLM_miktoolkit,
+    16 : RNNLM_FASTER_toolkit,
 
 }
 
