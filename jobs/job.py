@@ -180,7 +180,7 @@ class Job(ComponentsLoader):
             f.write(sentance)
             f.close()
 
-            ppxConcat = self.model.evaluate(tmpfile, "")
+            ppxConcat = self.model.evaluate(tmpfile, "", 2)
             print Fore.GREEN, "\nPerplexicity %s\n" % ppxConcat
 
             out = {

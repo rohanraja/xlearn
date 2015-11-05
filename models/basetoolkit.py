@@ -86,7 +86,7 @@ class BaseMikov():
         
         print "Training Complete"
 
-    def evaluate(self, X, Y):
+    def evaluate(self, X, Y, dbg=1):
         
         print "Evaluating Mikilov Toolkit Model"
 
@@ -97,8 +97,9 @@ class BaseMikov():
             self.execFile,
             "-rnnlm '%s'"%modelFname,
             "-test '%s'"%X,
-            "-debug 2",
         ]
+        if dbg == 2:
+            progArgs.append("-debug 2")
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
 
