@@ -8,7 +8,7 @@ import time
 TRAINING_JOBS = {}
 
 from multiprocessing.pool import ThreadPool
-poolWorkers = ThreadPool(10)
+poolWorkers = ThreadPool(20)
 
 CACHED_JOBS = {}
 
