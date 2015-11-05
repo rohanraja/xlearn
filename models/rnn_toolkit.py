@@ -12,7 +12,13 @@ class RNNLM_miktoolkit(BaseMikov):
         p = self.params["model"]
         self.numHidden = int(p.get("hidden_nodes", 100))
         bptt = int(p.get("bptt", 8))
-        self.flags = "-rand-seed 1 -debug 2 -class 100 -bptt %d -bptt-block 10 -direct-order 3 -direct 2 -binary" % bptt
+        classes = int(p.get("class", 100))
+        oldcl = int(p.get("oldclass", 0))
+
+        if oldcl == 0:
+            self.flags = "-rand-seed 1 -debug 2 -class %d -bptt %d -bptt-block 10 -direct-order 3 -direct 2 -binary" % (classes, bptt)
+        else:
+            self.flags = "-rand-seed 1 -old-classes -debug 2 -bptt %d -bptt-block 10 -direct-order 3 -direct 2 -binary" % (bptt)
 
 
 
@@ -22,7 +28,9 @@ class RNNLM_miktoolkit(BaseMikov):
         out = {
                 "depth": 4,
                 "bptt": 4,
-                "hidden_nodes": 100
+                "class": 100,
+                "hidden_nodes": 100,
+                "oldclass": 0
         }
 
         return out
