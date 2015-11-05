@@ -11,7 +11,9 @@ class RNNLM_miktoolkit(BaseMikov):
         self.execFile = os.getenv('RNNLM_PATH')
         p = self.params["model"]
         self.numHidden = int(p.get("hidden_nodes", 100))
-        self.flags = "-rand-seed 1 -debug 2 -class 100 -bptt 4 -bptt-block 10 -direct-order 3 -direct 2 -binary"
+        bptt = int(p.get("bptt", 8))
+        self.flags = "-rand-seed 1 -debug 2 -class 100 -bptt %d -bptt-block 10 -direct-order 3 -direct 2 -binary" % bptt
+
 
 
     @staticmethod
@@ -19,6 +21,7 @@ class RNNLM_miktoolkit(BaseMikov):
 
         out = {
                 "depth": 4,
+                "bptt": 4,
                 "hidden_nodes": 100
         }
 
@@ -36,7 +39,8 @@ class RNNLM_FASTER_toolkit(BaseMikov):
         self.numHidden = int(p.get("hidden_nodes", 100))
         self.numThreads = int(p.get("threads", 8))
 
-        self.flags = "-threads %d -bptt 4 -bptt-block 10 -direct-order 3 -direct 2" % self.numThreads
+        bptt = int(p.get("bptt", 8))
+        self.flags = "-threads %d -bptt %d -bptt-block 10 -direct-order 3 -direct 2" % (self.numThreads, bptt)
 
 
     @staticmethod
@@ -45,6 +49,7 @@ class RNNLM_FASTER_toolkit(BaseMikov):
         out = {
                 "depth": 4,
                 "threads": 8,
+                "bptt": 4,
                 "hidden_nodes": 100
         }
 
