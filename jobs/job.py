@@ -175,6 +175,7 @@ class Job(ComponentsLoader):
             X = np.delete(X,0,1)
             return self.perplexicity_sequence(X[0])
         except:
+            print self.model.allOut
             tmpfile = join("../tmp", "tmpsent")
             f = open(tmpfile, 'w')
             f.write(sentance)

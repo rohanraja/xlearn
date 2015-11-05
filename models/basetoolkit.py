@@ -43,16 +43,16 @@ class BaseMikov():
         p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
         # p = Popen(' '.join(progArgs), shell=True)
 
-        allOut = ''
+        self.allOut = ''
         line = ''
 
         while True:
 
             line = p.stdout.read(100)
-            allOut += line
+            self.allOut += line
 
             try:
-                ln = allOut.split('Iter:')[-2]
+                ln = self.allOut.split('Iter:')[-2]
                 nums = ln.split('  ')
                 nums.remove('')
                 msg = dict(enumerate(nums))
