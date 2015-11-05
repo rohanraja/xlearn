@@ -39,7 +39,9 @@ class ComponentsLoader():
         self.mapper_test = M(dataset_test)
 
         # dataset_test = DS(3000, int(num))
-        self.X_test, self.Y_test = self.mapper.getXY(dataset_test)
+        # self.X_test, self.Y_test = self.mapper.getXY(dataset_test)
+        self.X_test = self.mapper_test.X
+        self.Y_test = self.mapper_test.Y
         # M = mappersIndex.get(self.jinfo["mapper_id"])
         # self.mapper_test = M(dataset_test)
 
@@ -55,6 +57,7 @@ class ComponentsLoader():
         modelClass = modelsIndex.get(self.jinfo["model_id"])
         self.params["jobDir"] = self.jobDir
         self.model = modelClass(self.params)
+        self.model.jobDir = self.jobDir
 
     def loadEmbedding(self):
 

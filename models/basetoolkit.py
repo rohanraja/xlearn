@@ -52,6 +52,9 @@ class BaseMikov():
                 nums = ln.split('  ')
                 nums.remove('')
                 msg = dict(enumerate(nums))
+
+                if("VALID" in line):
+                    print line
                 # msg = {
                 #         "line": allOut.split('Iter:')[-2],
                 # }
@@ -71,6 +74,53 @@ class BaseMikov():
 
         
         print "Training Complete"
+
+    def evaluate(self, X, Y):
+        
+        print "Evaluating Mikilov Toolkit Model"
+
+        modelFname = join(self.jobDir , "weights_0")
+
+        progArgs = [
+                
+            self.execFile,
+            "-rnnlm '%s'"%modelFname,
+            "-test '%s'"%X,
+            "-debug 2",
+        ]
+
+        print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
+
+        p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+
+        line = "Some ERROR"
+
+        line = p.stdout.read()
+
+        return line
+
+    def generate(self, num=50):
+        
+        print "Generating Sequence Mikilov Toolkit Model"
+
+        modelFname = join(self.jobDir , "weights_0")
+
+        progArgs = [
+                
+            self.execFile,
+            "-rnnlm '%s'"%modelFname,
+            "-gen %d"%num,
+        ]
+
+        print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
+
+        p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+
+        line = "Some ERROR"
+
+        line = p.stdout.read()
+
+        return line
 
     def saveWeights(self, fpath):
 

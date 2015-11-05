@@ -139,6 +139,10 @@ angular.module('sbAdminApp')
               {
                 id: 4,
                 name: "Brown 1000"
+              },
+              {
+                id: 6,
+                name: "Google Held"
               }                      
             ]
               return out;

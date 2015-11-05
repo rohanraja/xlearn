@@ -45,13 +45,14 @@ def test_sentance(params):
 
     perplex = job.evaluate_sentance(sentance)
 
-    out = {
-        # "loss": "%.4f"%loss,
-        # "accuracy": "%.2f %%"%(accuracy*100),
-        # "exp_loss": "%.2f"%(np.exp(loss)),
-        # "exp2_loss": "%.2f"%(np.exp2(loss)),
-        "perplexicity": "%.2f"%(perplex),
-    }
+    try:
+        out = {
+            "perplexicity": "%.2f"%(perplex),
+        }
+    except:
+        out = {
+            "perplexicity": "%s"%(perplex.split('\n')[-2]),
+        }
 
 
     return out

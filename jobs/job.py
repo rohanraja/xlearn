@@ -91,18 +91,22 @@ class Job(ComponentsLoader):
 
     def evaluate_dataset(self, dataset_id, num=20):
 
-        import pdb; pdb.set_trace()
         self.loadTestMapper(dataset_id, num)
         # self.X_tewt = self.mapper_test.X
         # self.Y_test = self.mapper_test.Y
 
         print "Calculating ppx as single sequence.."
-        ppxConcat = self.perplexicity_sequence(self.X_test.ravel())
 
-        print Fore.GREEN, "\nPerplexicity %.2f\n" % ppxConcat
+        try:
+            ppxConcat = self.perplexicity_sequence(self.X_test.ravel())
+            print Fore.GREEN, "\nPerplexicity %.2f\n" % ppxConcat
+        except:
+            ppxConcat = self.model.evaluate(self.X_test, self.Y_test)
+            print Fore.GREEN, "\nPerplexicity %s\n" % ppxConcat
+
 
         out = {
-        "Perplexicity Single Sequence": ppxConcat,
+            "Perplexicity": ppxConcat,
         }
 
         return out
@@ -165,10 +169,26 @@ class Job(ComponentsLoader):
 
     def evaluate_sentance(self, sentance):
 
-        sentances = [sentance.split(" ")]
-        X, Y = self.mapper.processSentances(sentances)
-        X = np.delete(X,0,1)
-        return self.perplexicity_sequence(X[0])
+        try:
+            sentances = [sentance.split(" ")]
+            X, Y = self.mapper.processSentances(sentances)
+            X = np.delete(X,0,1)
+            return self.perplexicity_sequence(X[0])
+        except:
+            tmpfile = join("../tmp", "tmpsent")
+            f = open(tmpfile, 'w')
+            f.write(sentance)
+            f.close()
+
+            ppxConcat = self.model.evaluate(tmpfile, "")
+            print Fore.GREEN, "\nPerplexicity %s\n" % ppxConcat
+
+            out = {
+                "Perplexicity": ppxConcat,
+            }
+
+            return ppxConcat
+
 
     def perplexicity_sequence_continues(self, x):
         """
@@ -327,19 +347,23 @@ class Job(ComponentsLoader):
 
     def generate_sentance(self, start="<s>", limit=30):
 
-        sentance = start
-        
-        for i in range(limit):
+        try:
+            sentance = start
+            
+            for i in range(limit):
 
-            nextWord = self.predict_sentance(sentance)[-1]
-            for k in nextWord:
-                nWord, prob = nextWord[k][randint(0,5)]
-            
-            sentance = "%s %s"%(sentance,nWord)
-            print Fore.CYAN, nWord
-            
-        print Fore.MAGENTA, sentance
-        return sentance
+                nextWord = self.predict_sentance(sentance)[-1]
+                for k in nextWord:
+                    nWord, prob = nextWord[k][randint(0,5)]
+                
+                sentance = "%s %s"%(sentance,nWord)
+                print Fore.CYAN, nWord
+                
+            print Fore.MAGENTA, sentance
+            return sentance
+
+        except:
+            return self.model.generate()
 
 
     def evaluate(self, X, Y):
