@@ -84,7 +84,7 @@ class N_GRAM(BaseMikov):
         p = self.params["model"]
 
         flags = (p.get("flags", N_GRAM.defaultParams()["flags"] ))
-        self.order = (p.get("order", N_GRAM.defaultParams()["order"] ))
+        self.order = int(p.get("order", N_GRAM.defaultParams()["order"] ))
 
         self.flags = flags
 
