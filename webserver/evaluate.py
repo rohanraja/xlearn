@@ -1,5 +1,7 @@
 from trainer import *
 import numpy as np
+from colorama import Fore
+from os.path import join
 
 def start_evaluation(params):
 
@@ -10,6 +12,20 @@ def start_evaluation(params):
     epoch = params["currentEpoch"]
 
     job = getJob(params)
+
+    try:
+        if int(num) == -1 :
+            out = job.model.allOut
+            print Fore.YELLOW, out, Fore.WHITE
+            return {"": out } 
+        if int(num) == -2 :
+            f = open( join(job.jobDir, "weights_0.output.txt") , 'r')
+            out = f.read()
+            f.close()
+            print Fore.CYAN, out, Fore.CYAN
+            return {"": out } 
+    except:
+        pass
     
     fname = "weights_%s" % epoch 
     job.load_weights(fname)

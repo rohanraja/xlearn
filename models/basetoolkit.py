@@ -34,7 +34,6 @@ class BaseMikov():
             "-train '%s'"%X,
             "-valid '%s'"%valset.fpath,
             "-rnnlm '%s'"%modelFname,
-            "-hidden %d" % self.numHidden,
             self.flags,
         ]
 
