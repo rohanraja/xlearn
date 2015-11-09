@@ -24,6 +24,12 @@ def start_evaluation(params):
             f.close()
             print Fore.CYAN, out, Fore.CYAN
             return {"": out } 
+        if int(num) == -3 :
+            f = open( join(job.jobDir, "log") , 'r')
+            out = f.read()
+            f.close()
+            print Fore.MAGENTA, out, Fore.MAGENTA
+            return {"": out } 
     except:
         pass
     
@@ -32,6 +38,10 @@ def start_evaluation(params):
 
 
     out = job.evaluate_dataset(did, num)
+
+    f = open( join(job.jobDir, "log") , 'a+')
+    f.write("\n" + str(out) + "\n")
+    f.close()
 
     # loss, accuracy = job.evaluate_dataset(did)
     #
