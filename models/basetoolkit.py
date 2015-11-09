@@ -1,4 +1,4 @@
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, STDOUT
 import os, signal
 from os.path import join
 import datetime
@@ -43,7 +43,7 @@ class BaseMikov():
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
 
-        p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+        p = Popen(' '.join(progArgs), stdout=PIPE, stderr=STDOUT, shell=True)
         # p = Popen(' '.join(progArgs), shell=True)
 
         self.allOut = ''
@@ -101,7 +101,7 @@ class BaseMikov():
         modelFname = join(self.jobDir , "weights_0")
 
         try:
-            progArgs = self.getEvalArgs(X, modelFname)
+            progArgs = self.getEvalArgs(X, modelFnamflagse)
         except:
             progArgs = [
                     
@@ -115,7 +115,7 @@ class BaseMikov():
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
 
-        p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+        p = Popen(' '.join(progArgs), stdout=PIPE, stderr=STDOUT, shell=True)
 
         line = "Some ERROR"
 
