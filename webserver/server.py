@@ -6,23 +6,24 @@ import json
 from json import dumps
 import webinterface
 import json
+from tornado import gen
+from tornado.web import asynchronous
+import threading
+from colorama import Fore
 
-
-# handles incoming request, this is the C part in MVC
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-
         self.render('index.html')
 
 
+class Worker(threading.Thread):
+   def __init__(self, callback=None, msg='', *args, **kwargs):
+        super(Worker, self).__init__(*args, **kwargs)
+        self.callback = callback
+        self.msg = msg
 
-from colorama import Fore
-class HTTPApi(tornado.web.RequestHandler):
-
-    def post(self):
-        message = self.get_argument("data",{})
-
-        request = json.loads(message)
+   def run(self):
+        request = json.loads(self.msg)
         query = request.get('query', {})
 
         try:
@@ -32,7 +33,19 @@ class HTTPApi(tornado.web.RequestHandler):
             result = {"Error": "%s"%e}
             print Fore.RED, "\nError: ", e, Fore.WHITE
 
-        self.write(dumps(result))
+        self.callback(result)
+
+
+
+class HTTPApi(tornado.web.RequestHandler):
+
+    @asynchronous
+    def post(self):
+        message = self.get_argument("data",{})
+        Worker(self.onComplete, message).start()
+
+    def onComplete(self, result):
+        self.finish(dumps(result))
 
 
 class TrainerSocket(tornado.websocket.WebSocketHandler):
