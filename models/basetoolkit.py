@@ -101,7 +101,7 @@ class BaseMikov():
         modelFname = join(self.jobDir , "weights_0")
 
         try:
-            progArgs = self.getEvalArgs(X, modelFnamflagse)
+            progArgs = self.getEvalArgs(X, modelFnamflag)
         except:
             progArgs = [
                     
