@@ -19,6 +19,16 @@ def getParamsInfo(params):
     out = p.getParamsInfo(str(pid))
 
     return out
+
+def delete_param(params):
+    
+    mid = params["modelId"]
+    pid = params["paramsId"]
+
+    p = project.Project(str(mid))
+    out = p.delete_param(str(pid))
+
+    return out
     
 
 def createParamsInfo(params):

@@ -101,4 +101,18 @@ angular.module('sbAdminApp')
       return defer ;
     };
 
+    this.deleteParam = function($modelid, $paramid){
+      var query = {
+        'type': 'delete_param',
+        'params': {
+          "modelId": $modelid,
+          "paramsId": $paramid,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
+
   });

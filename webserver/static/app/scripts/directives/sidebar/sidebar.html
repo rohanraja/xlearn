@@ -31,12 +31,15 @@
                     <li 
                     ng-class="{'active': pid==paramsId}"
                     ui-sref-active="active" ng-repeat="pid in model.params" >
-                    <a 
+                    <div>
+                      <a 
                       ng-click="" 
                       ui-sref="dashboard.job({datasetId: datasetId, modelId: model.id, paramsId: pid, activetab: activetab})"
                       >
                       
                       Params_{{pid}}</a>
+                      <a ng-click="onParamDelete(model.id, pid)" class="" style="">-</a>
+                    </div>
                     </li>
                 </ul>
             </li>
