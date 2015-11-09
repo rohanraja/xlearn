@@ -28,14 +28,18 @@ class BaseMikov():
 
         valset = datasetsIndex[self.valset]()
 
-        progArgs = [
-                
-            self.execFile,
-            "-train '%s'"%X,
-            "-valid '%s'"%valset.fpath,
-            "-rnnlm '%s'"%modelFname,
-            self.flags,
-        ]
+        
+        try:
+            progArgs = self.getProgArgs(X, valset.fpath, modelFname)
+        except:
+            progArgs = [
+                    
+                self.execFile,
+                "-train '%s'"%X,
+                "-valid '%s'"%valset.fpath,
+                "-rnnlm '%s'"%modelFname,
+                self.flags,
+            ]
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
 
@@ -96,12 +100,16 @@ class BaseMikov():
 
         modelFname = join(self.jobDir , "weights_0")
 
-        progArgs = [
-                
-            self.execFile,
-            "-rnnlm '%s'"%modelFname,
-            "-test '%s'"%X,
-        ]
+        try:
+            progArgs = self.getEvalArgs(X, modelFname)
+        except:
+            progArgs = [
+                    
+                self.execFile,
+                "-rnnlm '%s'"%modelFname,
+                "-test '%s'"%X,
+            ]
+
         if dbg == 2:
             progArgs.append("-debug 2")
 

@@ -72,3 +72,53 @@ class RNNLM_FASTER_toolkit(BaseMikov):
         return out
 
 
+class N_GRAM(BaseMikov):
+
+    def __init__(self, hyperParams=None):
+
+        self.params = hyperParams
+
+        # self.execFile = "/Users/rohanraja/code/mikolov/rnnlm-0.4b/rnnlm"
+        self.execFile = os.getenv('NGRAMCNT_PATH')
+        self.execFile_test = os.getenv('NGRAM_PATH')
+        p = self.params["model"]
+
+        flags = (p.get("flags", NGRAM.defaultParams()["flags"] ))
+        self.order = (p.get("order", NGRAM.defaultParams()["order"] ))
+
+        self.flags = flags
+
+
+    @staticmethod
+    def defaultParams():
+
+        out = {
+                "flags" : "-kndiscount -interpolate -gt3min 1 -gt4min 1",
+                "order" : 5,
+        }
+        return out
+
+    def getEvalArgs(self, X, mod):
+
+        progArgs = [
+                
+            self.execFile_test,
+            "-ppl '%s'"%X,
+            "-lm '%s'"%mod,
+            "-order %d"%self.order,
+        ]
+
+        return progArgs
+    
+    def getProgArgs(self, X, val, mod):
+
+        progArgs = [
+                
+            self.execFile,
+            "-text '%s'"%X,
+            "-lm '%s'"%mod,
+            "-order %d"%self.order,
+            self.flags,
+        ]
+
+        return progArgs
