@@ -83,8 +83,8 @@ class N_GRAM(BaseMikov):
         self.execFile_test = os.getenv('NGRAM_PATH')
         p = self.params["model"]
 
-        flags = (p.get("flags", NGRAM.defaultParams()["flags"] ))
-        self.order = (p.get("order", NGRAM.defaultParams()["order"] ))
+        flags = (p.get("flags", N_GRAM.defaultParams()["flags"] ))
+        self.order = (p.get("order", N_GRAM.defaultParams()["order"] ))
 
         self.flags = flags
 
