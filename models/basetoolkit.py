@@ -80,8 +80,15 @@ class BaseMikov():
 
 
 
+        print "\n****Training Complete****\n"
+
+        fname = join(self.jobDir , "log")
+        f = open(fname, 'a+')
+        f.write(self.allOut)
+        f.close()
+        print Fore.GREEN, self.allOut, Fore.WHITE
         
-        print "Training Complete"
+        print "\n****Training Complete****\n"
 
     def evaluate(self, X, Y, dbg=1):
         
