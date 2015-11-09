@@ -18,6 +18,13 @@ angular.module('sbAdminApp')
       controller:function($scope, $stateParams, listservice){
 
         // name = $stateParams.name ;
+        $scope.getRunJobs = function(x){
+          $scope.check(x);
+          listservice.getActiveJobs().then(function(resp){
+            console.log(resp);
+            $scope.activeJobs = resp;
+          });
+        };
 
             $scope.datasetId = $stateParams.datasetId ;
             $scope.modelId = $stateParams.modelId ;

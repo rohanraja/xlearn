@@ -56,15 +56,15 @@ class BaseMikov():
                 nums.remove('')
                 msg = dict(enumerate(nums))
 
-                if("VALID" in line):
-                    print line
+                # if("VALID" in line):
+                #     print line
                 # msg = {
                 #         "line": allOut.split('Iter:')[-2],
                 # }
             except Exception, e:
                 msg = {"line": line}
 
-                print line
+                # print line
 
             for cb in callbacks:
                 cb.on_cmd_update(msg)

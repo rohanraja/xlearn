@@ -37,10 +37,11 @@ class HTTPApi(tornado.web.RequestHandler):
 
 class TrainerSocket(tornado.websocket.WebSocketHandler):
     def open(self):
-        print("WebSocket opened")
+        # print("WebSocket opened")
+        pass
     
     def on_message(self, message):
-        print "Attach Handler Request"
+        # print "Attach Handler Request"
         params = json.loads(message)["params"]
         self.params = params
 

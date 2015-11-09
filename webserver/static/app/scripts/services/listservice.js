@@ -4,6 +4,18 @@ angular.module('sbAdminApp')
   .service('listservice', function(serverComm) {
 
 
+    this.getActiveJobs = function(){
+
+      var query = {
+        'type': 'getActiveJobs',
+        'params': {
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
     this.loadDatasets = function(){
 
       var query = {

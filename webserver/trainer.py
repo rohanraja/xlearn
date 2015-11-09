@@ -13,6 +13,24 @@ poolWorkers = ThreadPool(20)
 CACHED_JOBS = {}
 
 from colorama import Fore
+
+def getActiveJobs(params):
+    
+    out = []
+    
+    for k in TRAINING_JOBS:
+        try:
+            j = CACHED_JOBS[k]
+            o = j.jinfo
+            o["pid"] = k.split("_")[1]
+            o["mid"] = k.split("_")[0]
+
+            out.append(o)
+        except:
+            pass
+
+    return out
+
 def getJob(params):
 
     mid = params["modelId"]

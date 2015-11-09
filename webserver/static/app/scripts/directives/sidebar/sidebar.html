@@ -45,6 +45,28 @@
             </li>
 
 
+            <!-- ActiveJobs -->
+            <li ng-class="{active: collapseVar==(21)}">{{dropDown}}
+                        <a href="" ng-click="getRunJobs(21)">
+                          
+                          <i class="fa fa-sitemap fa-fw"></i>Running Jobs
+                          <span     class="fa arrow"></span>
+                        
+                        </a>
+
+                            <ul class="nav nav-second-level" collapse="collapseVar!=(21)">
+                                <li 
+                                ui-sref-active="active" ng-repeat="job in activeJobs" >
+                                  <a 
+                                  ng-click="" 
+                                  ui-sref="dashboard.job({datasetId: job.dataset_id, modelId: job.mid, paramsId: job.pid, activetab: 3})"
+                                  >
+                                  
+                                  Params_{{job.mid}}_{{job.pid}}</a>
+                                </li>
+                            </ul>
+                        </li>
+
             <!-- <br> -->
             <!-- <br> -->
             <!-- <br> -->

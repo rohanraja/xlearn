@@ -1,6 +1,10 @@
 from ..jobs import project
 import trainer
 
+def getActiveJobs(params):
+
+    return trainer.getActiveJobs(params)
+
 def getModelInfo(params):
     
     mid = params["modelId"]
