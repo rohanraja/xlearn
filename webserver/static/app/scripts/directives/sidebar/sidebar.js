@@ -26,10 +26,11 @@ angular.module('sbAdminApp')
           });
         };
 
-            $scope.datasetId = $stateParams.datasetId ;
-            $scope.modelId = $stateParams.modelId ;
-            $scope.paramsId = $stateParams.paramsId ;
-            $scope.collapseVar = $scope.activetab;
+        $scope.datasetId = $stateParams.datasetId ;
+        console.log($scope.datasetId);
+        $scope.modelId = $stateParams.modelId ;
+        $scope.paramsId = $stateParams.paramsId ;
+        $scope.collapseVar = $scope.activetab;
         $scope.selectedMenu = 'dashboard';
         $scope.collapseVar = 0;
         $scope.multiCollapseVar = 0;
