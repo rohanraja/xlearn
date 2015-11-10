@@ -88,7 +88,10 @@ def loadDatasets(params):
         for pp in pMap["params"]:
             pinfo = pro.getParamsInfo(pp)
             ppx = float(pinfo.get("ppx", 0.00))
-            pxmap.append({pp: "%.2f"%ppx})
+            try:
+                pxmap.append({pp: "%.2f"%ppx})
+            except:
+                pxmap.append({pp: "0.00"})
 
         pMap["params_px"] = pxmap 
 
