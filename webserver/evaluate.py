@@ -7,9 +7,9 @@ def start_evaluation(params):
 
     mid = params["modelId"]
     pid = params["paramsId"]
-    did = params["datasetId"]
-    num = params["nsents"]
-    epoch = params["currentEpoch"]
+    did = params.get("datasetId", 1)
+    num = params.get("nsents", 1)
+    epoch = params.get("currentEpoch", 1)
 
     job = getJob(params)
 
@@ -30,6 +30,17 @@ def start_evaluation(params):
             f.close()
             print Fore.MAGENTA, out, Fore.MAGENTA
             return {"": out } 
+        
+        if int(num) == -4 :
+            import trainer
+            trainer.startAllTraining(params)
+            return ""
+
+        if int(num) == -5 :
+            import trainer
+            return trainer.startAllEvaluation(params)
+            
+
     except:
         pass
     
@@ -38,7 +49,6 @@ def start_evaluation(params):
 
 
     out = job.evaluate_dataset(did, num)
-    import pdb; pdb.set_trace()
 
     f = open( join(job.jobDir, "log") , 'a+')
     f.write("\n" + str(out) + "\n")

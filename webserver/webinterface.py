@@ -83,6 +83,15 @@ def loadDatasets(params):
         pMap["id"] = p
         pMap["name"] = getJobName(pro)
         pMap["params"] = pro.listJobs()
+
+        pxmap = []
+        for pp in pMap["params"]:
+            pinfo = pro.getParamsInfo(pp)
+            ppx = float(pinfo.get("ppx", 0.00))
+            pxmap.append({pp: "%.2f"%ppx})
+
+        pMap["params_px"] = pxmap 
+
         outMap[pMap2["dataset_id"]] = outMap.get(pMap2["dataset_id"], []) + [pMap]
 
     out = []

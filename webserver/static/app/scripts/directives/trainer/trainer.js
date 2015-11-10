@@ -113,7 +113,7 @@ angular.module('sbAdminApp')
           });
 
           // $scope.testDatasetId = $scope.paramInfo.model.test_id;
-          $scope.nsents = "0 10";
+          $scope.nsents = "-1";
 
           $scope.currentTrainInfo = 0;
 

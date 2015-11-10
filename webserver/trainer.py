@@ -136,6 +136,11 @@ class BatchCallBack(callbacks.Callback):
 
 def start_training(params):
 
+    jid = get_job_id(params)
+    if jid in TRAINING_JOBS:
+        print "Already Training.."
+        return ""
+
     jobid = register_training_job(params)
     callback = BatchCallBack(jobid)
 
@@ -159,11 +164,9 @@ def stop_training(params):
 
 def blocking_trainer(params, callback):
 
-    nepochs = int(params["nepochs"])
-    valset = int(params["valset"])
+    nepochs = int(params.get("nepochs", 0))
     job = getJob(params)
     callback.job = job
-    job.model.valset = valset
     job.start_training(nepochs, callbacks=[callback])
 
 def _train_stop(jobid):
@@ -183,8 +186,8 @@ def get_job_id(params):
 def register_training_job(params):
     
     jobid = get_job_id(params)
-    nepochs = int(params["nepochs"])
-    current_epoch = int(params["currentEpoch"])
+    nepochs = int(params.get("nepochs", 0))
+    current_epoch = int(params.get("currentEpoch", 0))
 
     TRAINING_JOBS[jobid] = {
         
@@ -262,6 +265,67 @@ def get_epoch_list(params):
     weights.sort()
 
     return weights
+
+
+
+def getAllJobs(modelId):
+    
+    mid = modelId
+    p = project.Project(str(mid))
+    allparams = p.listJobs()
+
+    jobs = []
+
+    for pid in allparams:
+        inp = {}
+        inp["modelId"] = mid
+        inp["paramsId"] = pid
+
+        # j = getJob(inp)
+        jobs.append(inp)
+
+    return jobs
+
+def startAllTraining(params):
+    
+    print Fore.BLUE, "Starting Training for all jobs of model\n", Fore.WHITE
+
+    mid = params["modelId"]
+    jobs = getAllJobs(mid)
+
+    for j in jobs:
+        start_training(j)
+
+import evaluate
+import threading
+
+def startAllEvaluation(params):
+    
+    print Fore.CYAN, "Starting Evaluation for all jobs of model\n", Fore.WHITE
+
+    mid = params["modelId"]
+    jobs = getAllJobs(mid)
+    outs = []
+    ts = []
+
+    for j in jobs:
+
+        def f():
+            j['datasetId'] = -1
+            o = evaluate.start_evaluation(j)
+            outs.append(o)
+
+        t = threading.Thread(target=f)
+        t.start()
+        ts.append(t)
+
+    for t in ts:
+        t.join()
+        
+
+    print outs
+    return outs
+
 
 
 

@@ -30,14 +30,14 @@
                 <ul class="nav nav-second-level" collapse="collapseVar!=(model.id)">
                     <li 
                     ng-class="{'active': pid==paramsId}"
-                    ui-sref-active="active" ng-repeat="pid in model.params" >
+                    ui-sref-active="active" ng-repeat="(pid, ppx) in model.params_px" >
                     <div>
                       <a 
                       ng-click="" 
                       ui-sref="dashboard.job({datasetId: activeDataset.id, modelId: model.id, paramsId: pid, activetab: activetab})"
                       >
                       
-                      Params_{{pid}}</a>
+                      Params_{{pid}} ({{ppx[pid]}})</a>
                       <a ng-click="onParamDelete(model.id, pid)" class="" style="">-</a>
                     </div>
                     </li>
