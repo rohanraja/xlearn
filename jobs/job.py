@@ -93,7 +93,7 @@ class Job(ComponentsLoader):
         
         if dataset_id == -1:
           try:
-            dataset_id = int(self.params["model"]["test_id"])
+            dataset_id = int(self.params["model"].get("test_id", 10))
           except:
             pass
 
