@@ -41,6 +41,10 @@ class RNNLM_miktoolkit(BaseMikov):
 
         return out
 
+    def getPPXFromOut(self, out):
+
+        return float(out.replace('\n','').split(':')[-1])
+
 class RNNLM_FASTER_toolkit(BaseMikov):
 
     def __init__(self, hyperParams=None):
@@ -126,3 +130,7 @@ class N_GRAM(BaseMikov):
         ]
 
         return progArgs
+
+    def getPPXFromOut(self, out):
+
+        return float(out.split(' ')[-3])

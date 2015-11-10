@@ -44,6 +44,16 @@
       >
     </select>
   </div>
+  <br>
+  <div class="form-group">
+    <label>Test Dataset (Default) </label>
+    <select 
+      class="form-control" 
+      ng-model="paramInfo.model['test_id']"  
+      ng-options="mapr.id as (mapr.name) for mapr in datasets"
+      >
+    </select>
+  </div>
   </div>
 
   <div class="col-md-6">

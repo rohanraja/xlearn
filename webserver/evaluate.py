@@ -38,6 +38,7 @@ def start_evaluation(params):
 
 
     out = job.evaluate_dataset(did, num)
+    import pdb; pdb.set_trace()
 
     f = open( join(job.jobDir, "log") , 'a+')
     f.write("\n" + str(out) + "\n")

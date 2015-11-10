@@ -112,8 +112,7 @@ angular.module('sbAdminApp')
             $scope.datasets = resp;
           });
 
-          $scope.testDatasetId = 10;
-          $scope.valDatasetId = 11;
+          // $scope.testDatasetId = $scope.paramInfo.model.test_id;
           $scope.nsents = "0 10";
 
           $scope.currentTrainInfo = 0;
