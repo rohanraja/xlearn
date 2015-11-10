@@ -16,6 +16,20 @@ angular.module('sbAdminApp')
 
       return defer ;
     };
+    this.addDataset = function(fname){
+
+      var query = {
+        'type': 'add_dataset',
+        'params': {
+          'fname': fname
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
+
     this.loadDatasets = function(){
 
       var query = {

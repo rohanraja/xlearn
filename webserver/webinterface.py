@@ -230,3 +230,11 @@ def embeddings_list(params):
         out.append(obj)
 
     return out
+
+
+from ..datasets import addOtherFiles
+
+def add_dataset(params):
+
+    fname = params['fname']
+    addOtherFiles(fname)
