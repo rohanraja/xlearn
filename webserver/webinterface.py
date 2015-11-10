@@ -87,8 +87,8 @@ def loadDatasets(params):
         pxmap = []
         for pp in pMap["params"]:
             pinfo = pro.getParamsInfo(pp)
-            ppx = float(pinfo.get("ppx", 0.00))
             try:
+                ppx = float(pinfo.get("ppx", 0.00))
                 pxmap.append({pp: "%.2f"%ppx})
             except:
                 pxmap.append({pp: "0.00"})
