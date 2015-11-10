@@ -58,5 +58,5 @@ otherFiles = getOtherFiles()
 
 for cidx in otherFiles:
 
-  datasetsIndex[cidx] = getDataset(otherFiles[cidx])
+  datasetsIndex[int(cidx)] = getDataset(otherFiles[cidx])
 
