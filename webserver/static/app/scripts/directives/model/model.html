@@ -34,6 +34,16 @@
       ng-model="paramInfo.model[pLabel]"
     >
     </div>
+  <br>
+  <div class="form-group">
+    <label>Validation Dataset</label>
+    <select 
+      class="form-control" 
+      ng-model="paramInfo.model['valid']"  
+      ng-options="mapr.id as (mapr.name) for mapr in datasets"
+      >
+    </select>
+  </div>
   </div>
 
   <div class="col-md-6">

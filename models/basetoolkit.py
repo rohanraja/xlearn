@@ -26,17 +26,21 @@ class BaseMikov():
 
         modelFname = join(callbacks[0].job.jobDir , "weights_0")
 
-        valset = datasetsIndex[self.valset]()
+        if(self.valid != -1) :
+            valset = datasetsIndex[self.valid]()
+            valpath = valset.fpath
+        else:
+            valpath = X
 
         
         try:
-            progArgs = self.getProgArgs(X, valset.fpath, modelFname)
+            progArgs = self.getProgArgs(X, valpath, modelFname)
         except:
             progArgs = [
                     
                 self.execFile,
                 "-train '%s'"%X,
-                "-valid '%s'"%valset.fpath,
+                "-valid '%s'"%valpath,
                 "-rnnlm '%s'"%modelFname,
                 self.flags,
             ]

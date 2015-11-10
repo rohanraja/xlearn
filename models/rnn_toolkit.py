@@ -14,6 +14,8 @@ class RNNLM_miktoolkit(BaseMikov):
         bptt = int(p.get("bptt", 8))
         classes = int(p.get("class", 100))
         oldcl = int(p.get("oldclass", 0))
+        
+        self.valid = int(p.get("valid", -1))
 
         flags = (p.get("flags", RNNLM_miktoolkit.defaultParams()["flags"] ))
 
@@ -50,6 +52,7 @@ class RNNLM_FASTER_toolkit(BaseMikov):
         p = self.params["model"]
         self.numHidden = int(p.get("hidden_nodes", 100))
         self.numThreads = int(p.get("threads", 8))
+        self.valid = int(p.get("valid", -1))
 
         bptt = int(p.get("bptt", 8))
 
@@ -82,6 +85,7 @@ class N_GRAM(BaseMikov):
         self.execFile = os.getenv('NGRAMCNT_PATH')
         self.execFile_test = os.getenv('NGRAM_PATH')
         p = self.params["model"]
+        self.valid = int(p.get("valid", -1))
 
         flags = (p.get("flags", N_GRAM.defaultParams()["flags"] ))
         self.order = int(p.get("order", N_GRAM.defaultParams()["order"] ))
