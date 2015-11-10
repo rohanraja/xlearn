@@ -18,10 +18,6 @@ datasetsIndex = {
     9 : Hindi_5l_train,
     10 : Hindi_5l_test,
     11 : Hindi_5l_val,
-    12 : Hindi_5l_val,
-    13 : Hindi_5l_val,
-    14 : Hindi_5l_val,
-
 }
 
 from basedataset import BaseDataset
