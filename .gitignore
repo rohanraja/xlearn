@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 .DS_Store
 *.cache*
+=======
+*cache*
+>>>>>>> 30f1e91a6d4c2106a1a60f7c540ad2dbbfea258f
 *.pyc
 projects/
 tmp/

@@ -18,7 +18,19 @@ angular.module('sbAdminApp')
       controller:function($scope, $stateParams, listservice){
 
         // name = $stateParams.name ;
+        $scope.getRunJobs = function(x){
+          $scope.check(x);
+          listservice.getActiveJobs().then(function(resp){
+            console.log(resp);
+            $scope.activeJobs = resp;
+          });
+        };
 
+        $scope.datasetId = $stateParams.datasetId ;
+        console.log($scope.datasetId);
+        $scope.modelId = $stateParams.modelId ;
+        $scope.paramsId = $stateParams.paramsId ;
+        $scope.collapseVar = $scope.activetab;
         $scope.selectedMenu = 'dashboard';
         $scope.collapseVar = 0;
         $scope.multiCollapseVar = 0;
@@ -49,7 +61,7 @@ angular.module('sbAdminApp')
             $scope.datasetId = $stateParams.datasetId ;
             $scope.modelId = $stateParams.modelId ;
             $scope.paramsId = $stateParams.paramsId ;
-            $scope.collapseVar = $scope.modelId;
+            $scope.collapseVar = $scope.activetab;
 
             for(var i=0; i<$scope.datasets.length; i++)
               if($scope.datasets[i].id == $scope.datasetId)
@@ -69,6 +81,14 @@ angular.module('sbAdminApp')
         });
 
         
+        $scope.onParamDelete = function(mid, pid){
+
+          listservice.deleteParam(mid, pid).then(function(resp){
+          
+            loadSideBar();
+          });
+
+        };
 
         $scope.onDsetClick = function(x){
           

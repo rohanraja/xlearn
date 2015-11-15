@@ -1,4 +1,4 @@
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, STDOUT
 import os, signal
 from os.path import join
 import datetime
@@ -26,21 +26,28 @@ class BaseMikov():
 
         modelFname = join(callbacks[0].job.jobDir , "weights_0")
 
-        valset = datasetsIndex[self.valset]()
+        if(self.valid != -1) :
+            valset = datasetsIndex[self.valid]()
+            valpath = valset.fpath
+        else:
+            valpath = X
 
-        progArgs = [
-                
-            self.execFile,
-            "-train '%s'"%X,
-            "-valid '%s'"%valset.fpath,
-            "-rnnlm '%s'"%modelFname,
-            "-hidden %d" % self.numHidden,
-            self.flags,
-        ]
+        
+        try:
+            progArgs = self.getProgArgs(X, valpath, modelFname)
+        except:
+            progArgs = [
+                    
+                self.execFile,
+                "-train '%s'"%X,
+                "-valid '%s'"%valpath,
+                "-rnnlm '%s'"%modelFname,
+                self.flags,
+            ]
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
 
-        p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+        p = Popen(' '.join(progArgs), stdout=PIPE, stderr=STDOUT, shell=True)
         # p = Popen(' '.join(progArgs), shell=True)
 
         self.allOut = ''
@@ -57,15 +64,15 @@ class BaseMikov():
                 nums.remove('')
                 msg = dict(enumerate(nums))
 
-                if("VALID" in line):
-                    print line
+                # if("VALID" in line):
+                #     print line
                 # msg = {
                 #         "line": allOut.split('Iter:')[-2],
                 # }
             except Exception, e:
                 msg = {"line": line}
 
-                print line
+                # print line
 
             for cb in callbacks:
                 cb.on_cmd_update(msg)
@@ -81,8 +88,15 @@ class BaseMikov():
 
 
 
+        print "\n****Training Complete****\n"
+
+        fname = join(self.jobDir , "log")
+        f = open(fname, 'a+')
+        f.write(self.allOut)
+        f.close()
+        print Fore.GREEN, self.allOut, Fore.WHITE
         
-        print "Training Complete"
+        print "\n****Training Complete****\n"
 
     def evaluate(self, X, Y, dbg=1):
         
@@ -90,18 +104,22 @@ class BaseMikov():
 
         modelFname = join(self.jobDir , "weights_0")
 
-        progArgs = [
-                
-            self.execFile,
-            "-rnnlm '%s'"%modelFname,
-            "-test '%s'"%X,
-        ]
+        try:
+            progArgs = self.getEvalArgs(X, modelFname)
+        except:
+            progArgs = [
+                    
+                self.execFile,
+                "-rnnlm '%s'"%modelFname,
+                "-test '%s'"%X,
+            ]
+
         if dbg == 2:
             progArgs.append("-debug 2")
 
         print Fore.CYAN, "Running Command %s" % ' '.join(progArgs) , Fore.WHITE
 
-        p = Popen(' '.join(progArgs), stdout=PIPE, shell=True)
+        p = Popen(' '.join(progArgs), stdout=PIPE, stderr=STDOUT, shell=True)
 
         line = "Some ERROR"
 

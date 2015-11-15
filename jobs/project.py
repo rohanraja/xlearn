@@ -1,6 +1,8 @@
 from os.path import join
 from os import mkdir
 from os import listdir
+from os import rmdir
+from shutil import rmtree
 
 from job import Job
 
@@ -45,6 +47,12 @@ class Project():
         params = json.load(open(fname))
 
         return params
+
+    def delete_param(self, paramsId):
+
+        jobdir = join(self.projectDir, str(paramsId))
+        rmtree(jobdir)
+        return 0
 
     def getJob(self, params_name, mid = None):
         

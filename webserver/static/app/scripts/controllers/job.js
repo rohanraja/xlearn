@@ -32,6 +32,7 @@ angular.module('sbAdminApp')
 
     jobservice.getParamsInfo($scope.modelId, $scope.paramsId).then(function(resp){
        $scope.paramInfo = resp;
+        $scope.testDatasetId = $scope.paramInfo.model.test_id;
        originalParams = angular.copy($scope.paramInfo) ;
 
     });

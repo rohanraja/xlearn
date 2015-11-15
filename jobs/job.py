@@ -90,12 +90,18 @@ class Job(ComponentsLoader):
 
 
     def evaluate_dataset(self, dataset_id, num=20):
+        
+        if dataset_id == -1:
+          try:
+            dataset_id = int(self.params["model"].get("test_id", 10))
+          except:
+            pass
 
         self.loadTestMapper(dataset_id, num)
         # self.X_tewt = self.mapper_test.X
         # self.Y_test = self.mapper_test.Y
 
-        print "Calculating ppx as single sequence.."
+        print "Calculating ppx"
 
         try:
             ppxConcat = self.perplexicity_sequence(self.X_test.ravel())
@@ -105,10 +111,16 @@ class Job(ComponentsLoader):
             print Fore.GREEN, "\nPerplexicity %s\n" % ppxConcat
 
 
+        try:
+          ppxConcat = self.model.getPPXFromOut(ppxConcat)
+        except:
+          pass
+
         out = {
             "Perplexicity": ppxConcat,
         }
 
+        self.updatePPX(ppxConcat)
         return out
 
         loss, acc = self.model.evaluate(self.X_test, self.Y_test)
@@ -405,3 +417,16 @@ class Job(ComponentsLoader):
         score = self.model.gridSearch(X,Y)
         from colorama import Fore
         print Fore.YELLOW, "\nBest Score: %.2f %%" % (score * 100)
+
+
+    def updatePPX(self, ppx):
+        
+        p = self.params
+        p["ppx"] = ppx
+        fname = join(self.jobDir, "pinfo.json")
+
+        import json
+        json.dump(p, open(fname, 'w'))
+
+
+
