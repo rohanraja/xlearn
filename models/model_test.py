@@ -10,7 +10,24 @@ from keras_custom.utils.np_utils import to_categorical
 class TestModel(unittest.TestCase):
 
 
-    def test_mapper_output(self):
+    def test_cgt_model(self):
+
+        DS = datasetsIndex[12]
+
+        data = DS()
+
+        M = mappersIndex[5]
+
+        m = M(data)
+
+        Model = modelsIndex[18]
+
+        md = Model()
+
+        md.train(m.X,m.Y,0,0)
+
+
+    def Test_mapper_output(self):
 
         DS = datasetsIndex[1]
 

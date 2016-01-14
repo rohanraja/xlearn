@@ -8,10 +8,11 @@ class TestDatasetNepal(unittest.TestCase):
 
         # print Fore.GREEN, "Loading Data"
 
-        DS = datasetsIndex[8]
+        DS = datasetsIndex[12]
         ds = DS()
 
         print Fore.GREEN, ds.Y[100:120]
+        print Fore.GREEN, ds.X[2]
 
 
     def Test_brown(self):

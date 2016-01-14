@@ -10,6 +10,7 @@ mappersIndex = {
     2 : SelfWordIndex,
     3 : SelfWordIndexClassify,
     4 : MikoMap,
+    5 : ByPass,
 }
 
 
