@@ -45,6 +45,7 @@ class Project():
         jobdir = join(self.projectDir, str(paramsId))
         fname = join(jobdir, "pinfo.json")
         params = json.load(open(fname))
+        params["job_id"] = self.projectName + "_" + str(paramsId)
 
         return params
 

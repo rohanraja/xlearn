@@ -77,6 +77,11 @@ class MyStaticFileHandler(tornado.web.StaticFileHandler):
         # Disable cache
         self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
 
+class ZipServer(tornado.web.StaticFileHandler):
+    def set_extra_headers(self, path):
+        # Disable cache
+        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+
 handlers = [
 
         (r"/", 
@@ -87,6 +92,9 @@ handlers = [
             HTTPApi),
         (r'/trainersocket',                                         
             TrainerSocket),
+
+        (r'/cgtjobs/(.*)',             
+            ZipServer, {'path': "cgtjobs"}),
         
         (r'/(.*)',             
             MyStaticFileHandler, {'path': "static/app"}),

@@ -1,4 +1,17 @@
 from ..datasets import datasetsIndex
+import os
+import zipfile
+
+def zipdir(path, zipname):
+
+    ziph = zipfile.ZipFile(zipname, 'w')
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
+
+    ziph.close()
+
+import shutil
 
 class BaseCgt():
 
@@ -44,7 +57,8 @@ class BaseCgt():
         except:
             pass
 
-
+        jid = self.hypParams["job_id"]
+        shutil.make_archive("cgtjobs/" + jid , 'zip', self.jobDir)
 
     def evaluate(self, X, Y, dbg=1):
         '''

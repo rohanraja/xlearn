@@ -58,6 +58,7 @@ class ComponentsLoader():
         self.params["jobDir"] = self.jobDir
         self.model = modelClass(self.params)
         self.model.jobDir = self.jobDir
+        self.model.jinfo = self.jinfo
 
     def loadEmbedding(self):
 

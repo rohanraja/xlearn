@@ -56,7 +56,7 @@ class CGT_MLP(BaseCgt):
         params = [w_h, w_h2, w_o]        
 
         cost_drop = -cgt.mean(categorical.loglik(y, pofy_drop))
-        updates, gradss= rmsprop_updates(cost_drop, params, stepsize=0.1)
+        updates, gradss= rmsprop_updates(cost_drop, params, stepsize=1.0)
 
         y_nodrop = cgt.argmax(pofy_nodrop, axis=1)
         cost_nodrop = -cgt.mean(categorical.loglik(y, pofy_nodrop))
