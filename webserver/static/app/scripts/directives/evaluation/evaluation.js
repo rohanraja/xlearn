@@ -20,13 +20,14 @@ angular.module('sbAdminApp')
           $scope.onStartTest = function(){
 
             trainerservice.testSentance($scope.modelId, $scope.paramsId, $scope.sentance, $scope.currentWeight).then(function(resp){
-              $scope.testResults = resp;
+              $scope.testResults = resp[0];
+              $scope.wordResults = resp[1];
             });
 
-            trainerservice.testSentancePrediction($scope.modelId, $scope.paramsId, $scope.sentance, $scope.currentWeight).then(function(resp){
-              console.log(resp);
-              $scope.wordResults = resp;
-            });
+            // trainerservice.testSentancePrediction($scope.modelId, $scope.paramsId, $scope.sentance, $scope.currentWeight).then(function(resp){
+            //   console.log(resp);
+            //   $scope.wordResults = resp;
+            // });
           };
 
 
