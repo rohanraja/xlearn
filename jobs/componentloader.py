@@ -56,6 +56,7 @@ class ComponentsLoader():
 
         modelClass = modelsIndex.get(self.jinfo["model_id"])
         self.params["jobDir"] = self.jobDir
+        self.params["jinfo"] = self.jinfo
         self.model = modelClass(self.params)
         self.model.jobDir = self.jobDir
         self.model.jinfo = self.jinfo

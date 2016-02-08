@@ -10,6 +10,8 @@ from tornado import gen
 from tornado.web import asynchronous
 import threading
 from colorama import Fore
+from multiprocessing import Process
+
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -43,6 +45,9 @@ class HTTPApi(tornado.web.RequestHandler):
     def post(self):
         message = self.get_argument("data",{})
         Worker(self.onComplete, message).start()
+        # w = Worker(self.onComplete, message)
+        # p = Process(target=w.run, args=())
+        # p.start()
 
     def onComplete(self, result):
         self.finish(dumps(result))

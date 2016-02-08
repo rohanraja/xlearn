@@ -182,12 +182,14 @@ class Job(ComponentsLoader):
     def evaluate_sentance(self, sentance):
 
         try:
+            return self.model.evaluate_sentance(sentance)
+
             sentances = [sentance.split(" ")]
             X, Y = self.mapper.processSentances(sentances)
             X = np.delete(X,0,1)
             return self.perplexicity_sequence(X[0])
         except:
-            print self.model.allOut
+
             tmpfile = join("../tmp", "tmpsent")
             f = open(tmpfile, 'w')
             f.write(sentance)

@@ -6,6 +6,7 @@ from rnn_lm import *
 from mikilov import *
 from rnn_toolkit import *
 from cgt_MLP import *
+from cgt_GRU import *
 
 modelsIndex = {
 
@@ -28,6 +29,7 @@ modelsIndex = {
     16 : RNNLM_FASTER_toolkit,
     17 : N_GRAM,
     18 : CGT_MLP,
+    19 : CGT_GRU_RNN,
 
 }
 

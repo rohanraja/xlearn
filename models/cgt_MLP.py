@@ -40,7 +40,7 @@ class CGT_MLP(BaseCgt):
         
         print "Initializing CGT_MLP Model"
 
-        cgt.update_config(default_device=cgt.core.Device(devtype="cpu"), backend="native")
+        cgt.update_config(default_device=cgt.core.Device(devtype="cpu"), backend="python")
 
         self.hypParams = hyperParams
 
@@ -85,3 +85,4 @@ class CGT_MLP(BaseCgt):
         }
 
         return out
+

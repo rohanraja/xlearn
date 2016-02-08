@@ -10,21 +10,27 @@ from keras_custom.utils.np_utils import to_categorical
 class TestModel(unittest.TestCase):
 
 
-    def test_cgt_model(self):
+    def test_cgt_rnn(self):
 
-        DS = datasetsIndex[12]
+        # DS = datasetsIndex[14]
+        #
+        # data = DS()
+        #
+        # M = mappersIndex[5]
+        #
+        # m = M(data)
 
-        data = DS()
-
-        M = mappersIndex[5]
-
-        m = M(data)
-
-        Model = modelsIndex[18]
+        Model = modelsIndex[19]
 
         md = Model()
 
-        md.train(m.X,m.Y,0,0)
+        md.loadWeights("test1/params_out")
+        # md.train()
+        # md.generateSequence()
+        # md.evaluate_sentance("She ate a little amount")
+        md.evaluate_sentance("The Queen said that there will be no")
+        # md.evaluate_sentance("And then the Queen said to my other twin")
+        md.evaluate()
 
 
     def Test_mapper_output(self):

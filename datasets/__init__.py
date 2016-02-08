@@ -3,6 +3,7 @@ from gsquant import *
 from brown_1000 import *
 from google_bench import *
 from mnist import *
+from seqloader import *
 import json
 
 datasetsIndex = {
@@ -21,6 +22,7 @@ datasetsIndex = {
     11 : Hindi_5l_val,
     12 : Mnist_CGT,
     13 : Mnist_CGT_Test,
+    14 : CGT_Sequence,
 }
 
 from basedataset import BaseDataset
