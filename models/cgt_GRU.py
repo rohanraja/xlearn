@@ -255,6 +255,9 @@ class CGT_GRU_RNN(BaseCgtRNN):
         self.hypParams = hyperParams
 
         self.loadAllHypParams()
+
+        self.num_hidden_units = 2 * self.n_layers if self.rnn_type == "lstm" else self.n_layers
+
         self.loader = Loader(self.data_dir, self.size_batch, self.n_unroll, (self.train_split, self.valid_split), bool(self.word_tokens) )
         # if self.valid_split == 0.0:
         #     self.eval_iter = self.loader.train_batches_iter
@@ -289,7 +292,7 @@ class CGT_GRU_RNN(BaseCgtRNN):
 
 
         def initialize_hiddens(n):
-            return [np.ones((n, self.size_mem), cgt.floatX) for _ in xrange(self.n_layers)]
+            return [np.ones((n, self.size_mem), cgt.floatX) for _ in xrange(self.num_hidden_units)]
 
         self.initialize_hiddens = initialize_hiddens 
 
@@ -305,7 +308,7 @@ class CGT_GRU_RNN(BaseCgtRNN):
                 "train_split": 1.0,
                 "valid_split": 0.0,
                 "word_tokens": 1,
-                "rnn_type": "simple",
+                "rnn_type": "lstm",
                 "bi": 1,
         }
 

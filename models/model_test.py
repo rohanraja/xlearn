@@ -24,7 +24,7 @@ class TestModel(unittest.TestCase):
 
         md = Model()
 
-        md.loadWeights("test1/params_out")
+        # md.loadWeights("test1/params_out")
         # md.train()
         # md.generateSequence()
         # md.evaluate_sentance("She ate a little amount")

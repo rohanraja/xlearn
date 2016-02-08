@@ -50,6 +50,37 @@ def make_simple_rnn(size_input, size_mem, n_layers, size_output, size_batch, bi=
 
     return nn.Module(inputs, outputs)
 
+def make_deep_lstm(size_input, size_mem, n_layers, size_output, size_batch, bi=False):
+    inputs = [cgt.matrix(fixed_shape=(size_batch, size_input))]
+    for _ in xrange(n_layers):
+        inputs.append(cgt.matrix(fixed_shape=(size_batch, size_mem)))
+    outputs = []
+    for i_layer in xrange(n_layers/2):
+        prev_h = inputs[i_layer*2]
+        prev_c = inputs[i_layer*2+1]
+        if i_layer==0:
+            x = inputs[0]
+            size_x = size_input
+        else:
+            x = outputs[(i_layer-1)*2]
+            size_x = size_mem
+        input_sums = nn.Affine(size_x, 4*size_mem)(x) + nn.Affine(size_x, 4*size_mem)(prev_h)
+        sigmoid_chunk = cgt.sigmoid(input_sums[:,0:3*size_mem])
+        in_gate = sigmoid_chunk[:,0:size_mem]
+        forget_gate = sigmoid_chunk[:,size_mem:2*size_mem]
+        out_gate = sigmoid_chunk[:,2*size_mem:3*size_mem]
+        in_transform = cgt.tanh(input_sums[:,3*size_mem:4*size_mem])
+        next_c = forget_gate*prev_c + in_gate * in_transform
+        next_h = out_gate*cgt.tanh(next_c)
+        outputs.append(next_c)
+        outputs.append(next_h)
+
+    if bi == False:
+      category_activations = nn.Affine(size_mem, size_output)(outputs[-1])
+      logprobs = nn.logsoftmax(category_activations)
+      outputs.append(logprobs)
+
+    return nn.Module(inputs, outputs)
 def make_deep_gru(size_input, size_mem, n_layers, size_output, size_batch, bi=False):
     print "Building GRU Network"
     # import ipdb; ipdb.set_trace()
@@ -81,7 +112,8 @@ def make_deep_gru(size_input, size_mem, n_layers, size_output, size_batch, bi=Fa
 
 networks_dict = {
         "gru" : make_deep_gru,
-        "simple": make_simple_rnn
+        "simple": make_simple_rnn,
+        "lstm": make_deep_lstm,
 }
 
 def ind2onehot_cgt(inds, n_cls):
@@ -108,6 +140,11 @@ def make_loss_and_grad_and_step(arch,
     # targ_tnk = cgt.tensor3()
 
     make_network = networks_dict[arch]
+
+    if arch == "lstm":
+      n_layers= n_layers * 2
+
+    print n_layers
     # if bi == True:
     #   if arch == "simple":
     #     make_network = make_bi_simple_rnn
