@@ -46,7 +46,7 @@ class TestDatasetNepal(unittest.TestCase):
 
     def test_rnn_loader(self):
         
-        l = Loader("../datasets/sherlok" , 64, 6,(1,0,0), True)
+        l = Loader("../datasets/novels" , 64, 6,(1,0,0), True)
         x,y = l.train_batches_iter().next()
 
         # print Fore.GREEN, l.char2ind

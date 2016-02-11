@@ -1,8 +1,12 @@
 from xlearn.webserver.trainer import *
+from xlearn.models import cgt_GRU
 import numpy as np
 from colorama import Fore
 from os.path import join
 import re
+from colorama import Fore
+
+cgt_GRU.config["isTraining"] = False
 
 CUP = '\x1b[1A'
 ER = '\x1b[2K'
@@ -10,8 +14,8 @@ NL = CUP + ER
 
 
 params = {}
-params["modelId"] = "15"
-params["paramsId"] = "4"
+params["modelId"] = "16"
+params["paramsId"] = "0"
 
 
 questions = {}
@@ -71,11 +75,16 @@ parseAns()
 
 cumScore = 0.0
 
+
+# fdset = open("qdata.txt", 'w')
+
 def evalQuestion(quest):
 
     ppxMax = 9999999
     ppxId = 'x'
     global cumScore
+
+    lines = []
 
     for k in quest:
         if k == "Ans":
@@ -85,10 +94,15 @@ def evalQuestion(quest):
 
         if k == quest["Ans"]:
             cumScore += ppx
+            print Fore.GREEN ,ppx, quest[k], Fore.WHITE
+            # fdset.write(quest[k] + " ")
+        else:
+            print Fore.MAGENTA ,ppx, quest[k], Fore.WHITE
         
         if ppx < ppxMax:
             ppxMax = ppx
             ppxId = k
+
 
     return ppxId == quest["Ans"]
 
@@ -98,14 +112,17 @@ totalCorrect = 0
 print params
 print "TOBEDELETED"
 
+
 for i,ques in enumerate(questions):
 
     totalCorrect += int(evalQuestion(questions[ques]))
 
     mean = (float(totalCorrect) /float(i+1) )*100.0
     meanPPX = cumScore / float(i+1)
-    print NL , "%d/%d - Acc %.3f%%, Ppx %.3f " % (i+1, len(questions), mean , meanPPX)
+    print "%d/%d - Acc %.3f%%, Ppx %.3f " % (i+1, len(questions), mean , meanPPX)
 
+
+# fdset.close()
 
 
 

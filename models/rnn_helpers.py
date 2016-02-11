@@ -9,6 +9,12 @@ from param_collection import ParamCollection
 from colorama import Fore
 
 
+config = {
+
+    'isTraining' :False,
+    'isLoss' : False,
+}
+
 def make_bi_simple_rnn(size_input, size_mem, n_layers, size_output, size_batch):
     print "Building Bidirectional Simple RNN Network"
     inputs = [cgt.matrix() for i_layer in xrange(n_layers+1)]
@@ -226,10 +232,17 @@ def make_loss_and_grad_and_step(arch,
 
     with utils.Message("compiling loss+grad"):
         # f_loss_and_grad = cgt.function([alpha, x_tnk, targ_tnk] , [loss + flatgrad] + final_hiddens, updates = updates, givens=givens)
-        f_loss_and_grad =  cgt.function([alpha, x_inp, y_inp] , [loss + flatgrad] + final_hiddens, updates = updates, givens=givens)
+        if config["isTraining"]:
+          f_loss_and_grad =  cgt.function([alpha, x_inp, y_inp] , [loss + flatgrad] + final_hiddens, updates = updates, givens=givens)
+          f_loss = cgt.function(inputs=[x_inp, y_inp] , outputs=[loss], givens=givens)
+        else:
+          f_loss_and_grad =  None #
+          f_loss = None #
+
+          if config["isLoss"]:
+            f_loss = cgt.function(inputs=[x_inp, y_inp] , outputs=[loss], givens=givens)
 
         # f_loss = cgt.function(inputs=[x_tnk, targ_tnk] , outputs=[loss], givens=givens)
-        f_loss = cgt.function(inputs=[x_inp, y_inp] , outputs=[loss], givens=givens)
 
     assert len(init_hiddens) == len(final_hiddens)
 

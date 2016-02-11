@@ -86,7 +86,7 @@ class BaseCgtRNN(BaseCgt):
         except:
             return 0.0
 
-    def evaluate_sentance(self, *othargs):
+    def evaluate_sentance_bi(self, *othargs):
         
 
         # self.loadRedisParams()
@@ -145,7 +145,7 @@ class BaseCgtRNN(BaseCgt):
             topNWords.insert(0, words[i])
 
             omap = {}
-            val = "%s(%d)" % (words[i], index)
+            val = "%s(%d)" % (words[i], tarIdx)
             omap[val] = zip(topNWords, topNProbabs)
             outMap.append(omap)
             # import pprint
@@ -200,6 +200,7 @@ class BaseCgtRNN(BaseCgt):
             topNProbabs = wordPreds[topNWords]
             topNProbabs = map(lambda p: "%.3f"%p, topNProbabs)
 
+
             topNWords = map(lambda wid: "%s(%d)" % (ind2char[wid], wid), topNWords)
 
             omap = {}
@@ -250,11 +251,16 @@ class CGT_GRU_RNN(BaseCgtRNN):
         print "Initializing CGT_RNN Model"
 
         bend = "python" if IS_PROFILE else "native"
-        # bend = "python"
+        bend = "python"
         cgt.update_config(default_device=cgt.core.Device(devtype="cpu"), backend=bend)
         self.hypParams = hyperParams
 
         self.loadAllHypParams()
+
+        if self.bi == 1:
+            self.evaluate_sentance = self.evaluate_sentance_bi
+        else:
+            self.evaluate_sentance = self.evaluate_sentance_single
 
         self.num_hidden_units = 2 * self.n_layers if self.rnn_type == "lstm" else self.n_layers
 
@@ -262,7 +268,8 @@ class CGT_GRU_RNN(BaseCgtRNN):
         # if self.valid_split == 0.0:
         #     self.eval_iter = self.loader.train_batches_iter
         # else:
-        self.eval_iter = self.loader.train_batches_iter
+
+        self.eval_iter = self.loader.test_batches_iter
 
         self.size_vocab = self.loader.size_vocab
 
@@ -308,8 +315,8 @@ class CGT_GRU_RNN(BaseCgtRNN):
                 "train_split": 1.0,
                 "valid_split": 0.0,
                 "word_tokens": 1,
-                "rnn_type": "lstm",
-                "bi": 1,
+                "rnn_type": "gru",
+                "bi": 0,
         }
 
         return out
