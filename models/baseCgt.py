@@ -129,9 +129,15 @@ class BaseCgt():
         err, cost = self.computeloss(X, Y)
         return err
 
-    def saveWeights(self, fpath):
+    def saveWeights(self, fpath=None):
 
-        print "Saving CGT Weights in %s" % fpath
+        if fpath == None:
+            fpath = self.jobDir + "/params_out"
+
+        print "Saving CGT Weights"
+        paramsOut = self.paramOut()
+        self.paramResume.record(fpath)
+        self.paramResume(*paramsOut)
 
     
     def loadRedisParams(self):
@@ -154,7 +160,9 @@ class BaseCgt():
         except Exception, e:
             print "\n ERROR: COULDNT LOAD REDIS PARAMS: %s\n" % e
 
-    def loadWeights(self, fpath):
+    def loadWeights(self, fpath=None):
+        if fpath == None:
+            fpath = self.jobDir + "/params_out"
 
         print "Loading CGT Weights in %s" % fpath
         self.paramResume.runSched(fpath)

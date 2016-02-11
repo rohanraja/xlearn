@@ -18,6 +18,9 @@ ER = '\x1b[2K'
 NL = CUP + ER
 
 IS_PROFILE = False
+IS_SAVING = True
+IS_TIMING = False
+import time
 
 class BaseCgtRNN(BaseCgt):
 
@@ -25,11 +28,10 @@ class BaseCgtRNN(BaseCgt):
 
         loader = self.loader #othargs[0]
 
-        isSaved = self.writeCGTBinary()
-
-        # import ipdb; ipdb.set_trace()
-        # if not isSaved :
-        #     self.queue_redis()
+        if IS_SAVING:
+            isSaved = self.writeCGTBinary()
+        else:
+            isSaved = True
 
 
         for iepoch in xrange(40):
@@ -37,10 +39,22 @@ class BaseCgtRNN(BaseCgt):
             print "starting epoch",iepoch
             numm = 0
             for (x,y) in loader.train_batches_iter():
+
                 if numm == 1 and IS_PROFILE :
                     profiler.start()
 
-                out = self.trainf(0.9, x,y)
+                if IS_TIMING:
+                    st = time.time()
+
+                try:
+                    out = self.trainf(0.9, x,y)
+                except KeyboardInterrupt:
+                    self.saveWeights()
+                    sys.exit(0)
+
+                if IS_TIMING:
+                    end = time.time()
+                    print "Time Taken: %s Seconds" % (end - st)
 
                 if numm == 1 and IS_PROFILE :
                     profiler.print_stats()
@@ -49,6 +63,7 @@ class BaseCgtRNN(BaseCgt):
                 try:
                     loss = out[0]
                     losses.append(loss)
+                    print np.exp(np.mean(losses))
                 except:
                     pass
 
@@ -60,6 +75,8 @@ class BaseCgtRNN(BaseCgt):
             # self.evaluate(loader)
             # self.generateSequence(loader)
             print np.exp(np.mean(losses))
+            self.saveWeights()
+
 
         self.queue_redis()
 
@@ -251,7 +268,7 @@ class CGT_GRU_RNN(BaseCgtRNN):
         print "Initializing CGT_RNN Model"
 
         bend = "python" if IS_PROFILE else "native"
-        bend = "python"
+        # bend = "python"
         cgt.update_config(default_device=cgt.core.Device(devtype="cpu"), backend=bend)
         self.hypParams = hyperParams
 
