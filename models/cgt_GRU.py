@@ -61,6 +61,9 @@ class BaseCgtRNN(BaseCgt):
                     profiler.print_stats()
                     return
                 numm += 1
+                if (not IS_SAVING) and numm%20 == 0:
+                    self.saveWeights()
+
                 try:
                     loss = out[0]
                     losses.append(loss)
