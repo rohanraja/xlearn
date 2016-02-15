@@ -136,26 +136,18 @@ class BaseCgt():
 
         print "Saving CGT Weights"
         paramsOut = self.paramOut()
-        self.paramResume.record(fpath)
-        self.paramResume(*paramsOut)
+        self.paramResume.record(fpath, *paramsOut)
+        # self.paramResume(*paramsOut)
 
     
     def loadRedisParams(self):
+
         try:
             jid = self.hypParams["job_id"]
-        except:
-            jid = "5_4"
-
-        try:
             prms = r_server.hget("job:cgt:params", jid)
-
             f = open("tmp.params", 'w')
             f.write(prms)
             f.close()
-
-            # import time
-            # time.sleep(5)
-
             self.loadWeights("tmp.params")
         except Exception, e:
             print "\n ERROR: COULDNT LOAD REDIS PARAMS: %s\n" % e

@@ -18,6 +18,7 @@ ER = '\x1b[2K'
 NL = CUP + ER
 
 IS_PROFILE = False
+bend = "python" if IS_PROFILE else "native"
 IS_SAVING = True
 IS_TIMING = False
 import time
@@ -267,8 +268,6 @@ class CGT_GRU_RNN(BaseCgtRNN):
         
         print "Initializing CGT_RNN Model"
 
-        bend = "python" if IS_PROFILE else "native"
-        # bend = "python"
         cgt.update_config(default_device=cgt.core.Device(devtype="cpu"), backend=bend)
         self.hypParams = hyperParams
 

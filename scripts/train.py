@@ -11,6 +11,7 @@ cgt_GRU.config["isTraining"] = True
 cgt_GRU.config["isLoss"] = True
 cgt_GRU.IS_SAVING = False
 cgt_GRU.IS_TIMING = True
+cgt_GRU.bend = "python"
 
 CUP = '\x1b[1A'
 ER = '\x1b[2K'
