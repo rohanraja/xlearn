@@ -2,9 +2,9 @@ from base import *
 
 cgt_GRU.config["isTraining"] = True
 cgt_GRU.config["isLoss"] = True
-cgt_GRU.IS_SAVING = False
-cgt_GRU.IS_TIMING = True
-cgt_GRU.bend = "python"
+cgt_GRU.IS_SAVING = True
+cgt_GRU.IS_TIMING = False
+cgt_GRU.bend = "native"
 
 job = getJob(params)
 

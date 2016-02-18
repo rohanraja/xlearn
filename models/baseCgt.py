@@ -99,11 +99,11 @@ class BaseCgt():
         try:
             fname = self.jobDir + "/"
             jid = self.hypParams["job_id"]
-            zipFolder = "cgtjobs/"
         except:
             jid = "5_0"
             self.jobDir = "./test1"
-            zipFolder = "../webserver/cgtjobs/"
+
+        zipFolder = "../webserver/cgtjobs/"
 
         if not os.path.isfile(zipFolder + jid + ".zip"):
             shutil.make_archive(zipFolder + jid , 'zip', self.jobDir)
@@ -137,7 +137,6 @@ class BaseCgt():
         print "Saving CGT Weights"
         paramsOut = self.paramOut()
         self.paramResume.record(fpath, *paramsOut)
-        # self.paramResume(*paramsOut)
 
     
     def loadRedisParams(self):
