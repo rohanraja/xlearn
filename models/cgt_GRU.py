@@ -27,6 +27,8 @@ class BaseCgtRNN(BaseCgt):
 
     def train(self, *othargs):
 
+        self.check_init()
+
         loader = self.loader #othargs[0]
 
         if IS_SAVING:
@@ -89,6 +91,8 @@ class BaseCgtRNN(BaseCgt):
         self.paramResume.finish_record()
 
     def evaluate(self, *othargs):
+
+        self.check_init()
 
         loader = self.loader #othargs[0]
         losses = []
@@ -267,12 +271,29 @@ class BaseCgtRNN(BaseCgt):
 
 class CGT_GRU_RNN(BaseCgtRNN):
 
+
     def __init__(self, hyperParams=None, *otherargs):
         
-        print "Initializing CGT_RNN Model"
 
-        cgt.update_config(default_device=cgt.core.Device(devtype="cpu"), backend=bend)
         self.hypParams = hyperParams
+
+        self.is_initialized = False
+
+        self.worker_id = 5
+
+
+    def check_init(self):
+
+        if self.is_initialized:
+            return
+        else:
+            self.initialize()
+            self.is_initialized = True
+
+    def initialize(self):
+
+        print "Initializing CGT_RNN Model"
+        cgt.update_config(default_device=cgt.core.Device(devtype="cpu"), backend=bend)
 
         self.loadAllHypParams()
 
@@ -283,7 +304,18 @@ class CGT_GRU_RNN(BaseCgtRNN):
 
         self.num_hidden_units = 2 * self.n_layers if self.rnn_type == "lstm" else self.n_layers
 
-        self.loader = Loader(self.data_dir, self.size_batch, self.n_unroll, (self.train_split, self.valid_split), bool(self.word_tokens) )
+        print self.worker_id
+
+        self.loader = Loader(
+                self.data_dir, 
+                self.size_batch, 
+                self.n_unroll, 
+                (self.train_split, self.valid_split),
+                bool(self.word_tokens),
+                self.num_workers,
+                self.worker_id
+        )
+
         # if self.valid_split == 0.0:
         #     self.eval_iter = self.loader.train_batches_iter
         # else:
@@ -336,6 +368,7 @@ class CGT_GRU_RNN(BaseCgtRNN):
                 "word_tokens": 1,
                 "rnn_type": "gru",
                 "bi": 0,
+                "num_workers": 5,
         }
 
         return out

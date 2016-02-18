@@ -8,8 +8,14 @@ cgt_GRU.bend = "python"
 
 job = getJob(params)
 
+try:
+    job.model.worker_id = int(sys.argv[3])
+except Exception, e:
+    print e
+
 job.model.loadWeights()
 
-job.model.train()
+job.model.updateRedisParams()
+# job.model.train()
 
 

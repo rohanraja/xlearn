@@ -8,7 +8,7 @@ cgt_GRU.bend = "python"
 
 job = getJob(params)
 
-job.model.loadWeights()
+# job.model.loadWeights()
 job.model.loadRedisParams()
 
 job.model.evaluate()

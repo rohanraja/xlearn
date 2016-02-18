@@ -3,6 +3,7 @@ import os
 import zipfile
 from redis_utils import r_server
 import json
+import cgt
 
 def zipdir(path, zipname):
 
@@ -138,8 +139,50 @@ class BaseCgt():
         paramsOut = self.paramOut()
         self.paramResume.record(fpath, *paramsOut)
 
+
+    def writeRedisParams(self):
+        self.check_init()
+        print "Writing params to REDIS"
+
+        try:
+            self.saveWeights()
+            jid = self.hypParams["job_id"]
+            fpath = self.jobDir + "/params_out"
+            f = open(fpath, 'rb')
+            prms = f.read()
+            f.close()
+            r_server.hset("job:cgt:params", jid, prms)
+
+        except Exception, e:
+            print "\n ERROR: COULDNT SAVE REDIS PARAMS: %s\n" % e
     
+    def updateRedisParams(self):
+        try:
+            jid = self.hypParams["job_id"]
+            prms = r_server.hget("job:cgt:params", jid)
+            f = open("tmp.params", 'w')
+            f.write(prms)
+            f.close()
+            ars = cgt.cycgt.arrays_from_file("tmp.params")
+            prms = ars[0]
+            paramsOut = self.paramOut()
+            p_updated = []
+
+            for pold, pnew in zip(prms, paramsOut):
+                p_updated.append((pold + pnew) / 2.0 )
+
+            self.paramResume(*p_updated)
+            self.writeRedisParams()
+
+
+        except Exception, e:
+            self.writeRedisParams()
+            print "\n ERROR: COULDNT LOAD REDIS PARAMS: %s\n" % e
+
+
     def loadRedisParams(self):
+        self.check_init()
+        print "loading params from REDIS"
 
         try:
             jid = self.hypParams["job_id"]
@@ -152,6 +195,8 @@ class BaseCgt():
             print "\n ERROR: COULDNT LOAD REDIS PARAMS: %s\n" % e
 
     def loadWeights(self, fpath=None):
+        self.check_init()
+
         if fpath == None:
             fpath = self.jobDir + "/params_out"
 

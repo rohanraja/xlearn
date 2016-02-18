@@ -10,7 +10,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 class Loader(object):
-    def __init__(self, data_dir, size_batch, n_unroll, split_fractions, wordSeq = False):
+    def __init__(self, data_dir, size_batch, n_unroll, split_fractions, wordSeq = False, num_partitions = 1, worker_id = -1):
         input_file = osp.join(data_dir,"input.txt")
         self.valid_file = osp.join(data_dir,"valid.txt")
         self.test_file = osp.join(data_dir,"test.txt")
@@ -42,6 +42,13 @@ class Loader(object):
         self.test_batches_iter = self.generateGenerator(self.test_file, (self.n_train_batches, self.n_train_batches + self.n_test_batches))
         self.valid_batches_iter = self.generateGenerator(self.valid_file, (self.n_train_batches + self.n_test_batches, self.n_train_batches + self.n_test_batches + self.n_val_batches))
 
+        if worker_id == -1 or worker_id >= num_partitions :
+            self.train_range = xrange(self.n_train_batches)
+        else:
+            chunk_size = self.n_train_batches / num_partitions
+            self.train_range = xrange(worker_id*chunk_size , (worker_id+1)*chunk_size )
+            print "NumTrainBatches", chunk_size
+
 
     def get_data(self, fname):
         f = open(fname, 'r')
@@ -58,7 +65,7 @@ class Loader(object):
         return len(self.char2ind)
 
     def train_batches_iter(self):
-        for i in xrange(self.n_train_batches):
+        for i in self.train_range:
             start = i*self.n_unroll
             stop = (i+1)*self.n_unroll
             yield ind2onehot(self.data[start:stop], self.size_vocab), ind2onehot(self.data[start+1:stop+1], self.size_vocab) # XXX
