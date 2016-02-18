@@ -52,7 +52,7 @@ class BaseCgtRNN(BaseCgt):
                 try:
                     out = self.trainf(0.9, x,y)
                 except KeyboardInterrupt:
-                    self.saveWeights()
+                    self.updateRedisParams()
                     sys.exit(0)
 
                 if IS_TIMING:
@@ -81,7 +81,7 @@ class BaseCgtRNN(BaseCgt):
             # self.evaluate(loader)
             # self.generateSequence(loader)
             print np.exp(np.mean(losses))
-            self.saveWeights()
+            self.updateRedisParams()
 
 
         self.queue_redis()
