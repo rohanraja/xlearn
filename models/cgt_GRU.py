@@ -63,13 +63,13 @@ class BaseCgtRNN(BaseCgt):
                     profiler.print_stats()
                     return
                 numm += 1
-                if (not IS_SAVING) and numm%20 == 0:
-                    self.saveWeights()
+                if (not IS_SAVING) and numm%5 == 0:
+                    self.updateRedisParams()
 
                 try:
                     loss = out[0]
                     losses.append(loss)
-                    print np.exp(np.mean(losses))
+                    print np.exp(loss), np.exp(np.mean(losses))
                 except:
                     pass
 

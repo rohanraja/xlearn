@@ -133,7 +133,7 @@ class BaseCgt():
     def saveWeights(self, fpath=None):
 
         if fpath == None:
-            fpath = self.jobDir + "/params_out"
+            fpath = self.jobDir + "/params_out"+ str(self.worker_id)
 
         print "Saving CGT Weights"
         paramsOut = self.paramOut()
@@ -147,7 +147,7 @@ class BaseCgt():
         try:
             self.saveWeights()
             jid = self.hypParams["job_id"]
-            fpath = self.jobDir + "/params_out"
+            fpath = self.jobDir + "/params_out"+ str(self.worker_id)
             f = open(fpath, 'rb')
             prms = f.read()
             f.close()
@@ -160,10 +160,10 @@ class BaseCgt():
         try:
             jid = self.hypParams["job_id"]
             prms = r_server.hget("job:cgt:params", jid)
-            f = open("tmp.params", 'w')
+            f = open("tmp.params" + str(self.worker_id), 'w')
             f.write(prms)
             f.close()
-            ars = cgt.cycgt.arrays_from_file("tmp.params")
+            ars = cgt.cycgt.arrays_from_file("tmp.params"+ str(self.worker_id))
             prms = ars[0]
             paramsOut = self.paramOut()
             p_updated = []
