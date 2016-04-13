@@ -430,5 +430,8 @@ class Job(ComponentsLoader):
         import json
         json.dump(p, open(fname, 'w'))
 
+    def getWordVec(self, word):
+        return self.model.getWordVec(word)
+
 
 

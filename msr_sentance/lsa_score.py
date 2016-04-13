@@ -5,6 +5,7 @@ from colorama import Fore
 from os.path import join
 import re
 from colorama import Fore
+from scipy import linalg
 
 cgt_GRU.config["isTraining"] = False
 cgt_GRU.config["isLoss"] = True
@@ -26,9 +27,31 @@ params["paramsId"] = sys.argv[2]
 questions = {}
 
 job = getJob(params)
+# job.model.loadWeights("/home/rohanr/code/distx/cgtjobs/21_0/params_out")
 job.model.loadWeights()
 # job.model.evaluate()
 
+
+def getLSA(word1, word2):
+
+    v1 = job.model.getWordVec(word1)
+    v2 = job.model.getWordVec(word2)
+
+    dotp = v1.dot(v2.T)
+    out = dotp / linalg.norm(v1)
+    out = out / linalg.norm(v2)
+    return out
+
+def getSentLSA(sentance, word):
+    
+    lsaCum = 0.0
+
+    for w in sentance.split(" "):
+        if w == word:
+            continue
+        lsaCum += getLSA(w, word)
+
+    return lsaCum
 
 def getPPx(sentance):
 
@@ -85,9 +108,22 @@ cumScore = 0.0
 
 # fdset = open("qdata.txt", 'w')
 
+def getAnswerWordIdx(quest):
+
+    w1 = quest['a'].split(" ")
+    w2 = quest['b'].split(" ")
+
+    for i in range(len(w1)):
+        if w1[i] != w2[i]:
+            return i
+
+
+
 def evalQuestion(quest):
 
-    ppxMax = 9999999
+    wIdx = getAnswerWordIdx(quest)
+
+    ppxMax = -9999999
     ppxId = 'x'
     global cumScore
 
@@ -97,7 +133,8 @@ def evalQuestion(quest):
         if k == "Ans":
             continue
 
-        ppx = getPPx(quest[k])
+        # ppx = getPPx(quest[k])
+        ppx = getSentLSA(quest[k], quest[k].split(" ")[wIdx])
 
         if k == quest["Ans"]:
             cumScore += ppx
@@ -106,7 +143,7 @@ def evalQuestion(quest):
         else:
             print Fore.MAGENTA ,ppx, quest[k], Fore.WHITE
         
-        if ppx < ppxMax:
+        if ppx > ppxMax:
             ppxMax = ppx
             ppxId = k
 
@@ -115,10 +152,6 @@ def evalQuestion(quest):
 
 
 totalCorrect = 0
-
-print params
-print "TOBEDELETED"
-
 
 for i,ques in enumerate(questions):
 
@@ -130,9 +163,3 @@ for i,ques in enumerate(questions):
 
 
 # fdset.close()
-
-
-
-
-
-

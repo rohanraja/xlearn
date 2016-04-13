@@ -11,8 +11,8 @@ from colorama import Fore
 
 config = {
 
-    'isTraining' :False,
-    'isLoss' : False,
+    'isTraining' :True,
+    'isLoss' : True,
 }
 
 def make_bi_simple_rnn(size_input, size_mem, n_layers, size_output, size_batch):

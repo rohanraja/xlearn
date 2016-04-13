@@ -69,7 +69,7 @@ class BaseCgtRNN(BaseCgt):
                 try:
                     loss = out[0]
                     losses.append(loss)
-                    print np.exp(loss), np.exp(np.mean(losses))
+                    print np.exp(np.mean(loss)), np.exp(np.mean(losses))
                 except:
                     pass
 
@@ -268,6 +268,15 @@ class BaseCgtRNN(BaseCgt):
         for k in self.defaultParams():
             self.loadHypParam(k)
 
+    def getWordVec(self, word):
+
+        loader = self.loader #othargs[0]
+        wordIdx = loader.char2ind.get(word, 0)
+        params = self.network.get_parameters()
+        pc = ParamCollection(params)
+        return pc.get_values()[0][wordIdx]
+
+
 
 class CGT_GRU_RNN(BaseCgtRNN):
 
@@ -304,8 +313,6 @@ class CGT_GRU_RNN(BaseCgtRNN):
 
         self.num_hidden_units = 2 * self.n_layers if self.rnn_type == "lstm" else self.n_layers
 
-        print self.worker_id
-
         self.loader = Loader(
                 self.data_dir, 
                 self.size_batch, 
@@ -316,15 +323,11 @@ class CGT_GRU_RNN(BaseCgtRNN):
                 self.worker_id
         )
 
-        # if self.valid_split == 0.0:
-        #     self.eval_iter = self.loader.train_batches_iter
-        # else:
-
         self.eval_iter = self.loader.test_batches_iter
 
         self.size_vocab = self.loader.size_vocab
 
-        network, f_loss, f_loss_and_grad, self.f_step, self.paramResume, self.paramOut = make_loss_and_grad_and_step(
+        self.network, f_loss, f_loss_and_grad, self.f_step, self.paramResume, self.paramOut = make_loss_and_grad_and_step(
                 self.rnn_type, 
                 self.size_vocab, 
                 self.size_vocab, 
@@ -335,12 +338,12 @@ class CGT_GRU_RNN(BaseCgtRNN):
                 self.bi,
                 )
 
-        self.params = network.get_parameters()
+        self.params = self.network.get_parameters()
 
         self.computeloss = f_loss
         self.trainf = f_loss_and_grad
         
-        params = network.get_parameters()
+        params = self.network.get_parameters()
         pc = ParamCollection(params)
         pcInit = nr.uniform(-.1, .1, size=(pc.get_total_size(),))
         # pcInit = np.ones((pc.get_total_size(),))
