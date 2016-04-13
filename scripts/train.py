@@ -15,7 +15,7 @@ except Exception, e:
 
 job.model.loadWeights()
 
-job.model.updateRedisParams()
-# job.model.train()
+# job.model.updateRedisParams()
+job.model.train()
 
 

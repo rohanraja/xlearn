@@ -21,6 +21,7 @@ IS_PROFILE = False
 bend = "python" if IS_PROFILE else "native"
 IS_SAVING = True
 IS_TIMING = False
+IS_RESUMING = False
 import time
 
 class BaseCgtRNN(BaseCgt):
@@ -37,6 +38,7 @@ class BaseCgtRNN(BaseCgt):
             isSaved = True
 
 
+
         for iepoch in xrange(40):
             losses = []
             print "starting epoch",iepoch
@@ -46,25 +48,36 @@ class BaseCgtRNN(BaseCgt):
                 if numm == 1 and IS_PROFILE :
                     profiler.start()
 
+                if self.IS_RESUMING:
+                    if numm < self.RESUMING_NUM:
+                        numm += 1
+                        continue
+                    else:
+                        print "RESUMING AT %d" % numm
+                        self.IS_RESUMING = False
+
                 if IS_TIMING:
                     st = time.time()
 
                 try:
                     out = self.trainf(0.9, x,y)
                 except KeyboardInterrupt:
-                    self.updateRedisParams()
+                    self.saveWeights()
                     sys.exit(0)
 
                 if IS_TIMING:
                     end = time.time()
-                    print "Time Taken: %s Seconds" % (end - st)
+                    print "%d: Time Taken: %s Seconds" % (numm, (end - st))
 
                 if numm == 1 and IS_PROFILE :
                     profiler.print_stats()
                     return
+
                 numm += 1
+
+                self.iterNum = numm
                 if (not IS_SAVING) and numm%5 == 0:
-                    self.updateRedisParams()
+                    self.saveWeights()
 
                 try:
                     loss = out[0]
@@ -81,7 +94,7 @@ class BaseCgtRNN(BaseCgt):
             # self.evaluate(loader)
             # self.generateSequence(loader)
             print np.exp(np.mean(losses))
-            self.updateRedisParams()
+            # self.updateRedisParams()
 
 
         self.queue_redis()
@@ -289,6 +302,8 @@ class CGT_GRU_RNN(BaseCgtRNN):
         self.is_initialized = False
 
         self.worker_id = 5
+
+        self.IS_RESUMING = False
 
 
     def check_init(self):

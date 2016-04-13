@@ -139,6 +139,15 @@ class BaseCgt():
         paramsOut = self.paramOut()
         self.paramResume.record(fpath, *paramsOut)
 
+        fpath = self.jobDir + "/state"
+
+        try:
+            with open(fpath, 'w') as f:
+              f.write('%d' % self.iterNum)
+        except:
+            pass
+
+
 
     def writeRedisParams(self):
         self.check_init()
@@ -202,6 +211,13 @@ class BaseCgt():
 
         print "Loading CGT Weights in %s" % fpath
         self.paramResume.runSched(fpath)
+        try:
+            fpath = self.jobDir + "/state"
+            with open(fpath, 'r') as f:
+                self.RESUMING_NUM = int(f.read())
+                self.IS_RESUMING = True
+        except:
+            pass
 
     def getSize(self):
         return 0
