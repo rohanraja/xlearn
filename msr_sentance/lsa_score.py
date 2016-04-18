@@ -16,26 +16,27 @@ CUP = '\x1b[1A'
 ER = '\x1b[2K'
 NL = CUP + ER
 
-
+questions = {}
 params = {}
 import sys
 
-params["modelId"] = sys.argv[1]
-params["paramsId"] = sys.argv[2]
+try:
+    params["modelId"] = sys.argv[1]
+    params["paramsId"] = sys.argv[2]
+    job = getJob(params)
+    # job.model.loadWeights("/home/rohanr/code/distx/cgtjobs/21_0/params_out")
+    job.model.loadWeights()
+    # job.model.evaluate()
+    w2vFunc = job.model.getWordVec
 
-
-questions = {}
-
-job = getJob(params)
-# job.model.loadWeights("/home/rohanr/code/distx/cgtjobs/21_0/params_out")
-job.model.loadWeights()
-# job.model.evaluate()
-
+except:
+    from wordvecs import getWvec
+    w2vFunc = getWvec
 
 def getLSA(word1, word2):
 
-    v1 = job.model.getWordVec(word1)
-    v2 = job.model.getWordVec(word2)
+    v1 = w2vFunc(word1)
+    v2 = w2vFunc(word2)
 
     dotp = v1.dot(v2.T)
     out = dotp / linalg.norm(v1)
