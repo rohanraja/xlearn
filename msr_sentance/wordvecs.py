@@ -1,6 +1,11 @@
 import numpy as np
 
-fname = "out.txt"
+import sys
+
+try:
+    fname = sys.argv[1]
+except:
+    fname = "out.txt"
 
 f = open(fname, 'r')
 
