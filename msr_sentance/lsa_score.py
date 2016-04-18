@@ -33,6 +33,9 @@ except:
     from wordvecs import getWvec
     w2vFunc = getWvec
 
+from freq import getFreq
+from math import sqrt
+
 def getLSA(word1, word2):
 
     v1 = w2vFunc(word1)
@@ -43,6 +46,29 @@ def getLSA(word1, word2):
     out = out / linalg.norm(v2)
     return out
 
+
+common_words = [
+    'a',
+    'the',
+    'am',
+    ',',
+    'which',
+    '.',
+    'with',
+    'you',
+    'have',
+    'not',
+    'on',
+    'of',
+    'was',
+    'his',
+    'and',
+    'to',
+    'in',
+    'that',
+    'it',
+
+]
 def getSentLSA(sentance, word):
     
     lsaCum = 0.0
@@ -50,7 +76,10 @@ def getSentLSA(sentance, word):
     for w in sentance.split(" "):
         if w == word:
             continue
-        lsaCum += getLSA(w, word)
+
+        # if w in common_words:
+        #     continue
+        lsaCum += getLSA(w, word) / float(sqrt(getFreq(w)))
 
     return lsaCum
 
