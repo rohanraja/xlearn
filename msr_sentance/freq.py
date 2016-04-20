@@ -1,7 +1,7 @@
 import sys
 
 try:
-    fname = sys.argv[2]
+    fname = sys.argv[3]
 except:
     fname = "input.txt"
 

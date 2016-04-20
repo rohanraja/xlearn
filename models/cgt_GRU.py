@@ -289,6 +289,26 @@ class BaseCgtRNN(BaseCgt):
         pc = ParamCollection(params)
         return pc.get_values()[0][wordIdx]
 
+    
+    def init_wordvecs(self, vec_dict):
+
+        loader = self.loader #othargs[0]
+        params = self.network.get_parameters()
+        pc = ParamCollection(params)
+
+        allVals = pc.get_values()
+
+        for word in vec_dict:
+
+            wordIdx = loader.char2ind.get(word, 0)
+            try:
+                allVals[0][wordIdx] = vec_dict[word]
+            except:
+                pass
+
+        pc.set_values(allVals)
+
+
 
 
 class CGT_GRU_RNN(BaseCgtRNN):
