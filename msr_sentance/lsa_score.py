@@ -25,6 +25,7 @@ try:
     params["paramsId"] = sys.argv[2]
     job = getJob(params)
     # job.model.loadWeights("/home/rohanr/code/distx/cgtjobs/21_0/params_out")
+    # job.model.check_init()
     job.model.loadWeights()
     # job.model.evaluate()
     w2vFunc = job.model.getWordVec
@@ -34,7 +35,7 @@ except:
     w2vFunc = getWvec
 
 from freq import getFreq
-from math import sqrt
+from math import sqrt, pow
 
 def getLSA(word1, word2):
 
@@ -77,9 +78,9 @@ def getSentLSA(sentance, word):
         if w == word:
             continue
 
-        # if w in common_words:
-        #     continue
-        lsaCum += getLSA(w, word) / float(sqrt(getFreq(w)))
+        if w in common_words:
+            continue
+        lsaCum += getLSA(w, word) / float(pow(getFreq(w), 0.1))
 
     return lsaCum
 

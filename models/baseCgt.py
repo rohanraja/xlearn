@@ -133,7 +133,7 @@ class BaseCgt():
     def saveWeights(self, fpath=None):
 
         if fpath == None:
-            fpath = self.jobDir + "/params_out"+ str(self.worker_id)
+            fpath = self.jobDir + "/params_out"#+ str(self.worker_id)
 
         print "Saving CGT Weights"
         paramsOut = self.paramOut()

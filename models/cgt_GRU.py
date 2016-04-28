@@ -308,8 +308,48 @@ class BaseCgtRNN(BaseCgt):
 
         pc.set_values(allVals)
 
+    def f(self, x0):
+
+        # print "f",
+        loader = self.loader #othargs[0]
+        oldVal = self.getx()
+        self.setx(x0)
+
+        out = 0
+
+        for (x,y) in loader.train_batches_iter():
+            out += self.computeloss(x,y)[0]
+            break
+
+        self.setx(oldVal)
+        return out
+
+    def fprime(self, x0):
+        # print "fp"
+        loader = self.loader #othargs[0]
+        oldVal = self.getx()
+        self.setx(x0)
+
+        out = np.zeros(oldVal.shape)
+
+        for (x,y) in loader.train_batches_iter():
+            out += self.trainf(0,x,y)[0]
+            break
+
+        self.setx(oldVal)
+        return out
 
 
+    def getx(self):
+        params = self.network.get_parameters()
+        pc = ParamCollection(params)
+        return pc.get_value_flat()
+
+    def setx(self, x):
+        params = self.network.get_parameters()
+        pc = ParamCollection(params)
+        pc.set_value_flat(x)
+        
 
 class CGT_GRU_RNN(BaseCgtRNN):
 

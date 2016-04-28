@@ -233,7 +233,7 @@ def make_loss_and_grad_and_step(arch,
     with utils.Message("compiling loss+grad"):
         # f_loss_and_grad = cgt.function([alpha, x_tnk, targ_tnk] , [loss + flatgrad] + final_hiddens, updates = updates, givens=givens)
         if config["isTraining"]:
-          f_loss_and_grad =  cgt.function([alpha, x_inp, y_inp] , [loss + flatgrad] + final_hiddens, updates = updates, givens=givens)
+          f_loss_and_grad =  cgt.function([alpha, x_inp, y_inp] , [flatgrad] + final_hiddens, updates = updates, givens=givens)
           f_loss = cgt.function(inputs=[x_inp, y_inp] , outputs=[loss], givens=givens)
         else:
           f_loss_and_grad =  None #
