@@ -142,7 +142,7 @@ class RNN_LM_trunc(BaseKeras):
 
         self.model = model
         self.compile()
-        self.saveModel()
+        # self.saveModel()
 
 
     def compile(self):

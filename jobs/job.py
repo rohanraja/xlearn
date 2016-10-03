@@ -89,24 +89,52 @@ class Job(ComponentsLoader):
 
 
 
-    def evaluate_dataset_lm(self, dataset_id, num=20):
+    def evaluate_dataset(self, dataset_id, num=20):
+        
+        if dataset_id == -1:
+          try:
+            dataset_id = int(self.params["model"].get("test_id", 10))
+          except:
+            pass
 
         self.loadTestMapper(dataset_id, num)
+        # self.X_tewt = self.mapper_test.X
+        # self.Y_test = self.mapper_test.Y
 
-        ppxConcat = self.perplexicity_sequence(self.X_test.ravel())
+        print "Calculating ppx"
 
-        loss = self.model.model.evaluate(self.X_test, self.Y_test)
+        try:
+            ppxConcat = self.perplexicity_sequence(self.X_test.ravel())
+            print Fore.GREEN, "\nPerplexicity %.2f\n" % ppxConcat
+        except:
+            ppxConcat = self.model.evaluate(self.X_test, self.Y_test)
+            print Fore.GREEN, "\nPerplexicity %s\n" % ppxConcat
 
-        print Fore.GREEN, "\nPerplexicity %.2f\n" % ppxConcat
+
+        try:
+          ppxConcat = self.model.getPPXFromOut(ppxConcat)
+        except:
+          pass
+
+        out = {
+            "Perplexicity": ppxConcat,
+        }
+
+        self.updatePPX(ppxConcat)
+        return out
+
+        loss, acc = self.model.evaluate(self.X_test, self.Y_test)
+
         print Fore.CYAN, "\nPerplexicity from LOSS %.2f\n" % np.exp(loss)
 
-
+        return
         ppxs = []
         # import pdb; pdb.set_trace()
 
+        print "Calculating ppx for all sequences.."
         for i in range(self.X_test.shape[0]):
             ppx = self.perplexicity_sequence(self.X_test[i])
-            print ppx
+            # print ppx
             ppxs.append(ppx)
 
         ppxs = np.array(ppxs)
@@ -119,7 +147,7 @@ class Job(ComponentsLoader):
 
         return out
 
-    def evaluate_dataset(self, dataset_id, num=20):
+    def evaluate_dataset_classify(self, dataset_id, num=20):
 
         self.loadTestMapper(dataset_id, num)
 
@@ -153,12 +181,31 @@ class Job(ComponentsLoader):
 
     def evaluate_sentance(self, sentance):
 
-        sentances = [sentance.split(" ")]
-        X, Y = self.mapper.processSentances(sentances)
-        X = np.delete(X,0,1)
-        return self.perplexicity_sequence(X[0])
+        try:
+            return self.model.evaluate_sentance(sentance)
 
-    def perplexicity_sequence(self, x):
+            sentances = [sentance.split(" ")]
+            X, Y = self.mapper.processSentances(sentances)
+            X = np.delete(X,0,1)
+            return self.perplexicity_sequence(X[0])
+        except:
+
+            tmpfile = join("../tmp", "tmpsent")
+            f = open(tmpfile, 'w')
+            f.write(sentance)
+            f.close()
+
+            ppxConcat = self.model.evaluate(tmpfile, "", 2)
+            print Fore.GREEN, "\nPerplexicity %s\n" % ppxConcat
+
+            out = {
+                "Perplexicity": ppxConcat,
+            }
+
+            return ppxConcat
+
+
+    def perplexicity_sequence_continues(self, x):
         """
         x - sequence of word ids
         """
@@ -180,9 +227,69 @@ class Job(ComponentsLoader):
 
 
         return perplexicity
+
+
+    def logProb(self, word, context):
+
+        
+        predictions = self.model.predict(np.array([context]))
+        prob = predictions[0][-1][word]
+        return -np.log2(prob);
+
+    def perplexicity_sequence(self, x):
+        """
+        x - sequence of word ids
+        """
+        X = x[:-1]
+        y = x[1:]
+
+        predictions = self.model.predict(np.array([X]))
+
+        try:
+            self._n = int(self.params["model"]["depth"])
+        except:
+            self._n = 5
+
+        self._n = 10
+        unknowns = 0
+ 
+        e = 0.0
+        for i in range(self._n - 1, len(x)):
+            context = x[i - self._n + 1:i]
+            token = x[i]
+            if token == 0 or 0 in context or token == 460:
+                unknowns += 1
+                continue
+            cur = self.logProb(token, context)
+            e += cur
+
+            sent = ' '.join(self.mapper.idx_to_sequence( x[i - self._n + 1:i+1] ))
+
+            meanProb = e / float(i - (self._n - 2 + unknowns))
+            ppx = np.exp2(meanProb)
+
+            print "%d/%d - %s\nCur - %0.2f\tPPX - %0.2f" % (i, len(x),sent, np.exp2(cur),ppx)
+
+        try:
+            meanProb = e / float(len(x) - (self._n - 1 + unknowns))
+        except:
+            meanProb = 15
+        
+        # totalProb = 0.0
+        #
+        # for i, wordPreds in enumerate(predictions[0]):
+        #     pWord = wordPreds[(y[i])]
+        #     totalProb -= np.log2(pWord)
+        #
+        # meanProb = totalProb / float(len(X))
+        
+        perplexicity = np.exp2(meanProb)
+
+
+        return perplexicity
  
 
-    def predict_sentance_words(self, sentance):
+    def predict_sentance(self, sentance):
 
         sentances = [sentance.split(" ")]
         X, Y = self.mapper.processSentances(sentances)
@@ -212,7 +319,7 @@ class Job(ComponentsLoader):
 
         return outMap
 
-    def predict_sentance(self, sentance):
+    def predict_sentance_classify(self, sentance):
 
         sentances = [sentance.split(" ")]
         X, Y = self.mapper.processSentances(sentances)
@@ -255,19 +362,23 @@ class Job(ComponentsLoader):
 
     def generate_sentance(self, start="<s>", limit=30):
 
-        sentance = start
-        
-        for i in range(limit):
+        try:
+            sentance = start
+            
+            for i in range(limit):
 
-            nextWord = self.predict_sentance(sentance)[-1]
-            for k in nextWord:
-                nWord, prob = nextWord[k][randint(0,5)]
-            
-            sentance = "%s %s"%(sentance,nWord)
-            print Fore.CYAN, nWord
-            
-        print Fore.MAGENTA, sentance
-        return sentance
+                nextWord = self.predict_sentance(sentance)[-1]
+                for k in nextWord:
+                    nWord, prob = nextWord[k][randint(0,5)]
+                
+                sentance = "%s %s"%(sentance,nWord)
+                print Fore.CYAN, nWord
+                
+            print Fore.MAGENTA, sentance
+            return sentance
+
+        except:
+            return self.model.generate()
 
 
     def evaluate(self, X, Y):
@@ -308,3 +419,19 @@ class Job(ComponentsLoader):
         score = self.model.gridSearch(X,Y)
         from colorama import Fore
         print Fore.YELLOW, "\nBest Score: %.2f %%" % (score * 100)
+
+
+    def updatePPX(self, ppx):
+        
+        p = self.params
+        p["ppx"] = ppx
+        fname = join(self.jobDir, "pinfo.json")
+
+        import json
+        json.dump(p, open(fname, 'w'))
+
+    def getWordVec(self, word):
+        return self.model.getWordVec(word)
+
+
+

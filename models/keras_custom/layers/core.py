@@ -499,7 +499,7 @@ class TimeDistributedDense(MaskedLayer):
     '''
     def __init__(self, input_dim, output_dim, init='glorot_uniform', activation='linear', weights=None,
                  W_regularizer=None, b_regularizer=None, activity_regularizer=None,
-                 W_constraint=None, b_constraint=None):
+                 W_constraint=None, b_constraint=None, addB=True):
 
         super(TimeDistributedDense, self).__init__()
         self.init = initializations.get(init)
@@ -509,9 +509,16 @@ class TimeDistributedDense(MaskedLayer):
 
         self.input = T.tensor3()
         self.W = self.init((self.input_dim, self.output_dim))
-        self.b = shared_zeros((self.output_dim))
 
-        self.params = [self.W, self.b]
+        if addB:
+            self.b = shared_zeros((self.output_dim))
+
+        self.addB = addB
+        
+        if addB:
+            self.params = [self.W, self.b]
+        else:
+            self.params = [self.W]
 
         self.regularizers = []
 
@@ -539,7 +546,10 @@ class TimeDistributedDense(MaskedLayer):
 
     def get_output(self, train=False):
         X = self.get_input(train)
-        output = self.activation(T.dot(X.dimshuffle(1, 0, 2), self.W) + self.b)
+        if self.addB:
+            output = self.activation(T.dot(X.dimshuffle(1, 0, 2), self.W) + self.b)
+        else:
+            output = self.activation(T.dot(X.dimshuffle(1, 0, 2), self.W))
         return output.dimshuffle(1, 0, 2)
 
     def get_config(self):

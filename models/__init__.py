@@ -3,6 +3,10 @@ from lstm import LSTM_0, MLP_0
 from mlp_quant_1 import MLP_QUANT
 from svm_quant import *
 from rnn_lm import *
+from mikilov import *
+from rnn_toolkit import *
+from cgt_MLP import *
+from cgt_GRU import *
 
 modelsIndex = {
 
@@ -20,6 +24,12 @@ modelsIndex = {
     11 : RNN_LM_Deep,
     12 : RNN_LM_trunc,
     13 : RNN_classify,
+    14 : RNNLM_Mikolov,
+    15 : RNNLM_miktoolkit,
+    16 : RNNLM_FASTER_toolkit,
+    17 : N_GRAM,
+    18 : CGT_MLP,
+    19 : CGT_GRU_RNN,
 
 }
 

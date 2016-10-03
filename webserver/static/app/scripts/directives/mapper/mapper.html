@@ -1,10 +1,22 @@
 <div>
 
 <div class="row">
-  <br>
 
+  <br>
+  <div class="col-md-12">
+  <div class="form-group">
+    <label>Training Dataset</label>
+    <select 
+      class="form-control" 
+      ng-model="jobInfo.dataset_id"  
+      ng-options="mapr.id as (mapr.name) for mapr in datasets"
+      >
+    </select>
+  </div>
+  </div>
   <div class="col-md-4">
     <div class="form-group">
+    <label>Mapper</label>
       <select 
         class="form-control" 
         ng-model="jobInfo.mapper_id"  
@@ -35,6 +47,13 @@
   </div>
 
   <div class="col-md-8">
+
+    <p> Add Dataset </p>
+      <input type="text" class="form-control"
+            ng-keypress="($event.which === 13)?onAddDataset():0"
+     ng-model="dataset_fname">
+
+     <br>
 
     <p> Search Dataset </p>
       <input type="text" class="form-control"

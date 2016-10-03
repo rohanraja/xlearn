@@ -37,7 +37,7 @@ class BaseKeras():
         print "Evaluating Keras Model"
         out = self.model.evaluate(
             X, Y, 
-            batch_size=32, 
+            batch_size=1, 
             show_accuracy=True, 
         )
 
@@ -81,13 +81,16 @@ class BaseKeras():
 
     def saveModel(self):
 
-        fpath = join(self.params["jobDir"], "model.save")
-        print "Saving KERAS MODEL in %s" % fpath
+        try:
+            fpath = join(self.params["jobDir"], "model.save")
+            print "Saving KERAS MODEL in %s" % fpath
 
-        f = file(fpath, 'wb')
-        cPickle.dump(self.model, f, protocol=cPickle.HIGHEST_PROTOCOL)
-        f.close()
-
+            f = file(fpath, 'wb')
+            cPickle.dump(self.model, f, protocol=cPickle.HIGHEST_PROTOCOL)
+            f.close()
+            print "Model Saved"
+        except Exception, e:
+            print "Error %s in saving" % e
 
     def setEmbeddingWeights(self, embed_matrix):
 
@@ -106,3 +109,12 @@ class BaseKeras():
         print "Changed embed layer weights!"
 
         # self.compile()
+
+    def getSize(self):
+
+        ans = 0.0
+
+        for W in self.model.params :
+            ans += W.get_value().nbytes
+
+        return ans/pow(2,20)

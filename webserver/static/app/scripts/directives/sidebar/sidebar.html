@@ -30,17 +30,42 @@
                 <ul class="nav nav-second-level" collapse="collapseVar!=(model.id)">
                     <li 
                     ng-class="{'active': pid==paramsId}"
-                    ui-sref-active="active" ng-repeat="pid in model.params" >
-                    <a 
+                    ui-sref-active="active" ng-repeat="obj in model.params_px" >
+                    <div ng-repeat="(pid, ppx) in obj">
+                      <a 
                       ng-click="" 
-                      ui-sref="dashboard.job({datasetId: datasetId, modelId: model.id, paramsId: pid, activetab: activetab})"
+                      ui-sref="dashboard.job({datasetId: activeDataset.id, modelId: model.id, paramsId: pid, activetab: activetab})"
                       >
                       
-                      Params_{{pid}}</a>
+                      Params_{{pid}} ({{ppx}})</a>
+                      <a ng-click="onParamDelete(model.id, pid)" class="" style="">-</a>
+                    </div>
                     </li>
                 </ul>
             </li>
 
+
+            <!-- ActiveJobs -->
+            <li ng-class="{active: collapseVar==(21)}">{{dropDown}}
+                        <a href="" ng-click="getRunJobs(21)">
+                          
+                          <i class="fa fa-sitemap fa-fw"></i>Running Jobs
+                          <span     class="fa arrow"></span>
+                        
+                        </a>
+
+                            <ul class="nav nav-second-level" collapse="collapseVar!=(21)">
+                                <li 
+                                ui-sref-active="active" ng-repeat="job in activeJobs" >
+                                  <a 
+                                  ng-click="" 
+                                  ui-sref="dashboard.job({datasetId: job.dataset_id, modelId: job.mid, paramsId: job.pid, activetab: 3})"
+                                  >
+                                  
+                                  Params_{{job.mid}}_{{job.pid}}</a>
+                                </li>
+                            </ul>
+                        </li>
 
             <!-- <br> -->
             <!-- <br> -->

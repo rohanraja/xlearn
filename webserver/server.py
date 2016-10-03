@@ -6,23 +6,26 @@ import json
 from json import dumps
 import webinterface
 import json
+from tornado import gen
+from tornado.web import asynchronous
+import threading
+from colorama import Fore
+from multiprocessing import Process
 
 
-# handles incoming request, this is the C part in MVC
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-
         self.render('index.html')
 
 
+class Worker(threading.Thread):
+   def __init__(self, callback=None, msg='', *args, **kwargs):
+        super(Worker, self).__init__(*args, **kwargs)
+        self.callback = callback
+        self.msg = msg
 
-from colorama import Fore
-class HTTPApi(tornado.web.RequestHandler):
-
-    def post(self):
-        message = self.get_argument("data",{})
-
-        request = json.loads(message)
+   def run(self):
+        request = json.loads(self.msg)
         query = request.get('query', {})
 
         try:
@@ -32,15 +35,31 @@ class HTTPApi(tornado.web.RequestHandler):
             result = {"Error": "%s"%e}
             print Fore.RED, "\nError: ", e, Fore.WHITE
 
-        self.write(dumps(result))
+        self.callback(result)
+
+
+
+class HTTPApi(tornado.web.RequestHandler):
+
+    @asynchronous
+    def post(self):
+        message = self.get_argument("data",{})
+        Worker(self.onComplete, message).start()
+        # w = Worker(self.onComplete, message)
+        # p = Process(target=w.run, args=())
+        # p.start()
+
+    def onComplete(self, result):
+        self.finish(dumps(result))
 
 
 class TrainerSocket(tornado.websocket.WebSocketHandler):
     def open(self):
-        print("WebSocket opened")
+        # print("WebSocket opened")
+        pass
     
     def on_message(self, message):
-        print "Attach Handler Request"
+        # print "Attach Handler Request"
         params = json.loads(message)["params"]
         self.params = params
 
@@ -63,6 +82,11 @@ class MyStaticFileHandler(tornado.web.StaticFileHandler):
         # Disable cache
         self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
 
+class ZipServer(tornado.web.StaticFileHandler):
+    def set_extra_headers(self, path):
+        # Disable cache
+        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+
 handlers = [
 
         (r"/", 
@@ -73,6 +97,9 @@ handlers = [
             HTTPApi),
         (r'/trainersocket',                                         
             TrainerSocket),
+
+        (r'/cgtjobs/(.*)',             
+            ZipServer, {'path': "cgtjobs"}),
         
         (r'/(.*)',             
             MyStaticFileHandler, {'path': "static/app"}),

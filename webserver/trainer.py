@@ -8,11 +8,29 @@ import time
 TRAINING_JOBS = {}
 
 from multiprocessing.pool import ThreadPool
-poolWorkers = ThreadPool(10)
+poolWorkers = ThreadPool(40)
 
 CACHED_JOBS = {}
 
 from colorama import Fore
+
+def getActiveJobs(params):
+    
+    out = []
+    
+    for k in TRAINING_JOBS:
+        try:
+            j = CACHED_JOBS[k]
+            o = j.jinfo
+            o["pid"] = k.split("_")[1]
+            o["mid"] = k.split("_")[0]
+
+            out.append(o)
+        except:
+            pass
+
+    return out
+
 def getJob(params):
 
     mid = params["modelId"]
@@ -28,6 +46,7 @@ def getJob(params):
         print Fore.RED, "\nJob not memcached! Creating!!", Fore.WHITE
         job = p.getJob(pid)
         CACHED_JOBS[jid] = job
+        print Fore.YELLOW, "Size of Model %.3f MB\n" % (job.model.getSize()), Fore.WHITE
 
 
     return job
@@ -51,6 +70,15 @@ class BatchCallBack(callbacks.Callback):
 
         self.model.starting_epoch = TRAINING_JOBS[self.jobid]["current_epoch"] + 1
         self.t1 = time.time()
+
+    def on_cmd_update(self, msg={}):
+        self.send_message(msg)
+
+    def checkStop(self):
+        if (TRAINING_JOBS[self.jobid]["stop"]):
+            return True
+        else:
+            return False
 
     def on_batch_end(self, batch, logs={}):
         
@@ -108,10 +136,20 @@ class BatchCallBack(callbacks.Callback):
 
 def start_training(params):
 
+    jid = get_job_id(params)
+    if jid in TRAINING_JOBS:
+        print "Already Training.."
+        return ""
+
     jobid = register_training_job(params)
     callback = BatchCallBack(jobid)
 
-    f = lambda : blocking_trainer(params, callback)
+    def f():
+        try:
+            blocking_trainer(params, callback)
+        except Exception,e:
+            print Fore.RED, "EXCEPTION: ", e
+
     g = lambda arg : _train_stop(jobid)
 
     poolWorkers.apply_async(f, (), {}, g)
@@ -126,7 +164,7 @@ def stop_training(params):
 
 def blocking_trainer(params, callback):
 
-    nepochs = int(params["nepochs"])
+    nepochs = int(params.get("nepochs", 0))
     job = getJob(params)
     callback.job = job
     job.start_training(nepochs, callbacks=[callback])
@@ -148,8 +186,8 @@ def get_job_id(params):
 def register_training_job(params):
     
     jobid = get_job_id(params)
-    nepochs = int(params["nepochs"])
-    current_epoch = int(params["currentEpoch"])
+    nepochs = int(params.get("nepochs", 0))
+    current_epoch = int(params.get("currentEpoch", 0))
 
     TRAINING_JOBS[jobid] = {
         
@@ -170,12 +208,13 @@ def register_handler(params, handler):
 
     try:
         TRAINING_JOBS[jobid]["handlers"].append(handler)
-        print "Attached Hander!!"
+        # print "Attached Hander!!"
 
         msg = { "status" : "compiling.."}
         handler(msg)
     except:
-        print "Failed to attach handler!"
+        # print "Failed to attach handler!"
+        pass
 
 def unregister_handler(params):
 
@@ -183,9 +222,10 @@ def unregister_handler(params):
 
     try:
         TRAINING_JOBS[jobid]["handlers"] = []
-        print "UNREGISTERED Hander!!"
+        # print "UNREGISTERED Hander!!"
     except:
-        print "Failed to attach handler!"
+        # print "Failed to attach handler!"
+        pass
 
 
 from os.path import join
@@ -225,6 +265,67 @@ def get_epoch_list(params):
     weights.sort()
 
     return weights
+
+
+
+def getAllJobs(modelId):
+    
+    mid = modelId
+    p = project.Project(str(mid))
+    allparams = p.listJobs()
+
+    jobs = []
+
+    for pid in allparams:
+        inp = {}
+        inp["modelId"] = mid
+        inp["paramsId"] = pid
+
+        # j = getJob(inp)
+        jobs.append(inp)
+
+    return jobs
+
+def startAllTraining(params):
+    
+    print Fore.BLUE, "Starting Training for all jobs of model\n", Fore.WHITE
+
+    mid = params["modelId"]
+    jobs = getAllJobs(mid)
+
+    for j in jobs:
+        start_training(j)
+
+import evaluate
+import threading
+
+def startAllEvaluation(params):
+    
+    print Fore.CYAN, "Starting Evaluation for all jobs of model\n", Fore.WHITE
+
+    mid = params["modelId"]
+    jobs = getAllJobs(mid)
+    outs = []
+    ts = []
+
+    for j in jobs:
+
+        def f():
+            j['datasetId'] = -1
+            o = evaluate.start_evaluation(j)
+            outs.append(o)
+
+        t = threading.Thread(target=f)
+        t.start()
+        ts.append(t)
+
+    for t in ts:
+        t.join()
+        
+
+    print outs
+    return outs
+
 
 
 

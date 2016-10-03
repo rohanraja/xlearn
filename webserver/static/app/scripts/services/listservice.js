@@ -4,6 +4,32 @@ angular.module('sbAdminApp')
   .service('listservice', function(serverComm) {
 
 
+    this.getActiveJobs = function(){
+
+      var query = {
+        'type': 'getActiveJobs',
+        'params': {
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
+    this.addDataset = function(fname){
+
+      var query = {
+        'type': 'add_dataset',
+        'params': {
+          'fname': fname
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
+
     this.loadDatasets = function(){
 
       var query = {
@@ -15,6 +41,20 @@ angular.module('sbAdminApp')
       var defer = serverComm.getData(query);
 
       return defer ;
+    };
+
+    this.datasetList = function($modelid){
+
+      var query = {
+        'type': 'dataset_list',
+        'params': {
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+
     };
 
     this.loadMappers = function($modelid){
@@ -79,6 +119,20 @@ angular.module('sbAdminApp')
         'params': {
           "modelId": $modelid,
           "phrase": phrase,
+        }
+      };
+
+      var defer = serverComm.getData(query);
+
+      return defer ;
+    };
+
+    this.deleteParam = function($modelid, $paramid){
+      var query = {
+        'type': 'delete_param',
+        'params': {
+          "modelId": $modelid,
+          "paramsId": $paramid,
         }
       };
 

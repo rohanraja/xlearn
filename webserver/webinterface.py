@@ -1,6 +1,10 @@
 from ..jobs import project
 import trainer
 
+def getActiveJobs(params):
+
+    return trainer.getActiveJobs(params)
+
 def getModelInfo(params):
     
     mid = params["modelId"]
@@ -17,6 +21,16 @@ def getParamsInfo(params):
 
     p = project.Project(str(mid))
     out = p.getParamsInfo(str(pid))
+
+    return out
+
+def delete_param(params):
+    
+    mid = params["modelId"]
+    pid = params["paramsId"]
+
+    p = project.Project(str(mid))
+    out = p.delete_param(str(pid))
 
     return out
     
@@ -69,6 +83,18 @@ def loadDatasets(params):
         pMap["id"] = p
         pMap["name"] = getJobName(pro)
         pMap["params"] = pro.listJobs()
+
+        pxmap = []
+        for pp in pMap["params"]:
+            pinfo = pro.getParamsInfo(pp)
+            try:
+                ppx = float(pinfo.get("ppx", 0.00))
+                pxmap.append({pp: "%.2f"%ppx})
+            except:
+                pxmap.append({pp: "0.00"})
+
+        pMap["params_px"] = pxmap 
+
         outMap[pMap2["dataset_id"]] = outMap.get(pMap2["dataset_id"], []) + [pMap]
 
     out = []
@@ -148,6 +174,19 @@ def get_mapper_stats(params):
 
     return m.getstats()
 
+def dataset_list(params):
+    
+    out = []
+    
+    arr = datasetsIndex
+
+    for k in arr:
+        obj = {}
+        obj["id"] = k
+        obj["name"] = arr[k].__name__
+        out.append(obj)
+
+    return out
 def search_dataset(params):
 
     jinfo = getModelInfo(params)
@@ -191,3 +230,11 @@ def embeddings_list(params):
         out.append(obj)
 
     return out
+
+
+from ..datasets import addOtherFiles
+
+def add_dataset(params):
+
+    fname = params['fname']
+    addOtherFiles(fname)
