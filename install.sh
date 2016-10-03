@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source /usr/local/bin/virtualenvwrapper.sh
 sudo apt-get install -y \
   python-dev \
   python-pip \
@@ -10,6 +9,7 @@ sudo apt-get install -y \
 
 sudo pip install virtualenv
 sudo pip install virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv venv
 workon venv
 pip install -r requirements.txt
